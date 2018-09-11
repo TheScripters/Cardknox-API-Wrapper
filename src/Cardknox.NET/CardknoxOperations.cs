@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cardknox.NET
+namespace Cardknox
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class CardknoxOperations
     {
         public const string CCSale = "cc:sale";

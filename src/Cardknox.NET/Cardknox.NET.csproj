@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>ahwm23</Authors>
+    <Company />
+    <PackageId>Cardknox.API.Wrapper</PackageId>
+    <Product>Cardknox.API.Wrapper</Product>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>Cardknox</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.NET.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
