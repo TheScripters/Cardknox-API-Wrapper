@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Cardknox.NET
 {
@@ -19,6 +21,18 @@ namespace Cardknox.NET
                 _cardknoxVersion = cardknoxVer;
         }
 
+        public static CardknoxRequest BeginRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
+        {
+            CardknoxRequest r = new CardknoxRequest(key, software, softwareVersion, cardknoxVer);
 
+            return r;
+        }
+
+        public CardknoxRequest BeginRequest()
+        {
+
+
+            return this;
+        }
     }
 }
