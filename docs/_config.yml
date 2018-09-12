@@ -1,1 +1,7 @@
+title: Cardknox API Wrapper for .NET Standard
+author: ahwm
+email: adam@adamh.us
+description: > # this means to ignore newlines until "baseurl:"
+  API Wrapper for Cardknox Payment Processor written in C#, using .NET Standard 2.0.
+  
 theme: jekyll-theme-slate
