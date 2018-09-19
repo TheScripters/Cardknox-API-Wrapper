@@ -13,7 +13,7 @@ namespace Cardknox
         private string _software { get; }
         private string _softwareVersion { get; }
         private string _cardknoxVersion { get; } = "4.5.5";
-        private const string Url = "https://x1.cardknox.com/gateway";
+        private const string _url = "https://x1.cardknox.com/gateway";
 
         /// <summary>
         /// 

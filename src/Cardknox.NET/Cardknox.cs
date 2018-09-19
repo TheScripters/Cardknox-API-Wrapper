@@ -1,5 +1,6 @@
 ﻿using Cardknox.Operations;
 using System;
+using System.Collections.Specialized;
 
 namespace Cardknox
 {
@@ -8,7 +9,8 @@ namespace Cardknox
         /// <summary>
         /// 
         /// </summary>
-        public CardknoxRequest Request { get; }
+        private CardknoxRequest _request { get; }
+        private NameValueCollection _values { get; }
 
         //public Sale Sale;
 
@@ -16,10 +18,17 @@ namespace Cardknox
         /// 
         /// </summary>
         /// <param name="request">The <see cref="CardknoxRequest"/> object that is used to make the request.</param>
-        /// <param name="operation">The operation to perform. Use the <see cref="CardknoxOperations"/> class for a list of operations.</param>
-        public Cardknox(CardknoxRequest request, string operation)
+        public Cardknox(CardknoxRequest request)
+        {
+            _values = new NameValueCollection();
+            _request = request;
+        }
+
+        public string CCSale(Sale _sale)
         {
 
+
+            return "";
         }
     }
 }

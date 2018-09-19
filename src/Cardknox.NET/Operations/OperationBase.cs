@@ -7,21 +7,21 @@ namespace Cardknox.Operations
     /// <summary>
     /// 
     /// </summary>
-    public class OperationBase
+    public class OperationBase : Customer
     {
-        string CardNum { get; set; }
-        string CVV { get; set; }
-        string Exp { get; set; }
-        decimal? Amount { get; set; }
-        string Name { get; set; }
-        string Token { get; set; }
-        string Street { get; set; }
-        string Zip { get; set; }
-        string MagStripe { get; set; }
-        bool CardPresent { get; set; }
-        decimal? Tax { get; set; }
-        decimal? Tip { get; set; }
-        string Invoice { get; set; }
-        string IP { get; set; }
+        public string CardNum { get; set; }
+        public string CVV { get; set; }
+        public string Exp { get; set; }
+        public decimal? Amount { get; set; }
+        public string Name { get; set; }
+        public string Token { get; set; }
+        public string Street { get; set; }
+        public string Zip { get; set; }
+        public string MagStripe { get; set; }
+        public bool CardPresent { get; set; }
+        public decimal? Tax { get; set; }
+        public decimal? Tip { get; set; }
+        public string Invoice { get; set; }
+        public string IP { get; set; }
     }
 }
