@@ -9,11 +9,11 @@ namespace Cardknox
     /// </summary>
     public class CardknoxRequest
     {
-        private string _key { get; }
-        private string _software { get; }
-        private string _softwareVersion { get; }
-        private string _cardknoxVersion { get; } = "4.5.5";
-        private const string _url = "https://x1.cardknox.com/gateway";
+        internal string _key { get; }
+        internal string _software { get; }
+        internal string _softwareVersion { get; }
+        internal string _cardknoxVersion { get; } = "4.5.5";
+        internal const string _url = "https://x1.cardknox.com/gateway";
 
         /// <summary>
         /// 
@@ -44,17 +44,6 @@ namespace Cardknox
             CardknoxRequest r = new CardknoxRequest(key, software, softwareVersion, cardknoxVer);
 
             return r;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public CardknoxRequest BeginRequest()
-        {
-
-
-            return this;
         }
     }
 }
