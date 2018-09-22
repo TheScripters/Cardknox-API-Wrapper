@@ -6,3 +6,4 @@ description: > # this means to ignore newlines until "baseurl:"
   
 theme: jekyll-theme-slate
 google_analytics: UA-30082562-2
+show_downloads: true
