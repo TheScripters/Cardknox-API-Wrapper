@@ -69,11 +69,21 @@ namespace Cardknox
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
+            // Optional, but recommended
+            if (!String.IsNullOrWhiteSpace(_sale.Street))
+                _values.Add("xStreet", _sale.Street);
+
+            if (!String.IsNullOrWhiteSpace(_sale.Zip))
+                _values.Add("xZip", _sale.Zip);
+
             // IP is optional, but is highly recommended for fraud detection
             if (!String.IsNullOrWhiteSpace(_sale.IP))
-            {
                 _values.Add("xIP", _sale.IP);
-            }
+
+            if (!String.IsNullOrWhiteSpace(_sale.Invoice))
+                _values.Add("xInvoice", _sale.Invoice);
+
+
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
