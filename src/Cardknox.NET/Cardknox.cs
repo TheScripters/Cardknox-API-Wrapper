@@ -36,7 +36,7 @@ namespace Cardknox
         public CardknoxResponse CCSale(Sale _sale, bool force = false)
         {
             if (_values.AllKeys.Length > 4 && !force)
-                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation.");
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
                 string[] toRemove = _values.AllKeys;
@@ -46,6 +46,33 @@ namespace Cardknox
                 _values.Add("xVersion", _request._cardknoxVersion);
                 _values.Add("xSoftwareName", _request._software);
                 _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // Required information
+            _values.Add("xCommand", _sale.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            // These groups are mutually exclusive
+            if (!String.IsNullOrWhiteSpace(_sale.CardNum))
+            {
+                _values.Add("xCardNum", _sale.CardNum);
+                _values.Add("xCVV", _sale.CVV);
+                _values.Add("xExp", _sale.Exp);
+            }
+            else if (!String.IsNullOrWhiteSpace(_sale.Token))
+            {
+                _values.Add("xToken", _sale.Token);
+            }
+            else if (!String.IsNullOrWhiteSpace(_sale.MagStripe))
+            {
+                _values.Add("xMagStripe", _sale.MagStripe);
+            }
+            // END required information
+
+            // The next many fields are optional and so there will be a lot of if statements here
+            // IP is optional, but is highly recommended for fraud detection
+            if (!String.IsNullOrWhiteSpace(_sale.IP))
+            {
+                _values.Add("xIP", _sale.IP);
             }
 
             var resp = MakeRequest();
