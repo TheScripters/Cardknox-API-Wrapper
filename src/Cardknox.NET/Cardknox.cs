@@ -23,11 +23,13 @@ namespace Cardknox
         /// <param name="request">The <see cref="CardknoxRequest"/> object that is used to make the request.</param>
         public Cardknox(CardknoxRequest request)
         {
-            _values = new NameValueCollection();
-            _values.Add("xKey", request._key);
-            _values.Add("xVersion", request._cardknoxVersion);
-            _values.Add("xSoftwareName", request._software);
-            _values.Add("xSoftwareVersion", request._softwareVersion);
+            _values = new NameValueCollection
+            {
+                { "xKey", request._key },
+                { "xVersion", request._cardknoxVersion },
+                { "xSoftwareName", request._software },
+                { "xSoftwareVersion", request._softwareVersion }
+            };
             _request = request;
         }
 
@@ -35,6 +37,8 @@ namespace Cardknox
 
         public CardknoxResponse CCSale(Sale _sale, bool force = false)
         {
+            if (_sale.Amount == null || _sale.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
@@ -48,24 +52,30 @@ namespace Cardknox
                 _values.Add("xSoftwareVersion", _request._softwareVersion);
             }
 
-            // Required information
+            // BEGIN required information
             _values.Add("xCommand", _sale.Operation);
             _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!String.IsNullOrWhiteSpace(_sale.CardNum))
             {
                 _values.Add("xCardNum", _sale.CardNum);
                 _values.Add("xCVV", _sale.CVV);
                 _values.Add("xExp", _sale.Exp);
+                requiredAdded = true;
             }
             else if (!String.IsNullOrWhiteSpace(_sale.Token))
             {
                 _values.Add("xToken", _sale.Token);
+                requiredAdded = true;
             }
             else if (!String.IsNullOrWhiteSpace(_sale.MagStripe))
             {
                 _values.Add("xMagStripe", _sale.MagStripe);
+                requiredAdded = true;
             }
+            if (!requiredAdded)
+                throw new Exception("Missing required values. Please refer to the API documentation.");
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
@@ -82,8 +92,6 @@ namespace Cardknox
 
             if (!String.IsNullOrWhiteSpace(_sale.Invoice))
                 _values.Add("xInvoice", _sale.Invoice);
-
-
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
