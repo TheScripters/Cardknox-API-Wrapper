@@ -97,6 +97,96 @@ namespace Cardknox
             return new CardknoxResponse(resp);
         }
 
+        public CardknoxResponse CCSave(Save _save, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _save.Operation);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!String.IsNullOrWhiteSpace(_save.CardNum))
+            {
+                _values.Add("xCardNum", _save.CardNum);
+                _values.Add("xCVV", _save.CVV);
+                _values.Add("xExp", _save.Exp);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_save.Token))
+            {
+                _values.Add("xToken", _save.Token);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_save.MagStripe))
+            {
+                _values.Add("xMagStripe", _save.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception("Missing required values. Please refer to the API documentation.");
+            // END required information
+
+            // The next many fields are optional and so there will be a lot of if statements here
+            // Optional, but recommended
+            if (!String.IsNullOrWhiteSpace(_save.Name))
+                _values.Add("xName", _save.Name);
+
+            if (!String.IsNullOrWhiteSpace(_save.Street))
+                _values.Add("xStreet", _save.Street);
+
+            if (!String.IsNullOrWhiteSpace(_save.Zip))
+                _values.Add("xZip", _save.Zip);
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!String.IsNullOrWhiteSpace(_save.IP))
+                _values.Add("xIP", _save.IP);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        public CardknoxResponse CCRefund(Refund _refund, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _refund.Operation);
+
+            if (_refund.Amount == null || _refund.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Must specify a positive amount to refund.");
+            if (String.IsNullOrWhiteSpace(_refund.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+
+            _values.Add("xAmount", String.Format("{0:N2}", _refund.Amount));
+            _values.Add("xRefNum", _refund.RefNum);
+            // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
         #endregion
 
         private NameValueCollection MakeRequest()
