@@ -8,10 +8,21 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>Cardknox</RootNamespace>
+    <Version>0.1.0-beta</Version>
+    <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>API Wrapper for Cardknox Payment Processor written in C#</Description>
+    <PackageReleaseNotes>CC Sale is live for testing.</PackageReleaseNotes>
+    <PackageTags>cardknox gateway processor payment api</PackageTags>
+    <Copyright>© 2018 Adam Humpherys</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.NET.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 </Project>
