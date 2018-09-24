@@ -8,11 +8,11 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>Cardknox</RootNamespace>
-    <Version>0.1.0-beta</Version>
+    <Version>0.1.1-beta</Version>
     <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#</Description>
-    <PackageReleaseNotes>CC Sale is live for testing.</PackageReleaseNotes>
+    <PackageReleaseNotes>CC Save and CC Refund are live for testing.</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api</PackageTags>
     <Copyright>© 2018 Adam Humpherys</Copyright>
   </PropertyGroup>
