@@ -1,11 +1,11 @@
-﻿using Cardknox.Operations;
+﻿using CardknoxApi.Operations;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using System.Web;
 
-namespace Cardknox
+namespace CardknoxApi
 {
     public class Cardknox
     {
