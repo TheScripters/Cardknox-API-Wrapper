@@ -7,7 +7,7 @@ namespace CardknoxApi.Operations
     /// <summary>
     /// 
     /// </summary>
-    public sealed class Sale : OperationBase
+    public class CCSale : OperationBase
     {
         public string Operation => CardknoxOperations.CCSale;
 

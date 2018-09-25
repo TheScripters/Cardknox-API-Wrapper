@@ -4,11 +4,10 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
-    public class Refund : OperationBase
+    public class CCVoid : OperationBase
     {
-        public string Operation => CardknoxOperations.CCRefund;
+        public string Operation => CardknoxOperations.CCVoid;
 
         public string RefNum { get; set; }
-        public bool AllowDuplicate { get; set; } = false;
     }
 }

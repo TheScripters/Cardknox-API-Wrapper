@@ -4,8 +4,8 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
-    public class Save : OperationBase
+    public class CCCredit : CCSale
     {
-        public string Operation => CardknoxOperations.CCSave;
+        public new string Operation => CardknoxOperations.CCCredit;
     }
 }
