@@ -15,6 +15,6 @@ namespace CardknoxApi
         public const string CCRefund = "cc:refund";
         public const string CCCapture = "cc:capture";
         public const string CCCredit = "cc:credit";
-        public const string CCVoid = "cc:void"
+        public const string CCVoid = "cc:void";
     }
 }
