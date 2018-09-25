@@ -7,5 +7,7 @@ namespace CardknoxApi.Operations
     public class CCCapture : CCSale
     {
         public new string Operation => CardknoxOperations.CCCapture;
+
+        public string RefNum { get; set; }
     }
 }

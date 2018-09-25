@@ -176,6 +176,8 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCRefund(CCRefund _refund, bool force = false)
         {
+            if (_refund.Amount == null || _refund.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Refund Amount must be greater than 0.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
@@ -214,7 +216,7 @@ namespace CardknoxApi
         public CardknoxResponse CCAuthOnly(CCAuthOnly _auth, bool force = false)
         {
             if (_auth.Amount == null || _auth.Amount <= 0)
-                throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
+                throw new InvalidOperationException("Invalid amount. Auth Amount must be greater than 0.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
@@ -268,6 +270,62 @@ namespace CardknoxApi
 
             if (!String.IsNullOrWhiteSpace(_auth.Invoice))
                 _values.Add("xInvoice", _auth.Invoice);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Capture command is used to settle funds from a previous authorization and withdraw the funds from the cardholder’s account. The refNumber from related authorization is required when submitting a Capture request. To perform an authorization and capture in the same command, use the CCSale command.
+        /// </summary>
+        /// <param name="_capture"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCCapture(CCCapture _capture, bool force = false)
+        {
+            if (String.IsNullOrWhiteSpace(_capture.RefNum))
+                throw new InvalidOperationException("The capture command must reference a previous authorization in the RefNum parameter.");
+            if (_capture.Amount == null || _capture.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Capture Amount must be greater than 0.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _capture.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _capture.Amount));
+            _values.Add("xRefNum", _capture.RefNum);
+            // END required information
+
+            // The next many fields are optional and so there will be a lot of if statements here
+            // Optional, but recommended
+            if (!String.IsNullOrWhiteSpace(_capture.Street))
+                _values.Add("xStreet", _capture.Street);
+
+            if (!String.IsNullOrWhiteSpace(_capture.Zip))
+                _values.Add("xZip", _capture.Zip);
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!String.IsNullOrWhiteSpace(_capture.IP))
+                _values.Add("xIP", _capture.IP);
+
+            if (!String.IsNullOrWhiteSpace(_capture.Invoice))
+                _values.Add("xInvoice", _capture.Invoice);
+
+            if (_capture.Tip != null)
+                _values.Add("xTip", String.Format("{0:N2}", _capture.Tip));
+
+            if (_capture.Tax != null)
+                _values.Add("xTax", String.Format("{0:N2}", _capture.Tax));
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
