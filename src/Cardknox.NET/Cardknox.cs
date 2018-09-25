@@ -99,6 +99,12 @@ namespace CardknoxApi
             if (!String.IsNullOrWhiteSpace(_sale.Invoice))
                 _values.Add("xInvoice", _sale.Invoice);
 
+            if (_sale.Tip != null)
+                _values.Add("xTip", String.Format("{0:N2}", _sale.Tip));
+
+            if (_sale.Tax != null)
+                _values.Add("xTax", String.Format("{0:N2}", _sale.Tax));
+
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
         }
@@ -176,8 +182,10 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCRefund(CCRefund _refund, bool force = false)
         {
+            if (String.IsNullOrWhiteSpace(_refund.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_refund.Amount == null || _refund.Amount <= 0)
-                throw new InvalidOperationException("Invalid amount. Refund Amount must be greater than 0.");
+                throw new InvalidOperationException("Invalid amount. Must specify a positive amount to refund.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
@@ -193,11 +201,6 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _refund.Operation);
-
-            if (_refund.Amount == null || _refund.Amount <= 0)
-                throw new InvalidOperationException("Invalid amount. Must specify a positive amount to refund.");
-            if (String.IsNullOrWhiteSpace(_refund.RefNum))
-                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
 
             _values.Add("xAmount", String.Format("{0:N2}", _refund.Amount));
             _values.Add("xRefNum", _refund.RefNum);
@@ -276,7 +279,7 @@ namespace CardknoxApi
         }
 
         /// <summary>
-        /// The Capture command is used to settle funds from a previous authorization and withdraw the funds from the cardholder’s account. The refNumber from related authorization is required when submitting a Capture request. To perform an authorization and capture in the same command, use the CCSale command.
+        /// The Capture command is used to settle funds from a previous authorization and withdraw the funds from the cardholder's account. The refNumber from related authorization is required when submitting a Capture request. To perform an authorization and capture in the same command, use the CCSale command.
         /// </summary>
         /// <param name="_capture"></param>
         /// <param name="force"></param>
@@ -326,6 +329,114 @@ namespace CardknoxApi
 
             if (_capture.Tax != null)
                 _values.Add("xTax", String.Format("{0:N2}", _capture.Tax));
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Credit command refunds money from a merchant to a cardholder's card that is not linked to any previous transaction.
+        /// </summary>
+        /// <param name="_credit"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCCredit(CCCredit _credit, bool force = false)
+        {
+            if (_credit.Amount == null || _credit.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Credit Amount must be greater than 0.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _credit.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!String.IsNullOrWhiteSpace(_credit.CardNum))
+            {
+                _values.Add("xCardNum", _credit.CardNum);
+                _values.Add("xCVV", _credit.CVV);
+                _values.Add("xExp", _credit.Exp);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_credit.Token))
+            {
+                _values.Add("xToken", _credit.Token);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_credit.MagStripe))
+            {
+                _values.Add("xMagStripe", _credit.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception("Missing required values. Please refer to the API documentation.");
+            // END required information
+
+            // The next many fields are optional and so there will be a lot of if statements here
+            // Optional, but recommended
+            if (!String.IsNullOrWhiteSpace(_credit.Street))
+                _values.Add("xStreet", _credit.Street);
+
+            if (!String.IsNullOrWhiteSpace(_credit.Zip))
+                _values.Add("xZip", _credit.Zip);
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!String.IsNullOrWhiteSpace(_credit.IP))
+                _values.Add("xIP", _credit.IP);
+
+            if (!String.IsNullOrWhiteSpace(_credit.Invoice))
+                _values.Add("xInvoice", _credit.Invoice);
+
+            if (_credit.Tip != null)
+                _values.Add("xTip", String.Format("{0:N2}", _credit.Tip));
+
+            if (_credit.Tax != null)
+                _values.Add("xTax", String.Format("{0:N2}", _credit.Tax));
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Void command voids a captured transaction that is pending batch, prior to the batch being settled.
+        /// </summary>
+        /// <param name="_void"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCVoid(CCVoid _void, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _void.Operation);
+
+            if (String.IsNullOrWhiteSpace(_void.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+
+            _values.Add("xRefNum", _void.RefNum);
+            // END required information
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
