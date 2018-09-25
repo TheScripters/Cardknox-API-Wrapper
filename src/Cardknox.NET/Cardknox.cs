@@ -35,7 +35,13 @@ namespace CardknoxApi
 
         #region credit card
 
-        public CardknoxResponse CCSale(Sale _sale, bool force = false)
+        /// <summary>
+        /// The Sale command is a combination of an authorization and capture and intended when fulfilling an order right away. For transactions that are not fulfilled right away, use the authonly command initially and use the capture command to complete the sale.
+        /// </summary>
+        /// <param name="_sale"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCSale(CCSale _sale, bool force = false)
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
@@ -97,7 +103,13 @@ namespace CardknoxApi
             return new CardknoxResponse(resp);
         }
 
-        public CardknoxResponse CCSave(Save _save, bool force = false)
+        /// <summary>
+        /// The Save command is used to send account information and request a token from Cardknox, but does not submit the transaction for processing. The response returns a token which references that account information. A token at a minimum references the credit card number, but if other data is sent, such as billing address, that will be associated with the token as well.
+        /// </summary>
+        /// <param name="_save"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCSave(CCSave _save, bool force = false)
         {
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
@@ -156,7 +168,13 @@ namespace CardknoxApi
             return new CardknoxResponse(resp);
         }
 
-        public CardknoxResponse CCRefund(Refund _refund, bool force = false)
+        /// <summary>
+        /// The Refund command is used to refund a full or partial refund of a previous settled transaction, using RefNum.
+        /// </summary>
+        /// <param name="_refund"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCRefund(CCRefund _refund, bool force = false)
         {
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
@@ -182,6 +200,74 @@ namespace CardknoxApi
             _values.Add("xAmount", String.Format("{0:N2}", _refund.Amount));
             _values.Add("xRefNum", _refund.RefNum);
             // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The AuthOnly command authorizes an amount on a cardholder's account and places a hold on the available credit for that amount, but does not submit the charge for settlement. AuthOnly is used to reserve funds from a cardholder's credit limit for a sale that is not ready to be processed.
+        /// </summary>
+        /// <param name="_auth"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCAuthOnly(CCAuthOnly _auth, bool force = false)
+        {
+            if (_auth.Amount == null || _auth.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _auth.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _auth.Amount));
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!String.IsNullOrWhiteSpace(_auth.CardNum))
+            {
+                _values.Add("xCardNum", _auth.CardNum);
+                _values.Add("xCVV", _auth.CVV);
+                _values.Add("xExp", _auth.Exp);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_auth.Token))
+            {
+                _values.Add("xToken", _auth.Token);
+                requiredAdded = true;
+            }
+            else if (!String.IsNullOrWhiteSpace(_auth.MagStripe))
+            {
+                _values.Add("xMagStripe", _auth.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception("Missing required values. Please refer to the API documentation.");
+            // END required information
+
+            // The next many fields are optional and so there will be a lot of if statements here
+            // Optional, but recommended
+            if (!String.IsNullOrWhiteSpace(_auth.Street))
+                _values.Add("xStreet", _auth.Street);
+
+            if (!String.IsNullOrWhiteSpace(_auth.Zip))
+                _values.Add("xZip", _auth.Zip);
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!String.IsNullOrWhiteSpace(_auth.IP))
+                _values.Add("xIP", _auth.IP);
+
+            if (!String.IsNullOrWhiteSpace(_auth.Invoice))
+                _values.Add("xInvoice", _auth.Invoice);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
-    public class Refund : OperationBase
+    public class CCRefund : OperationBase
     {
         public string Operation => CardknoxOperations.CCRefund;
 

@@ -7,11 +7,12 @@ namespace CardknoxApi
     /// <summary>
     /// 
     /// </summary>
-    public static class CardknoxOperations
+    internal static class CardknoxOperations
     {
         public const string CCSale = "cc:sale";
         public const string CCAuthOnly = "cc:authonly";
         public const string CCSave = "cc:save";
         public const string CCRefund = "cc:refund";
+        public const string CCCapture = "cc:capture";
     }
 }
