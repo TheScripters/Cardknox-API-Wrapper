@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cardknox.Operations
+namespace CardknoxApi.Operations
 {
     public class Save : OperationBase
     {
