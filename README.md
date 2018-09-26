@@ -13,7 +13,7 @@ CC Sale is live for testing.
 
 ---
 
-API Documentation: https://kb.cardknox.com/api
+API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 # Progress
 * CREDIT CARD: 47%
@@ -32,3 +32,10 @@ The base functionality is in place to make a credit card sale, but not all of th
 * cc:save
 * cc:refund
 * cc:void
+
+### Partially Complete
+Only required and recommended fields are included. This is unlikely to change in the near future. If you need to use more fields, fork it and add them yourself. I will gladly accept pull requests which add these optional fields.
+
+* cc:sale
+* cc:authonly
+* cc:capture
