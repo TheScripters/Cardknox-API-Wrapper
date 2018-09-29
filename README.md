@@ -39,3 +39,4 @@ Only required and recommended fields are included. This is unlikely to change in
 * cc:sale
 * cc:authonly
 * cc:capture
+* cc:credit

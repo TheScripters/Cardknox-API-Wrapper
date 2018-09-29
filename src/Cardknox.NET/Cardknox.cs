@@ -15,8 +15,6 @@ namespace CardknoxApi
         private CardknoxRequest _request { get; }
         private NameValueCollection _values { get; }
 
-        //public Sale Sale;
-
         /// <summary>
         /// 
         /// </summary>
@@ -96,14 +94,7 @@ namespace CardknoxApi
             if (!String.IsNullOrWhiteSpace(_sale.IP))
                 _values.Add("xIP", _sale.IP);
 
-            if (!String.IsNullOrWhiteSpace(_sale.Invoice))
-                _values.Add("xInvoice", _sale.Invoice);
-
-            if (_sale.Tip != null)
-                _values.Add("xTip", String.Format("{0:N2}", _sale.Tip));
-
-            if (_sale.Tax != null)
-                _values.Add("xTax", String.Format("{0:N2}", _sale.Tax));
+            AddCommonFields(_sale);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -271,8 +262,7 @@ namespace CardknoxApi
             if (!String.IsNullOrWhiteSpace(_auth.IP))
                 _values.Add("xIP", _auth.IP);
 
-            if (!String.IsNullOrWhiteSpace(_auth.Invoice))
-                _values.Add("xInvoice", _auth.Invoice);
+            AddCommonFields(_auth);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -321,14 +311,7 @@ namespace CardknoxApi
             if (!String.IsNullOrWhiteSpace(_capture.IP))
                 _values.Add("xIP", _capture.IP);
 
-            if (!String.IsNullOrWhiteSpace(_capture.Invoice))
-                _values.Add("xInvoice", _capture.Invoice);
-
-            if (_capture.Tip != null)
-                _values.Add("xTip", String.Format("{0:N2}", _capture.Tip));
-
-            if (_capture.Tax != null)
-                _values.Add("xTax", String.Format("{0:N2}", _capture.Tax));
+            AddCommonFields(_capture);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -395,14 +378,7 @@ namespace CardknoxApi
             if (!String.IsNullOrWhiteSpace(_credit.IP))
                 _values.Add("xIP", _credit.IP);
 
-            if (!String.IsNullOrWhiteSpace(_credit.Invoice))
-                _values.Add("xInvoice", _credit.Invoice);
-
-            if (_credit.Tip != null)
-                _values.Add("xTip", String.Format("{0:N2}", _credit.Tip));
-
-            if (_credit.Tax != null)
-                _values.Add("xTax", String.Format("{0:N2}", _credit.Tax));
+            AddCommonFields(_credit);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -416,6 +392,8 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCVoid(CCVoid _void, bool force = false)
         {
+            if (String.IsNullOrWhiteSpace(_void.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
@@ -431,10 +409,6 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _void.Operation);
-
-            if (String.IsNullOrWhiteSpace(_void.RefNum))
-                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-
             _values.Add("xRefNum", _void.RefNum);
             // END required information
 
@@ -452,6 +426,18 @@ namespace CardknoxApi
             NameValueCollection resp = HttpUtility.ParseQueryString(req);
 
             return resp;
+        }
+
+        private void AddCommonFields(OperationBase _base)
+        {
+            if (!String.IsNullOrWhiteSpace(_base.Invoice))
+                _values.Add("xInvoice", _base.Invoice);
+
+            if (_base.Tip != null)
+                _values.Add("xTip", String.Format("{0:N2}", _base.Tip));
+
+            if (_base.Tax != null)
+                _values.Add("xTax", String.Format("{0:N2}", _base.Tax));
         }
     }
 }
