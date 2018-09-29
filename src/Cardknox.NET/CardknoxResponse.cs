@@ -7,35 +7,88 @@ using System.Web;
 
 namespace CardknoxApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CardknoxResponse
     {
         // xExp=1249
 
-        public string Result { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ResultType Result { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Error { get; }
-        public string Status { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public StatusType Status { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string ErrorCode { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string RefNum { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string AuthCode { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Batch { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string AvsResultCode { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string AvsResult { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal? AuthAmount { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string MaskedCardNumber { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string CardType { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Token { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string EntryMethod { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool HasError { get { return !String.IsNullOrWhiteSpace(Error) || Status == StatusType.Error || Result == ResultType.E; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_values"></param>
         public CardknoxResponse(NameValueCollection _values)
         {
             if (_values.AllKeys.Contains("xResult"))
-                Result = _values["xResult"];
+                Result = (ResultType)Enum.Parse(typeof(ResultType), _values["xResult"]);
             if (_values.AllKeys.Contains("xError"))
                 Error = _values["xError"];
             if (_values.AllKeys.Contains("xErrorCode"))
                 ErrorCode = _values["xErrorCode"];
             if (_values.AllKeys.Contains("xStatus"))
-                Status = _values["xStatus"];
+                Status = (StatusType)Enum.Parse(typeof(StatusType), _values["xStatus"]);
             if (_values.AllKeys.Contains("xRefNum"))
                 RefNum = _values["xRefNum"];
             if (_values.AllKeys.Contains("xAuthCode"))
