@@ -40,4 +40,19 @@ namespace CardknoxApi
         /// </summary>
         Error
     }
+    /// <summary>
+    /// Card type.
+    /// </summary>
+    public enum CardType
+    {
+        Unknown,
+        EBT,
+        GiftCard,
+        Amex,
+        Visa,
+        MasterCard,
+        Discover,
+        Diners,
+        JCB
+    }
 }

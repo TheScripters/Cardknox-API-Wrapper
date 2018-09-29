@@ -15,8 +15,6 @@ namespace CardknoxApi
         private CardknoxRequest _request { get; }
         private NameValueCollection _values { get; }
 
-        //public Sale Sale;
-
         /// <summary>
         /// 
         /// </summary>

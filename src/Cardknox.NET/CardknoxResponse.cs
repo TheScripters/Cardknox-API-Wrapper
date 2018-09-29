@@ -61,7 +61,7 @@ namespace CardknoxApi
         /// <summary>
         /// 
         /// </summary>
-        public string CardType { get; }
+        public CardType CardType { get; }
         /// <summary>
         /// 
         /// </summary>
@@ -105,7 +105,7 @@ namespace CardknoxApi
             if (_values.AllKeys.Contains("xMaskedCardNumber"))
                 MaskedCardNumber = _values["xMaskedCardNumber"];
             if (_values.AllKeys.Contains("xCardType"))
-                CardType = _values["xCardType"];
+                CardType = (CardType)Enum.Parse(typeof(CardType), _values["xCardType"]);
             if (_values.AllKeys.Contains("xToken"))
                 Token = _values["xToken"];
             if (_values.AllKeys.Contains("xEntryMethod"))
