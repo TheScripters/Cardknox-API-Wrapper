@@ -4,8 +4,14 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CCSave : OperationBase
     {
-        public string Operation => CardknoxOperations.CCSave;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Operation => "cc:save";
     }
 }

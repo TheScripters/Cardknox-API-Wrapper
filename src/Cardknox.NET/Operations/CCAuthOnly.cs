@@ -4,8 +4,14 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CCAuthOnly : CCSale
     {
-        public new string Operation => CardknoxOperations.CCAuthOnly;
+        /// <summary>
+        /// 
+        /// </summary>
+        public new string Operation => "cc:authonly";
     }
 }

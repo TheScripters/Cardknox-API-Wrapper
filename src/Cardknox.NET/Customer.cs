@@ -4,6 +4,9 @@ using System.Text;
 
 namespace CardknoxApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Customer
     {
         public string Email { get; set; }

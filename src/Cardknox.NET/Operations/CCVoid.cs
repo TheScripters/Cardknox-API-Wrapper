@@ -4,10 +4,19 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CCVoid : OperationBase
     {
-        public string Operation => CardknoxOperations.CCVoid;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Operation => "cc:void";
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string RefNum { get; set; }
     }
 }

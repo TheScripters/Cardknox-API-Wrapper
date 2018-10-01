@@ -176,7 +176,7 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCRefund(CCRefund _refund, bool force = false)
         {
-            if (String.IsNullOrWhiteSpace(_refund.RefNum))
+            if (IsNullOrWhiteSpace(_refund.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_refund.Amount == null || _refund.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Must specify a positive amount to refund.");
@@ -401,7 +401,7 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCVoid(CCVoid _void, bool force = false)
         {
-            if (String.IsNullOrWhiteSpace(_void.RefNum))
+            if (IsNullOrWhiteSpace(_void.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
@@ -425,6 +425,166 @@ namespace CardknoxApi
             return new CardknoxResponse(resp);
         }
 
+        /// <summary>
+        /// The Adjust comand is used to change a previous authorization to a higher or lower amount. The refNumber from related authorization is required when submitting an Adjust.
+        /// </summary>
+        /// <param name="_adjust"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCAdjust(CCAdjust _adjust, bool force = false)
+        {
+            if (IsNullOrWhiteSpace(_adjust.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+            if (_adjust.Amount == null || _adjust.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Amount must be greater than 0.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _adjust.Operation);
+            _values.Add("xRefNum", _adjust.RefNum);
+            _values.Add("xAmount", Format("{0:N2}", _adjust.Amount));
+            // END required information
+
+            if (!IsNullOrWhiteSpace(_adjust.Street))
+                _values.Add("xStreet", _adjust.Street);
+
+            if (!IsNullOrWhiteSpace(_adjust.Zip))
+                _values.Add("xZip", _adjust.Zip);
+
+            if (!IsNullOrWhiteSpace(_adjust.Name))
+                _values.Add("xName", _adjust.Name);
+
+            if (!IsNullOrWhiteSpace(_adjust.IP))
+                _values.Add("xIP", _adjust.IP);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// Some authorizations will require a voice authorization before they can be approved. When a verbal authorization is issued by the bank, that number can be sent with the PostAuth command to verify the authorization.
+        /// </summary>
+        /// <param name="_auth"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCPostAuth(CCPostAuth _auth, bool force = false)
+        {
+            if (IsNullOrWhiteSpace(_auth.AuthCode))
+                throw new InvalidOperationException("Invalid AuthCode specified. AuthCode must be a verification number provided by the issuing bank.");
+            if (_auth.Amount == null || _auth.Amount <= 0)
+                throw new InvalidOperationException("Invalid amount. Amount must be greater than 0.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _auth.Operation);
+            _values.Add("xAuthCode", _auth.AuthCode);
+            // END required information
+
+            if (!IsNullOrWhiteSpace(_auth.Street))
+                _values.Add("xStreet", _auth.Street);
+
+            if (!IsNullOrWhiteSpace(_auth.Zip))
+                _values.Add("xZip", _auth.Zip);
+
+            if (!IsNullOrWhiteSpace(_auth.Name))
+                _values.Add("xName", _auth.Name);
+
+            if (!IsNullOrWhiteSpace(_auth.IP))
+                _values.Add("xIP", _auth.IP);
+
+            AddCommonFields(_auth);
+
+            AddSpecialFields(_auth);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Void Refund command voids a pending transaction that has not yet settled or will refund the transaction if it already has settled using RefNum.
+        /// </summary>
+        /// <param name="_refund"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCVoidRefund(CCVoidRefund _refund, bool force = false)
+        {
+            if (IsNullOrWhiteSpace(_refund.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _refund.Operation);
+            _values.Add("xRefNum", _refund.RefNum);
+            // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Void Release command releases a pending authorization amount back to the cardholder’s credit limit without waiting for the standard authorization timeframe to expire.
+        /// </summary>
+        /// <param name="_release"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CCVoidRelease(CCVoidRelease _release, bool force = false)
+        {
+            if (IsNullOrWhiteSpace(_release.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _release.Operation);
+            _values.Add("xRefNum", _release.RefNum);
+            // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
         #endregion
 
         private NameValueCollection MakeRequest()
@@ -521,7 +681,7 @@ namespace CardknoxApi
                 _values.Add("xShipMobile", _base.ShipMobile);
         }
 
-        private void AddSpecialFields(CCSale _sale)
+        private void AddSpecialFields(Sale _sale)
         {
             if (_sale.RxAmount > 0)
                 _values.Add("xRxAmount", Format("{0:N2}", _sale.RxAmount));

@@ -16,7 +16,7 @@ CC Sale is live for testing.
 API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 # Progress
-* CREDIT CARD: 63%
+* CREDIT CARD: 100%
 * CHECK (ACH): 0%
 * EBT Food Stamp: 0%
 * EBT Cash Benefits: 0%
@@ -25,21 +25,4 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 * FRAUD: 0%
 
 ## CREDIT CARD Progress
-The base functionality is in place to make a credit card sale, but not all of the available fields are being included yet.
-
-### Completed:
-
-* cc:sale
-* cc:authonly
-* cc:capture
-* cc:save
-* cc:credit
-* cc:refund
-* cc:void
-
-### To Be Completed
-
-* cc:adjust
-* cc:postauth
-* cc:voidrefund
-* cc:voidrelease
+The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.

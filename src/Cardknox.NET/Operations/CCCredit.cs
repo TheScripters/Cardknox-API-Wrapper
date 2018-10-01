@@ -4,8 +4,14 @@ using System.Text;
 
 namespace CardknoxApi.Operations
 {
-    public class CCCredit : CCSale
+    /// <summary>
+    /// 
+    /// </summary>
+    public class CCCredit : Sale
     {
-        public new string Operation => CardknoxOperations.CCCredit;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Operation => "cc:credit";
     }
 }

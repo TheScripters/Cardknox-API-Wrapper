@@ -5,14 +5,14 @@ using System.Text;
 namespace CardknoxApi.Operations
 {
     /// <summary>
-    /// 
+    /// The Adjust comand is used to change a previous authorization to a higher or lower amount. The refNumber from related authorization is required when submitting an Adjust.
     /// </summary>
-    public class CCCapture : Sale
+    public class CCAdjust : OperationBase
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:capture";
+        public string Operation => "cc:adjust";
 
         /// <summary>
         /// 
