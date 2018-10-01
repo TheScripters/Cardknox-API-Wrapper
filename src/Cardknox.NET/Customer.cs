@@ -6,6 +6,8 @@ namespace CardknoxApi
 {
     public class Customer
     {
+        public string Email { get; set; }
+
         public string BillFirstName { get; set; }
         public string BillMiddleName { get; set; }
         public string BillLastName { get; set; }

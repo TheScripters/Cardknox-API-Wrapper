@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using System.Web;
+using static System.String;
 
 namespace CardknoxApi
 {
@@ -95,6 +96,8 @@ namespace CardknoxApi
                 _values.Add("xIP", _sale.IP);
 
             AddCommonFields(_sale);
+
+            AddSpecialFields(_sale);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -264,6 +267,8 @@ namespace CardknoxApi
 
             AddCommonFields(_auth);
 
+            AddSpecialFields(_auth);
+
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
         }
@@ -312,6 +317,8 @@ namespace CardknoxApi
                 _values.Add("xIP", _capture.IP);
 
             AddCommonFields(_capture);
+
+            AddSpecialFields(_capture);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
@@ -380,6 +387,8 @@ namespace CardknoxApi
 
             AddCommonFields(_credit);
 
+            AddSpecialFields(_credit);
+
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
         }
@@ -430,14 +439,113 @@ namespace CardknoxApi
 
         private void AddCommonFields(OperationBase _base)
         {
-            if (!String.IsNullOrWhiteSpace(_base.Invoice))
+            if (!IsNullOrWhiteSpace(_base.Invoice))
                 _values.Add("xInvoice", _base.Invoice);
 
             if (_base.Tip != null)
-                _values.Add("xTip", String.Format("{0:N2}", _base.Tip));
+                _values.Add("xTip", Format("{0:N2}", _base.Tip));
 
             if (_base.Tax != null)
-                _values.Add("xTax", String.Format("{0:N2}", _base.Tax));
+                _values.Add("xTax", Format("{0:N2}", _base.Tax));
+
+            if (!IsNullOrWhiteSpace(_base.BillFirstName))
+                _values.Add("xBillFirstName", _base.BillFirstName);
+
+            if (!IsNullOrWhiteSpace(_base.BillMiddleName))
+                _values.Add("xBillMiddleName", _base.BillMiddleName);
+
+            if (!IsNullOrWhiteSpace(_base.BillLastName))
+                _values.Add("xBillLastName", _base.BillLastName);
+
+            if (!IsNullOrWhiteSpace(_base.BillCompany))
+                _values.Add("xBillCompany", _base.BillCompany);
+
+            if (!IsNullOrWhiteSpace(_base.BillStreet))
+                _values.Add("xBillStreet", _base.BillStreet);
+
+            if (!IsNullOrWhiteSpace(_base.BillStreet2))
+                _values.Add("xBillStreet2", _base.BillStreet2);
+
+            if (!IsNullOrWhiteSpace(_base.BillCity))
+                _values.Add("xBillCity", _base.BillCity);
+
+            if (!IsNullOrWhiteSpace(_base.BillState))
+                _values.Add("xBillState", _base.BillState);
+
+            if (!IsNullOrWhiteSpace(_base.BillZip))
+                _values.Add("xBillZip", _base.BillZip);
+
+            if (!IsNullOrWhiteSpace(_base.BillCountry))
+                _values.Add("xBillCountry", _base.BillCountry);
+
+            if (!IsNullOrWhiteSpace(_base.BillPhone))
+                _values.Add("xBillPhone", _base.BillPhone);
+
+            if (!IsNullOrWhiteSpace(_base.BillMobile))
+                _values.Add("xBillMobile", _base.BillMobile);
+
+            if (!IsNullOrWhiteSpace(_base.ShipFirstName))
+                _values.Add("xShipFirstName", _base.ShipFirstName);
+
+            if (!IsNullOrWhiteSpace(_base.ShipMiddleName))
+                _values.Add("xShipMiddleName", _base.ShipMiddleName);
+
+            if (!IsNullOrWhiteSpace(_base.ShipLastName))
+                _values.Add("xShipLastName", _base.ShipLastName);
+
+            if (!IsNullOrWhiteSpace(_base.ShipCompany))
+                _values.Add("xShipCompany", _base.ShipCompany);
+
+            if (!IsNullOrWhiteSpace(_base.ShipStreet))
+                _values.Add("xShipStreet", _base.ShipStreet);
+
+            if (!IsNullOrWhiteSpace(_base.ShipStreet2))
+                _values.Add("xShipStreet2", _base.ShipStreet2);
+
+            if (!IsNullOrWhiteSpace(_base.ShipCity))
+                _values.Add("xShipCity", _base.ShipCity);
+
+            if (!IsNullOrWhiteSpace(_base.ShipState))
+                _values.Add("xShipState", _base.ShipState);
+
+            if (!IsNullOrWhiteSpace(_base.ShipZip))
+                _values.Add("xShipZip", _base.ShipZip);
+
+            if (!IsNullOrWhiteSpace(_base.ShipCountry))
+                _values.Add("xShipCountry", _base.ShipCountry);
+
+            if (!IsNullOrWhiteSpace(_base.ShipPhone))
+                _values.Add("xShipPhone", _base.ShipPhone);
+
+            if (!IsNullOrWhiteSpace(_base.ShipMobile))
+                _values.Add("xShipMobile", _base.ShipMobile);
+        }
+
+        private void AddSpecialFields(CCSale _sale)
+        {
+            if (_sale.RxAmount > 0)
+                _values.Add("xRxAmount", Format("{0:N2}", _sale.RxAmount));
+
+            if (_sale.DentalAmount > 0)
+                _values.Add("xDentalAmount", Format("{0:N2}", _sale.DentalAmount));
+
+            if (_sale.VisionAmount > 0)
+                _values.Add("xVisionAmount", Format("{0:N2}", _sale.VisionAmount));
+
+            if (_sale.TransitAmount > 0)
+                _values.Add("xTransitAmount", Format("{0:N2}", _sale.TransitAmount));
+
+            if (_sale.CopayAmount > 0)
+                _values.Add("xCopayAmount", Format("{0:N2}", _sale.CopayAmount));
+
+            if (_sale.ClinicalAmount > 0)
+                _values.Add("xClinicalAmount", Format("{0:N2}", _sale.ClinicalAmount));
+
+            if (!IsNullOrWhiteSpace(_sale.OrderID))
+                _values.Add("xOrderID", _sale.OrderID);
+
+            if (_sale.AllowDuplicate)
+                _values.Add("xAllowDuplicate", _sale.AllowDuplicate.ToString());
         }
     }
 }

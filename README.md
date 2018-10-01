@@ -3,11 +3,11 @@ API Wrapper for Cardknox Payment Processor written in C#, using .NET Standard 2.
 
 Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/releases](https://github.com/ahwm/Cardknox-API-Wrapper/releases)
 
-[![NuGet Status](https://img.shields.io/badge/nuget-0.1.2--beta-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
+[![NuGet Status](https://img.shields.io/badge/nuget-0.1.3--beta-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
 ---
 
-**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.2](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.2)
+**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.3](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.3)
 
 CC Sale is live for testing.
 
@@ -16,7 +16,7 @@ CC Sale is live for testing.
 API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 # Progress
-* CREDIT CARD: 47%
+* CREDIT CARD: 63%
 * CHECK (ACH): 0%
 * EBT Food Stamp: 0%
 * EBT Cash Benefits: 0%
@@ -29,14 +29,17 @@ The base functionality is in place to make a credit card sale, but not all of th
 
 ### Completed:
 
-* cc:save
-* cc:refund
-* cc:void
-
-### Partially Complete
-Only required and recommended fields are included. This is unlikely to change in the near future. If you need to use more fields, fork it and add them yourself. I will gladly accept pull requests which add these optional fields.
-
 * cc:sale
 * cc:authonly
 * cc:capture
+* cc:save
 * cc:credit
+* cc:refund
+* cc:void
+
+### To Be Completed
+
+* cc:adjust
+* cc:postauth
+* cc:voidrefund
+* cc:voidrelease
