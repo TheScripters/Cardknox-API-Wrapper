@@ -8,14 +8,15 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>0.1.2-beta</Version>
+    <Version>1.0</Version>
     <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kp.cardknox.com/api for full API reference.</Description>
-    <PackageReleaseNotes>-Adds CC Void, AuthOnly, Credit
--[Breaking Change] Clears up confusion between main class name and namespace</PackageReleaseNotes>
+    <PackageReleaseNotes>Credit Card operations are now complete.
+
+-Adds CC adjust, postauth, voidrefund, voidrelease</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api</PackageTags>
     <Copyright>© 2018 Adam Humpherys</Copyright>
   </PropertyGroup>
