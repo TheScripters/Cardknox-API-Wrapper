@@ -9,8 +9,6 @@ Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/rele
 
 **Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v1.0](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v1.0)
 
-CC Sale is live for testing.
-
 ---
 
 API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
