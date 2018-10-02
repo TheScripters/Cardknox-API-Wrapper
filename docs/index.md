@@ -3,11 +3,11 @@ API Wrapper for Cardknox Payment Processor written in C#, using .NET Standard 2.
 
 Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/releases](https://github.com/ahwm/Cardknox-API-Wrapper/releases)
 
-[![NuGet Status](https://img.shields.io/badge/nuget-0.1.3--beta-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
+[![NuGet Status](https://img.shields.io/badge/nuget-1.0-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
 ---
 
-**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.3](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v0.1.3)
+**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v1.0](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v1.0)
 
 CC Sale is live for testing.
 
