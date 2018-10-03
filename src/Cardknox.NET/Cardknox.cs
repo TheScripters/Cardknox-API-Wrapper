@@ -587,6 +587,122 @@ namespace CardknoxApi
         }
         #endregion
 
+        #region check
+        /// <summary>
+        /// The Check Sale command debits funds from a customer’s checking or savings account using the account and routing number. The merchant must have a supported Check/ACH processing account
+        /// </summary>
+        /// <returns>The sale.</returns>
+        /// <param name="_sale">Sale.</param>
+        /// <param name="force">If set to <c>true</c> force.</param>
+        public CardknoxResponse CheckSale(CheckSale _sale, bool force = false)
+        {
+            if (_sale.Amount == null || _sale.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _sale.Operation);
+            if (!IsNullOrWhiteSpace(_sale.Routing) && !IsNullOrWhiteSpace(_sale.Account))
+            {
+                _values.Add("xRouting", _sale.Routing);
+                _values.Add("xAccount", _sale.Account);
+            }
+            else if (!IsNullOrWhiteSpace(_sale.Token))
+            {
+                _values.Add("xToken", _sale.Token);
+            }
+            _values.Add("xAmount", Format("{0:N2}", _sale.Amount));
+            // END required information
+
+            if (IsNullOrWhiteSpace(_sale.Street))
+                _values.Add("xStreet", _sale.Street);
+
+            if (!IsNullOrWhiteSpace(_sale.Zip))
+                _values.Add("xZip", _sale.Zip);
+
+            if (!IsNullOrWhiteSpace(_sale.Name))
+                _values.Add("xName", _sale.Name);
+
+            if (!IsNullOrWhiteSpace(_sale.IP))
+                _values.Add("xIP", _sale.IP);
+
+            AddCommonFields(_sale);
+
+            AddSpecialFields(_sale);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Credit command sends money from a merchant to a customer’s bank account that is not linked to any previous transaction. With check transactions, this is commonly used for paying 3rd-parties such as paying vendors. To refund a previous check sale, use Check:Refund instead.
+        /// </summary>
+        /// <returns>The credit.</returns>
+        /// <param name="_credit">Credit.</param>
+        /// <param name="force">If set to <c>true</c> force.</param>
+        public CardknoxResponse CheckCredit(CheckCredit _credit, bool force = false)
+        {
+            if (_credit.Amount == null || _credit.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _credit.Operation);
+            if (!IsNullOrWhiteSpace(_credit.Routing) && !IsNullOrWhiteSpace(_credit.Account))
+            {
+                _values.Add("xRouting", _sale.Routing);
+                _values.Add("xAccount", _sale.Account);
+            }
+            else if (!IsNullOrWhiteSpace(_credit.Token))
+            {
+                _values.Add("xToken", _credit.Token);
+            }
+            _values.Add("xAmount", Format("{0:N2}", _credit.Amount));
+            // END required information
+
+            if (IsNullOrWhiteSpace(_credit.Street))
+                _values.Add("xStreet", _credit.Street);
+
+            if (!IsNullOrWhiteSpace(_credit.Zip))
+                _values.Add("xZip", _credit.Zip);
+
+            if (!IsNullOrWhiteSpace(_credit.Name))
+                _values.Add("xName", _credit.Name);
+
+            if (!IsNullOrWhiteSpace(_credit.IP))
+                _values.Add("xIP", _credit.IP);
+
+            AddCommonFields(_credit);
+
+            AddSpecialFields(_credit);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+        #endregion
+
         private NameValueCollection MakeRequest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;

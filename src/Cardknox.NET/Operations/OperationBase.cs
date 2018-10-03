@@ -22,6 +22,14 @@ namespace CardknoxApi.Operations
         /// </summary>
         public string Exp { get; set; }
         /// <summary>
+        /// Checking Account Routing number
+        /// </summary>
+        public string Routing { get; set; }
+        /// <summary>
+        /// Checking Account number
+        /// </summary>
+        public string Account { get; set; }
+        /// <summary>
         /// The total amount of the transaction, inclusive of tax and tip if applicable. This the total amount of the transaction.
         /// </summary>
         public decimal? Amount { get; set; }
