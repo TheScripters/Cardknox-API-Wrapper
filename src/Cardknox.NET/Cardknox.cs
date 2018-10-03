@@ -62,37 +62,37 @@ namespace CardknoxApi
             _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
-            if (!String.IsNullOrWhiteSpace(_sale.CardNum))
+            if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
                 _values.Add("xCardNum", _sale.CardNum);
                 _values.Add("xCVV", _sale.CVV);
                 _values.Add("xExp", _sale.Exp);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_sale.Token))
+            else if (!IsNullOrWhiteSpace(_sale.Token))
             {
                 _values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_sale.MagStripe))
+            else if (!IsNullOrWhiteSpace(_sale.MagStripe))
             {
                 _values.Add("xMagStripe", _sale.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
-                throw new Exception("Missing required values. Please refer to the API documentation.");
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_sale.Operation} operation.");
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
-            if (!String.IsNullOrWhiteSpace(_sale.Street))
+            if (!IsNullOrWhiteSpace(_sale.Street))
                 _values.Add("xStreet", _sale.Street);
 
-            if (!String.IsNullOrWhiteSpace(_sale.Zip))
+            if (!IsNullOrWhiteSpace(_sale.Zip))
                 _values.Add("xZip", _sale.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
-            if (!String.IsNullOrWhiteSpace(_sale.IP))
+            if (!IsNullOrWhiteSpace(_sale.IP))
                 _values.Add("xIP", _sale.IP);
 
             AddCommonFields(_sale);
@@ -128,40 +128,40 @@ namespace CardknoxApi
             _values.Add("xCommand", _save.Operation);
             bool requiredAdded = false;
             // These groups are mutually exclusive
-            if (!String.IsNullOrWhiteSpace(_save.CardNum))
+            if (!IsNullOrWhiteSpace(_save.CardNum))
             {
                 _values.Add("xCardNum", _save.CardNum);
                 _values.Add("xCVV", _save.CVV);
                 _values.Add("xExp", _save.Exp);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_save.Token))
+            else if (!IsNullOrWhiteSpace(_save.Token))
             {
                 _values.Add("xToken", _save.Token);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_save.MagStripe))
+            else if (!IsNullOrWhiteSpace(_save.MagStripe))
             {
                 _values.Add("xMagStripe", _save.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
-                throw new Exception("Missing required values. Please refer to the API documentation.");
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_save.Operation} operation.");
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
-            if (!String.IsNullOrWhiteSpace(_save.Name))
+            if (!IsNullOrWhiteSpace(_save.Name))
                 _values.Add("xName", _save.Name);
 
-            if (!String.IsNullOrWhiteSpace(_save.Street))
+            if (!IsNullOrWhiteSpace(_save.Street))
                 _values.Add("xStreet", _save.Street);
 
-            if (!String.IsNullOrWhiteSpace(_save.Zip))
+            if (!IsNullOrWhiteSpace(_save.Zip))
                 _values.Add("xZip", _save.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
-            if (!String.IsNullOrWhiteSpace(_save.IP))
+            if (!IsNullOrWhiteSpace(_save.IP))
                 _values.Add("xIP", _save.IP);
 
             var resp = MakeRequest();
@@ -232,37 +232,37 @@ namespace CardknoxApi
             _values.Add("xAmount", String.Format("{0:N2}", _auth.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
-            if (!String.IsNullOrWhiteSpace(_auth.CardNum))
+            if (!IsNullOrWhiteSpace(_auth.CardNum))
             {
                 _values.Add("xCardNum", _auth.CardNum);
                 _values.Add("xCVV", _auth.CVV);
                 _values.Add("xExp", _auth.Exp);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_auth.Token))
+            else if (!IsNullOrWhiteSpace(_auth.Token))
             {
                 _values.Add("xToken", _auth.Token);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_auth.MagStripe))
+            else if (!IsNullOrWhiteSpace(_auth.MagStripe))
             {
                 _values.Add("xMagStripe", _auth.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
-                throw new Exception("Missing required values. Please refer to the API documentation.");
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_auth.Operation} operation.");
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
-            if (!String.IsNullOrWhiteSpace(_auth.Street))
+            if (!IsNullOrWhiteSpace(_auth.Street))
                 _values.Add("xStreet", _auth.Street);
 
-            if (!String.IsNullOrWhiteSpace(_auth.Zip))
+            if (!IsNullOrWhiteSpace(_auth.Zip))
                 _values.Add("xZip", _auth.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
-            if (!String.IsNullOrWhiteSpace(_auth.IP))
+            if (!IsNullOrWhiteSpace(_auth.IP))
                 _values.Add("xIP", _auth.IP);
 
             AddCommonFields(_auth);
@@ -281,7 +281,7 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCCapture(CCCapture _capture, bool force = false)
         {
-            if (String.IsNullOrWhiteSpace(_capture.RefNum))
+            if (IsNullOrWhiteSpace(_capture.RefNum))
                 throw new InvalidOperationException("The capture command must reference a previous authorization in the RefNum parameter.");
             if (_capture.Amount == null || _capture.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Capture Amount must be greater than 0.");
@@ -306,14 +306,14 @@ namespace CardknoxApi
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
-            if (!String.IsNullOrWhiteSpace(_capture.Street))
+            if (!IsNullOrWhiteSpace(_capture.Street))
                 _values.Add("xStreet", _capture.Street);
 
-            if (!String.IsNullOrWhiteSpace(_capture.Zip))
+            if (!IsNullOrWhiteSpace(_capture.Zip))
                 _values.Add("xZip", _capture.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
-            if (!String.IsNullOrWhiteSpace(_capture.IP))
+            if (!IsNullOrWhiteSpace(_capture.IP))
                 _values.Add("xIP", _capture.IP);
 
             AddCommonFields(_capture);
@@ -352,37 +352,37 @@ namespace CardknoxApi
             _values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
-            if (!String.IsNullOrWhiteSpace(_credit.CardNum))
+            if (!IsNullOrWhiteSpace(_credit.CardNum))
             {
                 _values.Add("xCardNum", _credit.CardNum);
                 _values.Add("xCVV", _credit.CVV);
                 _values.Add("xExp", _credit.Exp);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_credit.Token))
+            else if (!IsNullOrWhiteSpace(_credit.Token))
             {
                 _values.Add("xToken", _credit.Token);
                 requiredAdded = true;
             }
-            else if (!String.IsNullOrWhiteSpace(_credit.MagStripe))
+            else if (!IsNullOrWhiteSpace(_credit.MagStripe))
             {
                 _values.Add("xMagStripe", _credit.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
-                throw new Exception("Missing required values. Please refer to the API documentation.");
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_credit.Operation} operation.");
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
-            if (!String.IsNullOrWhiteSpace(_credit.Street))
+            if (!IsNullOrWhiteSpace(_credit.Street))
                 _values.Add("xStreet", _credit.Street);
 
-            if (!String.IsNullOrWhiteSpace(_credit.Zip))
+            if (!IsNullOrWhiteSpace(_credit.Zip))
                 _values.Add("xZip", _credit.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
-            if (!String.IsNullOrWhiteSpace(_credit.IP))
+            if (!IsNullOrWhiteSpace(_credit.IP))
                 _values.Add("xIP", _credit.IP);
 
             AddCommonFields(_credit);
@@ -591,9 +591,9 @@ namespace CardknoxApi
         /// <summary>
         /// The Check Sale command debits funds from a customer’s checking or savings account using the account and routing number. The merchant must have a supported Check/ACH processing account
         /// </summary>
-        /// <returns>The sale.</returns>
-        /// <param name="_sale">Sale.</param>
-        /// <param name="force">If set to <c>true</c> force.</param>
+        /// <param name="_sale"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
         public CardknoxResponse CheckSale(CheckSale _sale, bool force = false)
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
@@ -613,26 +613,31 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _sale.Operation);
+            if (!IsNullOrWhiteSpace(_sale.Name))
+                throw new InvalidOperationException("Name is required.");
+            bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_sale.Routing) && !IsNullOrWhiteSpace(_sale.Account))
             {
                 _values.Add("xRouting", _sale.Routing);
                 _values.Add("xAccount", _sale.Account);
+                requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
                 _values.Add("xToken", _sale.Token);
+                requiredAdded = true;
             }
+            else if (!IsNullOrWhiteSpace(_sale.MICR))
+            {
+                _values.Add("xMICR", _sale.MICR);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_sale.Operation} operation.");
             _values.Add("xAmount", Format("{0:N2}", _sale.Amount));
+
+            _values.Add("xName", _sale.Name);
             // END required information
-
-            if (IsNullOrWhiteSpace(_sale.Street))
-                _values.Add("xStreet", _sale.Street);
-
-            if (!IsNullOrWhiteSpace(_sale.Zip))
-                _values.Add("xZip", _sale.Zip);
-
-            if (!IsNullOrWhiteSpace(_sale.Name))
-                _values.Add("xName", _sale.Name);
 
             if (!IsNullOrWhiteSpace(_sale.IP))
                 _values.Add("xIP", _sale.IP);
@@ -648,9 +653,9 @@ namespace CardknoxApi
         /// <summary>
         /// The Credit command sends money from a merchant to a customer’s bank account that is not linked to any previous transaction. With check transactions, this is commonly used for paying 3rd-parties such as paying vendors. To refund a previous check sale, use Check:Refund instead.
         /// </summary>
-        /// <returns>The credit.</returns>
-        /// <param name="_credit">Credit.</param>
-        /// <param name="force">If set to <c>true</c> force.</param>
+        /// <param name="_credit"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
         public CardknoxResponse CheckCredit(CheckCredit _credit, bool force = false)
         {
             if (_credit.Amount == null || _credit.Amount <= 0)
@@ -670,26 +675,30 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _credit.Operation);
+            if (!IsNullOrWhiteSpace(_credit.Name))
+                throw new InvalidOperationException("Name is required.");
+            bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_credit.Routing) && !IsNullOrWhiteSpace(_credit.Account))
             {
-                _values.Add("xRouting", _sale.Routing);
-                _values.Add("xAccount", _sale.Account);
+                _values.Add("xRouting", _credit.Routing);
+                _values.Add("xAccount", _credit.Account);
+                requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.Token))
             {
                 _values.Add("xToken", _credit.Token);
+                requiredAdded = true;
             }
+            else if (!IsNullOrWhiteSpace(_credit.MICR))
+            {
+                _values.Add("xMICR", _credit.MICR);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_credit.Operation} operation.");
             _values.Add("xAmount", Format("{0:N2}", _credit.Amount));
+            _values.Add("xName", _credit.Name);
             // END required information
-
-            if (IsNullOrWhiteSpace(_credit.Street))
-                _values.Add("xStreet", _credit.Street);
-
-            if (!IsNullOrWhiteSpace(_credit.Zip))
-                _values.Add("xZip", _credit.Zip);
-
-            if (!IsNullOrWhiteSpace(_credit.Name))
-                _values.Add("xName", _credit.Name);
 
             if (!IsNullOrWhiteSpace(_credit.IP))
                 _values.Add("xIP", _credit.IP);
@@ -697,6 +706,55 @@ namespace CardknoxApi
             AddCommonFields(_credit);
 
             AddSpecialFields(_credit);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Save command is used to send account information and request a token from Cardknox, but does not submit the transaction for processing. The response returns a token which references that account information. A token at a minimum references the account and routing number, but if other data is sent, such as billing address, that will be associated with the token as well.
+        /// </summary>
+        /// <param name="_save"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CheckSave(CheckSave _save, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _save.Operation);
+            if (!IsNullOrWhiteSpace(_save.Name))
+                throw new InvalidOperationException("Name is required.");
+            bool requiredAdded = false;
+            if (!IsNullOrWhiteSpace(_save.Routing) && !IsNullOrWhiteSpace(_save.Account))
+            {
+                _values.Add("xRouting", _save.Routing);
+                _values.Add("xAccount", _save.Account);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_save.MICR))
+            {
+                _values.Add("xMICR", _save.MICR);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_save.Operation} operation.");
+            _values.Add("xName", _save.Name);
+            // END required information
+
+            if (!IsNullOrWhiteSpace(_save.IP))
+                _values.Add("xIP", _save.IP);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);

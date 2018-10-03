@@ -22,7 +22,7 @@ Refer to https://kp.cardknox.com/api for full API reference.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.NET.xml</DocumentationFile>
+    <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
