@@ -15,7 +15,7 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 # Progress
 * CREDIT CARD: 100%
-* CHECK (ACH): 0%
+* CHECK (ACH): 40%
 * EBT Food Stamp: 0%
 * EBT Cash Benefits: 0%
 * EBT Wic (eWic): 0%
@@ -24,3 +24,8 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 ## CREDIT CARD Progress
 The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
+
+## CHECK Progress
+**Complete:**
+* check:sale
+* check:credit
