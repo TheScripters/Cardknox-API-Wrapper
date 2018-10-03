@@ -12,6 +12,6 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public new string Operation => "cc:authonly";
+        internal new string Operation => "cc:authonly";
     }
 }

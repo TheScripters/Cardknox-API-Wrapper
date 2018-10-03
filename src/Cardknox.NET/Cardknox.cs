@@ -759,6 +759,76 @@ namespace CardknoxApi
             var resp = MakeRequest();
             return new CardknoxResponse(resp);
         }
+
+        /// <summary>
+        /// The Void command voids a check transaction that is pending being sent to the bank, typically at the end of each day.
+        /// </summary>
+        /// <param name="_void"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CheckVoid(CheckVoid _void, bool force = false)
+        {
+            if (_void.Amount == null || _void.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (IsNullOrWhiteSpace(_void.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _void.Operation);
+            _values.Add("xAmount", Format("{0:N2}", _void.Amount));
+            _values.Add("xRefNum", _void.RefNum);
+            // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+
+        /// <summary>
+        /// The Refund command is used to refund a full or partial refund of a previous settled check transaction, using xRefNum
+        /// </summary>
+        /// <param name="_refund"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse CheckRefund(CheckRefund _refund, bool force = false)
+        {
+            if (_refund.Amount == null || _refund.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (IsNullOrWhiteSpace(_refund.RefNum))
+                throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _refund.Operation);
+            _values.Add("xAmount", Format("{0:N2}", _refund.Amount));
+            _values.Add("xRefNum", _refund.RefNum);
+            // END required information
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
         #endregion
 
         private NameValueCollection MakeRequest()

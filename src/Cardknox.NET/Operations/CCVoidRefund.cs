@@ -12,7 +12,7 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:voidrefund";
+        internal string Operation => "cc:voidrefund";
 
         /// <summary>
         /// 
@@ -28,7 +28,7 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:voidrelease";
+        internal string Operation => "cc:voidrelease";
 
         /// <summary>
         /// 

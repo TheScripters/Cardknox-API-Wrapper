@@ -12,7 +12,7 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:capture";
+        internal string Operation => "cc:capture";
 
         /// <summary>
         /// 

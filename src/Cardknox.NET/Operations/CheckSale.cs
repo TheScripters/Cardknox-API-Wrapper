@@ -9,6 +9,6 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "check:sale";
+        internal string Operation => "check:sale";
     }
 }

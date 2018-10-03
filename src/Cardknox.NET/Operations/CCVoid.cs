@@ -12,7 +12,7 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:void";
+        internal string Operation => "cc:void";
 
         /// <summary>
         /// 

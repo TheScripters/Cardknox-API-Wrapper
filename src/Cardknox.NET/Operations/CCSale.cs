@@ -12,6 +12,6 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:sale";
+        internal string Operation => "cc:sale";
     }
 }

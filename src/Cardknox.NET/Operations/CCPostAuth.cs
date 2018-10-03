@@ -12,7 +12,7 @@ namespace CardknoxApi.Operations
         /// <summary>
         /// 
         /// </summary>
-        public string Operation => "cc:postauth";
+        internal string Operation => "cc:postauth";
 
         /// <summary>
         /// Verificaton number provided by the issuing bank to be used with the cc:postauth command.
