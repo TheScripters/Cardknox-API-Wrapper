@@ -13,7 +13,7 @@
     <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
-Refer to https://kp.cardknox.com/api for full API reference.</Description>
+Refer to https://kb.cardknox.com/api for full API reference.</Description>
     <PackageReleaseNotes>Check (ACH) operations have been added:
 
 -sale
