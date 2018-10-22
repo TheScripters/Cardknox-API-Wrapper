@@ -68,9 +68,14 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
                 _values.Add("xCardNum", _sale.CardNum);
-                _values.Add("xCVV", _sale.CVV);
-                _values.Add("xExp", _sale.Exp);
+                if (!IsNullOrWhiteSpace(_sale.CVV))
+                    _values.Add("xCVV", _sale.CVV);
+                if (!IsNullOrWhiteSpace(_sale.Exp))
+                    _values.Add("xExp", _sale.Exp);
                 requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_sale.Exp))
+                    requiredAdded = false;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
@@ -134,9 +139,14 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_save.CardNum))
             {
                 _values.Add("xCardNum", _save.CardNum);
-                _values.Add("xCVV", _save.CVV);
-                _values.Add("xExp", _save.Exp);
+                if (!IsNullOrWhiteSpace(_save.CVV))
+                    _values.Add("xCVV", _save.CVV);
+                if (!IsNullOrWhiteSpace(_save.Exp))
+                    _values.Add("xExp", _save.Exp);
                 requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_save.Exp))
+                    requiredAdded = false;
             }
             else if (!IsNullOrWhiteSpace(_save.Token))
             {
@@ -238,9 +248,14 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_auth.CardNum))
             {
                 _values.Add("xCardNum", _auth.CardNum);
-                _values.Add("xCVV", _auth.CVV);
-                _values.Add("xExp", _auth.Exp);
+                if (!IsNullOrWhiteSpace(_auth.CVV))
+                    _values.Add("xCVV", _auth.CVV);
+                if (!IsNullOrWhiteSpace(_auth.Exp))
+                    _values.Add("xExp", _auth.Exp);
                 requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_auth.Exp))
+                    requiredAdded = false; 
             }
             else if (!IsNullOrWhiteSpace(_auth.Token))
             {
@@ -358,9 +373,14 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_credit.CardNum))
             {
                 _values.Add("xCardNum", _credit.CardNum);
-                _values.Add("xCVV", _credit.CVV);
-                _values.Add("xExp", _credit.Exp);
+                if (!IsNullOrWhiteSpace(_credit.CVV))
+                    _values.Add("xCVV", _credit.CVV);
+                if (!IsNullOrWhiteSpace(_credit.Exp))
+                    _values.Add("xExp", _credit.Exp);
                 requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_credit.Exp))
+                    requiredAdded = false;
             }
             else if (!IsNullOrWhiteSpace(_credit.Token))
             {
@@ -1013,6 +1033,71 @@ namespace CardknoxApi
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_bal.IP))
                 _values.Add("xIP", _bal.IP);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+        /// <summary>
+        /// The Voucher command is used to process manual EBT food stamp voucher.
+        /// </summary>
+        /// <param name="_voucher"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse EBTFSVoucher(EBTFSVoucher _voucher, bool force = false)
+        {
+            if (_voucher.Amount == null || _voucher.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _voucher.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _voucher.Amount));
+            _values.Add("xDUKPT", _voucher.DUKPT);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_voucher.CardNum))
+            {
+                _values.Add("xCardNum", _voucher.CardNum);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_voucher.Token))
+            {
+                _values.Add("xToken", _voucher.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_voucher.MagStripe))
+            {
+                _values.Add("xMagStripe", _voucher.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_voucher.Operation} operation.");
+            // END required information
+
+            // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_voucher.Street))
+                _values.Add("xStreet", _voucher.Street);
+
+            if (!IsNullOrWhiteSpace(_voucher.Zip))
+                _values.Add("xZip", _voucher.Zip);
+
+            if (!IsNullOrWhiteSpace(_voucher.IP))
+                _values.Add("xIP", _voucher.IP);
+
+            AddCommonFields(_voucher);
+
+            AddSpecialFields(_voucher);
 
             var resp = MakeRequest();
             return new CardknoxResponse(resp);

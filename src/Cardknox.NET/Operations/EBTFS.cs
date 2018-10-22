@@ -25,4 +25,20 @@ namespace CardknoxApi.Operations
     {
         internal string Operation => "ebtfs:balance";
     }
+    /// <summary>
+    /// The Voucher command is used to process manual EBT food stamp voucher.
+    /// </summary>
+    public class EBTFSVoucher : Sale
+    {
+        internal string Operation => "ebtf:voucher";
+
+        /// <summary>
+        /// The EBT voucher approval code.
+        /// </summary>
+        public string VoucherApproval { get; set; }
+        /// <summary>
+        /// The EBT voucher serial number.
+        /// </summary>
+        public string VoucherSerial { get; set; }
+    }
 }
