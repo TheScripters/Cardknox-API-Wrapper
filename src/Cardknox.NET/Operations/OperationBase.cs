@@ -46,6 +46,10 @@ namespace CardknoxApi.Operations
         /// </summary>
         public string CheckImageBack { get; set; }
         /// <summary>
+        /// The DUK/PT key for PIN Debit and EBT transactions.The first 16 characters are the encrypted pin block, followed by the 6 character long Key Set Identifier (KSID). The remaining characters are the PIN Pad serial number and transaction counter.
+        /// </summary>
+        public string DUKPT { get; set; }
+        /// <summary>
         /// The total amount of the transaction, inclusive of tax and tip if applicable. This the total amount of the transaction.
         /// </summary>
         public decimal? Amount { get; set; }

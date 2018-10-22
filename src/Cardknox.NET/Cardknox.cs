@@ -8,6 +8,9 @@ using static System.String;
 
 namespace CardknoxApi
 {
+    /// <summary>
+    /// Primary object class for interacting with the Cardknox API.
+    /// </summary>
     public class Cardknox
     {
         /// <summary>
@@ -555,7 +558,7 @@ namespace CardknoxApi
         }
 
         /// <summary>
-        /// The Void Release command releases a pending authorization amount back to the cardholder’s credit limit without waiting for the standard authorization timeframe to expire.
+        /// The Void Release command releases a pending authorization amount back to the cardholder's credit limit without waiting for the standard authorization timeframe to expire.
         /// </summary>
         /// <param name="_release"></param>
         /// <param name="force"></param>
@@ -589,7 +592,7 @@ namespace CardknoxApi
 
         #region check
         /// <summary>
-        /// The Check Sale command debits funds from a customer’s checking or savings account using the account and routing number. The merchant must have a supported Check/ACH processing account
+        /// The Check Sale command debits funds from a customer's checking or savings account using the account and routing number. The merchant must have a supported Check/ACH processing account
         /// </summary>
         /// <param name="_sale"></param>
         /// <param name="force"></param>
@@ -651,7 +654,7 @@ namespace CardknoxApi
         }
 
         /// <summary>
-        /// The Credit command sends money from a merchant to a customer’s bank account that is not linked to any previous transaction. With check transactions, this is commonly used for paying 3rd-parties such as paying vendors. To refund a previous check sale, use Check:Refund instead.
+        /// The Credit command sends money from a merchant to a customer's bank account that is not linked to any previous transaction. With check transactions, this is commonly used for paying 3rd-parties such as paying vendors. To refund a previous check sale, use Check:Refund instead.
         /// </summary>
         /// <param name="_credit"></param>
         /// <param name="force"></param>
@@ -831,6 +834,192 @@ namespace CardknoxApi
         }
         #endregion
 
+        #region ebt food stamp
+        /// <summary>
+        /// The Sale command is used to make a purchase on an EBT cardholder's food stamp account.
+        /// </summary>
+        /// <param name="_sale"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse EBTFSSale(EBTFSSale _sale, bool force = false)
+        {
+            if (_sale.Amount == null || _sale.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _sale.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            _values.Add("xDUKPT", _sale.DUKPT);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_sale.CardNum))
+            {
+                _values.Add("xCardNum", _sale.CardNum);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_sale.Token))
+            {
+                _values.Add("xToken", _sale.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_sale.MagStripe))
+            {
+                _values.Add("xMagStripe", _sale.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_sale.Operation} operation.");
+            // END required information
+
+            // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_sale.Street))
+                _values.Add("xStreet", _sale.Street);
+
+            if (!IsNullOrWhiteSpace(_sale.Zip))
+                _values.Add("xZip", _sale.Zip);
+
+            if (!IsNullOrWhiteSpace(_sale.IP))
+                _values.Add("xIP", _sale.IP);
+
+            AddCommonFields(_sale);
+
+            AddSpecialFields(_sale);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+        /// <summary>
+        /// The Credit command is used to credit to an EBT cardholder's food stamp account.
+        /// </summary>
+        /// <param name="_credit"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse EBTFSCredit(EBTFSCredit _credit, bool force = false)
+        {
+            if (_credit.Amount == null || _credit.Amount <= 0)
+                throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _credit.Operation);
+            _values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
+            _values.Add("xDUKPT", _credit.DUKPT);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_credit.CardNum))
+            {
+                _values.Add("xCardNum", _credit.CardNum);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_credit.Token))
+            {
+                _values.Add("xToken", _credit.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_credit.MagStripe))
+            {
+                _values.Add("xMagStripe", _credit.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_credit.Operation} operation.");
+            // END required information
+
+            // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_credit.Street))
+                _values.Add("xStreet", _credit.Street);
+
+            if (!IsNullOrWhiteSpace(_credit.Zip))
+                _values.Add("xZip", _credit.Zip);
+
+            if (!IsNullOrWhiteSpace(_credit.IP))
+                _values.Add("xIP", _credit.IP);
+
+            AddCommonFields(_credit);
+
+            AddSpecialFields(_credit);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+        /// <summary>
+        /// The Balance command is used to check the balance on an EBT food stamp card.
+        /// </summary>
+        /// <param name="_bal"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public CardknoxResponse EBTFSBalance(EBTFSBalance _bal, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _bal.Operation);
+            _values.Add("xDUKPT", _bal.DUKPT);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_bal.CardNum))
+            {
+                _values.Add("xCardNum", _bal.CardNum);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_bal.Token))
+            {
+                _values.Add("xToken", _bal.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_bal.MagStripe))
+            {
+                _values.Add("xMagStripe", _bal.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_bal.Operation} operation.");
+            // END required information
+
+            // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_bal.IP))
+                _values.Add("xIP", _bal.IP);
+
+            var resp = MakeRequest();
+            return new CardknoxResponse(resp);
+        }
+        #endregion
+
+        #region private methods
         private NameValueCollection MakeRequest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -951,5 +1140,6 @@ namespace CardknoxApi
             if (_sale.AllowDuplicate)
                 _values.Add("xAllowDuplicate", _sale.AllowDuplicate.ToString());
         }
+        #endregion
     }
 }

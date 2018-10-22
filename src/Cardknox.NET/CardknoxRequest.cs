@@ -18,10 +18,10 @@ namespace CardknoxApi
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="software"></param>
-        /// <param name="softwareVersion"></param>
-        /// <param name="cardknoxVer"></param>
+        /// <param name="key">Your Cardknox API Key.</param>
+        /// <param name="software">Name of your software.</param>
+        /// <param name="softwareVersion">Version number of your software.</param>
+        /// <param name="cardknoxVer">Gateway API Version.</param>
         public CardknoxRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
         {
             _key = key;
@@ -34,10 +34,10 @@ namespace CardknoxApi
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="software"></param>
-        /// <param name="softwareVersion"></param>
-        /// <param name="cardknoxVer"></param>
+        /// <param name="key">Your Cardknox API Key.</param>
+        /// <param name="software">Name of your software.</param>
+        /// <param name="softwareVersion">Version number of your software.</param>
+        /// <param name="cardknoxVer">Gateway API Version.</param>
         /// <returns></returns>
         public static CardknoxRequest BeginRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
         {
