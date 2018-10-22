@@ -4,11 +4,11 @@ API Wrapper for Cardknox Payment Processor written in C#, using .NET Standard 2.
 
 Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/releases](https://github.com/ahwm/Cardknox-API-Wrapper/releases)
 
-[![NuGet Status](https://img.shields.io/badge/nuget-2.0-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
+[![NuGet Status](https://img.shields.io/badge/nuget-3.0-brightgreen.svg)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
 ---
 
-**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v2.0](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v2.0)
+**Current Release:** [https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v2.0](https://github.com/ahwm/Cardknox-API-Wrapper/releases/tag/v3.0)
 
 ---
 
@@ -18,7 +18,7 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 * CREDIT CARD: 100%
 * CHECK (ACH): 100%
-* EBT Food Stamp: 0%
+* EBT Food Stamp: 100%
 * EBT Cash Benefits: 0%
 * EBT Wic (eWic): 0%
 * GIFT CARD: 0%
@@ -32,10 +32,6 @@ The operations are all in place. There may be a few fields that were missed and 
 
 The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
 
-**Complete:**
+### EBT Food Stamp
 
-* check:sale
-* check:credit
-* check:save
-* check:void
-* check:refund
+The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
