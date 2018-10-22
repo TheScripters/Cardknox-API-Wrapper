@@ -38,13 +38,13 @@ namespace CardknoxApi
             if (!EnableLogging || LogLocation == "")
                 return;
 
-            string loc = LogLocation;
+            string loc = String.Format(LogLocation, DateTime.Now);
             if (LogLocation.StartsWith("~"))
-                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc);
+                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc.Replace("~/", ""));
 
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Request" + Environment.NewLine;
-            body += "-----------------" + Environment.NewLine;
+            body += "---------------------------" + Environment.NewLine;
             foreach (var k in _values.AllKeys)
             {
                 if (!NoInclude.Contains(k))
@@ -62,13 +62,13 @@ namespace CardknoxApi
             if (!EnableLogging || LogLocation == "")
                 return;
 
-            string loc = LogLocation;
+            string loc = String.Format(LogLocation, DateTime.Now);
             if (LogLocation.StartsWith("~"))
-                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc);
+                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc.Replace("~/", ""));
 
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Response" + Environment.NewLine;
-            body += "-----------------" + Environment.NewLine;
+            body += "---------------------------" + Environment.NewLine;
             foreach (var k in _values.AllKeys)
             {
                 body += k + " = " + _values[k] + Environment.NewLine;

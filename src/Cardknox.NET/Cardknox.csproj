@@ -8,18 +8,13 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>3.0</Version>
+    <Version>3.0.1-beta</Version>
     <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference.</Description>
-    <PackageReleaseNotes>EBT Food Stamp has been added:
-
--sale
--credit
--balance
--voucher</PackageReleaseNotes>
+    <PackageReleaseNotes>Added logging</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api</PackageTags>
     <Copyright>© 2018 Adam Humpherys</Copyright>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
@@ -32,5 +27,9 @@ Refer to https://kb.cardknox.com/api for full API reference.</Description>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+  </ItemGroup>
 
 </Project>
