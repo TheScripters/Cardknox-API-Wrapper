@@ -107,7 +107,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -177,7 +180,10 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_save.IP))
                 _values.Add("xIP", _save.IP);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -213,7 +219,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _refund.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -287,7 +296,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_auth);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -338,7 +350,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_capture);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -412,7 +427,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -444,7 +462,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _void.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -491,7 +512,10 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_adjust.IP))
                 _values.Add("xIP", _adjust.IP);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -541,7 +565,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_auth);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -573,7 +600,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _refund.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -605,7 +635,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _release.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         #endregion
@@ -669,7 +702,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -730,7 +766,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -779,7 +818,10 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_save.IP))
                 _values.Add("xIP", _save.IP);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -814,7 +856,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _void.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
 
@@ -849,7 +894,10 @@ namespace CardknoxApi
             _values.Add("xRefNum", _refund.RefNum);
             // END required information
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         #endregion
@@ -917,7 +965,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         /// <summary>
@@ -982,7 +1033,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         /// <summary>
@@ -1034,7 +1088,10 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_bal.IP))
                 _values.Add("xIP", _bal.IP);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         /// <summary>
@@ -1099,7 +1156,10 @@ namespace CardknoxApi
 
             AddSpecialFields(_voucher);
 
+            Log.LogRequest(_values);
+
             var resp = MakeRequest();
+            Log.LogResponse(resp);
             return new CardknoxResponse(resp);
         }
         #endregion
