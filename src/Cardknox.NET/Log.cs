@@ -10,7 +10,7 @@ namespace CardknoxApi
 {
     static class Log
     {
-        readonly static string[] NoInclude = { "xCardNum", "xMagStripe", "xExp", "xCVV", "xToken", "xDUKPT", "xRouting", "xAccount", "xMICR" };
+        internal readonly static string[] NoInclude = { "xCardNum", "xMagStripe", "xExp", "xCVV", "xToken", "xDUKPT", "xRouting", "xAccount", "xMICR" };
         static bool EnableLogging
         {
             get
@@ -39,8 +39,7 @@ namespace CardknoxApi
                 return;
 
             string loc = String.Format(LogLocation, DateTime.Now);
-            if (LogLocation.StartsWith("~"))
-                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc.Replace("~/", ""));
+            loc = AppDomain.CurrentDomain.MapPath(loc);
 
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Request" + Environment.NewLine;
@@ -63,8 +62,7 @@ namespace CardknoxApi
                 return;
 
             string loc = String.Format(LogLocation, DateTime.Now);
-            if (LogLocation.StartsWith("~"))
-                loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, loc.Replace("~/", ""));
+            loc = AppDomain.CurrentDomain.MapPath(loc);
 
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Response" + Environment.NewLine;

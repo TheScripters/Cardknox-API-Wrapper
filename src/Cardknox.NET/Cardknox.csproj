@@ -8,13 +8,13 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>3.0.1-beta</Version>
+    <Version>3.0.2-beta</Version>
     <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference.</Description>
-    <PackageReleaseNotes>Added logging</PackageReleaseNotes>
+    <PackageReleaseNotes>Added custom logging event handlers</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api</PackageTags>
     <Copyright>© 2018 Adam Humpherys</Copyright>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
