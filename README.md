@@ -15,7 +15,7 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 * CREDIT CARD: 100%
 * CHECK (ACH): 100%
 * EBT Food Stamp: 100%
-* EBT Cash Benefits: 0%
+* EBT Cash Benefits: 100%
 * EBT Wic (eWic): 0%
 * GIFT CARD: 0%
 * FRAUD: 0%
@@ -29,5 +29,9 @@ The operations are all in place. There may be a few fields that were missed and 
 The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
 
 ### EBT Food Stamp
+
+The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
+
+### EBT Cash Benefits
 
 The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
