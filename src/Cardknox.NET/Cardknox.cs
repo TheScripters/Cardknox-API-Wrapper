@@ -13,32 +13,34 @@ namespace CardknoxApi
     /// </summary>
     public class Cardknox
     {
+        #region events
         /// <summary>
-        /// 
+        /// Event Handler for when a request has started. The results will contain the non-sensitive field values being sent to the API endpoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public delegate void RequestStartedEventHandler(object sender, CardknoxEventArgs e);
         /// <summary>
-        /// 
+        /// Fired when a request has been started, returns non-sensitive field values sent to API endpoint
         /// </summary>
         public event RequestStartedEventHandler RequestStarted;
         /// <summary>
-        /// 
+        /// Event Handler for when a request has completed. The results will contain the field values being received from the API endpoint
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public delegate void RequestCompletedEventHandler(object sender, CardknoxEventArgs e);
         /// <summary>
-        /// 
+        /// Fired when a request has completed, returns field values returned from API endpoint
         /// </summary>
         public event RequestCompletedEventHandler RequestCompleted;
+        #endregion
 
         private CardknoxRequest _request { get; }
         private NameValueCollection _values { get; }
 
         /// <summary>
-        /// 
+        /// Initiate new Cardknox request
         /// </summary>
         /// <param name="request">The <see cref="CardknoxRequest"/> object that is used to make the request.</param>
         public Cardknox(CardknoxRequest request)
@@ -128,12 +130,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -206,12 +208,12 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_save.IP))
                 _values.Add("xIP", _save.IP);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -253,12 +255,12 @@ namespace CardknoxApi
             if (_refund.CustReceipt)
                 _values.Add("xCustReceipt", _refund.CustReceipt.ToString());
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -338,12 +340,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_auth);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -400,12 +402,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_capture);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -485,12 +487,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -525,12 +527,12 @@ namespace CardknoxApi
             _values.Add("xRefNum", _void.RefNum);
             // END required information
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -580,12 +582,12 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_adjust.IP))
                 _values.Add("xIP", _adjust.IP);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -638,12 +640,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_auth);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -678,12 +680,12 @@ namespace CardknoxApi
             _values.Add("xRefNum", _refund.RefNum);
             // END required information
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -718,12 +720,12 @@ namespace CardknoxApi
             _values.Add("xRefNum", _release.RefNum);
             // END required information
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -793,12 +795,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -865,12 +867,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -922,12 +924,12 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_save.IP))
                 _values.Add("xIP", _save.IP);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -965,12 +967,12 @@ namespace CardknoxApi
             _values.Add("xRefNum", _void.RefNum);
             // END required information
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1011,12 +1013,12 @@ namespace CardknoxApi
             if (_refund.CustReceipt)
                 _values.Add("xCustReceipt", _refund.CustReceipt.ToString());
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1087,12 +1089,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1160,12 +1162,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_credit);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1220,12 +1222,12 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_bal.IP))
                 _values.Add("xIP", _bal.IP);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1293,12 +1295,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_voucher);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1369,12 +1371,12 @@ namespace CardknoxApi
 
             AddSpecialFields(_sale);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1438,12 +1440,12 @@ namespace CardknoxApi
             if (_cash.AllowDuplicate)
                 _values.Add("xAllowDuplicate", _cash.AllowDuplicate.ToString());
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
@@ -1493,12 +1495,12 @@ namespace CardknoxApi
             if (!IsNullOrWhiteSpace(_bal.IP))
                 _values.Add("xIP", _bal.IP);
 
-            if (RequestStarted != null)
+            if (RequestStarted == null)
                 Log.LogRequest(_values);
             else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
 
             var resp = MakeRequest();
-            if (RequestCompleted != null)
+            if (RequestCompleted == null)
                 Log.LogResponse(resp);
             else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
 
