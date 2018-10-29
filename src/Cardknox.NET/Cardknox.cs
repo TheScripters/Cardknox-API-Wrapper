@@ -34,9 +34,6 @@ namespace CardknoxApi
         /// </summary>
         public event RequestCompletedEventHandler RequestCompleted;
 
-        /// <summary>
-        /// 
-        /// </summary>
         private CardknoxRequest _request { get; }
         private NameValueCollection _values { get; }
 
