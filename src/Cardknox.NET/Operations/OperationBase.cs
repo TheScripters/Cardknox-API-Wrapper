@@ -10,15 +10,15 @@ namespace CardknoxApi.Operations
     public class OperationBase : Customer
     {
         /// <summary>
-        /// 
+        /// The customer card number. *Alternatively, xToken or xMagStripe can be used.
         /// </summary>
         public string CardNum { get; set; }
         /// <summary>
-        /// 
+        /// 3-digit code from the back of the card (4-digit code from the front of the card for Amex).
         /// </summary>
         public string CVV { get; set; }
         /// <summary>
-        /// 
+        /// The card expiration number. Format: MMYY. For sandbox test transactions, use any date in the future. *xExp is required when sending in xCardnum and cannot be used with xMagstripe
         /// </summary>
         public string Exp { get; set; }
         /// <summary>
@@ -54,44 +54,52 @@ namespace CardknoxApi.Operations
         /// </summary>
         public decimal? Amount { get; set; }
         /// <summary>
-        /// 
+        /// The cardholder's name.
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 
+        /// The Cardknox token that references a previously used payment method. When using a token, xCardNum xExp and xMagstripe should not be used.
         /// </summary>
         public string Token { get; set; }
         /// <summary>
-        /// 
+        /// The billing street address of the cardholder.
         /// </summary>
         public string Street { get; set; }
         /// <summary>
-        /// 
+        /// The billing zip code of the cardholder.
         /// </summary>
         public string Zip { get; set; }
         /// <summary>
-        /// 
+        /// The magstripe data of a credit card. Magstripe data includes the card number and expiration date. When using this command, xCardNum xExp and xToken should not be used. Encrypted Card data can also be sent using xMagstripe
         /// </summary>
         public string MagStripe { get; set; }
         /// <summary>
-        /// 
+        /// Yes, No. For use in retail environments to indicate if the card is present.
         /// </summary>
         public bool CardPresent { get; set; }
         /// <summary>
-        /// 
+        /// The tax portion that is included in the total transaction amount (xAmount).
         /// </summary>
         public decimal? Tax { get; set; }
         /// <summary>
-        /// 
+        /// The tip portion that is included in the total transaction amount (xAmount).
         /// </summary>
         public decimal? Tip { get; set; }
         /// <summary>
-        /// 
+        /// The merchant's invoice number for the transaction. xInvoice is recommended when available for improved duplicate handling.
         /// </summary>
         public string Invoice { get; set; }
         /// <summary>
-        /// 
+        /// The customer's IP address. Typically used for fraud detection.
         /// </summary>
         public string IP { get; set; }
+        /// <summary>
+        /// By default, Cardknox rejects duplicate transactions within 10 minutes of the original transaction. This command overrides that safeguard. True/False allowed.
+        /// </summary>
+        public bool AllowDuplicate { get; set; } = false;
+        /// <summary>
+        /// True/False value indicating if the email address specificied in xEmail should receive a receipt containing the transaction details. (CC/Check operations only)
+        /// </summary>
+        public bool CustReceipt { get; set; } = false;
     }
 }

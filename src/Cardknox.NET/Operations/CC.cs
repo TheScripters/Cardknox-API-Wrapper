@@ -61,10 +61,6 @@
         /// 
         /// </summary>
         public string RefNum { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool AllowDuplicate { get; set; } = false;
     }
     /// <summary>
     /// 

@@ -9,7 +9,14 @@ namespace CardknoxApi
     /// </summary>
     public class Customer
     {
+        /// <summary>
+        /// The customer's email address.
+        /// </summary>
         public string Email { get; set; }
+        /// <summary>
+        /// The customer's fax number.
+        /// </summary>
+        public string Fax { get; set; }
 
         public string BillFirstName { get; set; }
         public string BillMiddleName { get; set; }
