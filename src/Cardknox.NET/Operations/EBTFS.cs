@@ -30,7 +30,7 @@ namespace CardknoxApi.Operations
     /// </summary>
     public class EBTFSVoucher : Sale
     {
-        internal string Operation => "ebtf:voucher";
+        internal string Operation => "ebtfs:voucher";
 
         /// <summary>
         /// The EBT voucher approval code.

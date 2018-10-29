@@ -8,7 +8,7 @@ namespace CardknoxApi
     /// <summary>
     /// 
     /// </summary>
-    public static class Extensions
+    internal static class Extensions
     {
         /// <summary>
         /// 
