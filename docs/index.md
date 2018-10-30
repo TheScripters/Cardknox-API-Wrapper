@@ -12,28 +12,14 @@ API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
 
 ## Progress
 
-**Overall Completion: *76 %***
+**Overall Completion: *100 %***
 
 * CREDIT CARD: 100%
 * CHECK (ACH): 100%
 * EBT Food Stamp: 100%
 * EBT Cash Benefits: 100%
-* EBT Wic (eWic): 0%
-* GIFT CARD: 0%
-* FRAUD: 0%
+* EBT Wic (eWic): 100%
+* GIFT CARD: 100%
+* FRAUD: 100%
 
-### CREDIT CARD Progress
-
-The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
-
-### CHECK Progress
-
-The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
-
-### EBT Food Stamp
-
-The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
-
-### EBT Cash Benefits
-
-The operations are all in place. There may be a few fields that were missed and it hasn't yet been tested in a live environment.
+All items have been completed, but hasn't yet been tested in a live environment. If you find it working in a production environment please let me know. I am only using `Credit Card` operations at this time, so nothing else has really been tested.
