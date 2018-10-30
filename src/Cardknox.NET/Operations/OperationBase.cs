@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -101,5 +102,31 @@ namespace CardknoxApi.Operations
         /// True/False value indicating if the email address specificied in xEmail should receive a receipt containing the transaction details. (CC/Check operations only)
         /// </summary>
         public bool CustReceipt { get; set; } = false;
+
+        public CardknoxCustomFields CustomFields { get; set; } = new CardknoxCustomFields();
+    }
+    public class CardknoxCustomFields : IEnumerable<string>
+    {
+        private List<string> _fields = new List<string>();
+
+        public int Count => _fields.Count;
+
+        public void Add(string val)
+        {
+            if (_fields.Count >= 20)
+                throw new InvalidOperationException("A maximum of 20 entries can be specified through custom fields.");
+
+            _fields.Add(val);
+        }
+
+        public IEnumerator<string> GetEnumerator()
+        {
+            return _fields.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
     }
 }

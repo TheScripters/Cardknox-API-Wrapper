@@ -41,9 +41,7 @@ namespace CardknoxApi
         /// <returns></returns>
         public static CardknoxRequest BeginRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
         {
-            CardknoxRequest r = new CardknoxRequest(key, software, softwareVersion, cardknoxVer);
-
-            return r;
+            return new CardknoxRequest(key, software, softwareVersion, cardknoxVer);
         }
     }
 }

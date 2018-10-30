@@ -45,7 +45,7 @@ namespace CardknoxApi
         /// <summary>
         /// 
         /// </summary>
-        public string AvsResultCode { get; }
+        public AvsResponseType AvsResultCode { get; }
         /// <summary>
         /// 
         /// </summary>
@@ -96,7 +96,7 @@ namespace CardknoxApi
             if (_values.AllKeys.Contains("xBatch"))
                 Batch = _values["xBatch"];
             if (_values.AllKeys.Contains("xAvsResultCode"))
-                AvsResultCode = _values["xAvsResultCode"];
+                AvsResultCode = (AvsResponseType)Enum.Parse(typeof(AvsResponseType), _values["xAvsResultCode"]);
             if (_values.AllKeys.Contains("xAvsResult"))
                 AvsResult = HttpUtility.UrlDecode(_values["xAvsResult"]);
             if (_values.AllKeys.Contains("xAuthAmount"))

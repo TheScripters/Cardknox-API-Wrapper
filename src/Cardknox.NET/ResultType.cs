@@ -55,4 +55,51 @@ namespace CardknoxApi
         Diners,
         JCB
     }
+    /// <summary>
+    /// The Address Verification Service (AVS) response code
+    /// </summary>
+    public enum AvsResponseType
+    {
+        /// <summary>
+        /// Address: Match & 5 Digit Zip: Match
+        /// </summary>
+        YYY,
+        /// <summary>
+        /// Address: No Match & 5 Digit Zip: Match
+        /// </summary>
+        NYZ,
+        /// <summary>
+        /// Address: Match & 5 Digit Zip: No Match
+        /// </summary>
+        YNA,
+        /// <summary>
+        /// Address: No Match & 5 Digit Zip: No Match
+        /// </summary>
+        NNN,
+        /// <summary>
+        /// Address Information not verified for domestic transaction
+        /// </summary>
+        XXU,
+        /// <summary>
+        /// Address: Match & 9 Digit Zip: Match
+        /// </summary>
+        YYX,
+        /// <summary>
+        /// Address: No Match & 9 Digit Zip: Match
+        /// </summary>
+        NYW,
+        /// <summary>
+        /// Retry / System Unavailable
+        /// </summary>
+        XXR,
+        /// <summary>
+        /// Service Not Supported
+        /// </summary>
+        XXS
+    }
+    public enum OrderType
+    {
+        Internet,
+        Phone
+    }
 }
