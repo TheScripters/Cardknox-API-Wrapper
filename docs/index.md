@@ -11,7 +11,7 @@ Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/rele
 
 [![NuGet Status](https://buildstats.info/nuget/Cardknox.API.Wrapper?includePreReleases=true)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
-Available here: https://www.nuget.org/packages/Cardknox.API.Wrapper/
+Available here: [https://www.nuget.org/packages/Cardknox.API.Wrapper/](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
 Install from Package Manager Console
 
