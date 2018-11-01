@@ -1,6 +1,6 @@
 The purpose of this library is to fill a gap. Cardknox has decent documentation and code samples, but it requires every developer to implement every facet they use for every project. We started using Cardknox primarily as the payment provider at work and I wrote this for our internal projects but figured it would benefit the community at large.
 
-The API is actually really simple to use and implement (compared to most), but this library should imrpove on that and make it even easier.
+The API is actually really simple to use and implement (compared to most), but this library should improve on that and make it even easier.
 
 Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest](https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest)
 
