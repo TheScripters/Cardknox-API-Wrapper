@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>ahwm23</Authors>
-    <Company />
+    <Company>The Scripters</Company>
     <PackageId>Cardknox.API.Wrapper</PackageId>
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
     <Version>4.0</Version>
     <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/TheScripters/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference.</Description>
