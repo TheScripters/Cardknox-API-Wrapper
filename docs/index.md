@@ -2,7 +2,7 @@ The purpose of this library is to fill a gap. Cardknox has decent documentation 
 
 The API is actually really simple to use and implement (compared to most), but this library should improve on that and make it even easier.
 
-Check out the latest release: [https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest](https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest)
+Check out the latest release: [https://github.com/TheScripters/Cardknox-API-Wrapper/releases/latest](https://github.com/TheScripters/Cardknox-API-Wrapper/releases/latest)
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/ahwm/Cardknox-API-Wrapper/blob/master/LICENSE)
 [![opened issues](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/ahwm/Cardknox-API-Wrapper/issues)
