@@ -1,6 +1,6 @@
-# Cardknox API Wrapper for .NET Standard
+# Cardknox API Wrapper for .NET
 
-API Wrapper for Cardknox Payment Processor written in C#, using .NET Standard 2.0.
+API Wrapper for Cardknox Payment Processor written in C#.
 
 Check out the latest release: [https://github.com/TheScripters/Cardknox-API-Wrapper/releases/latest](https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest)
 
