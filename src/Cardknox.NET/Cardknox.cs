@@ -1869,7 +1869,7 @@ namespace CardknoxApi
         /// </summary>
         /// <param name="_issue"></param>
         /// <param name="force"></param>
-        /// <returns></returns>
+        /// <returns>If <see langword="true"/> allows new command to be sent by clearing previous command entries</returns>
         public CardknoxResponse GCIssue(GCIssue _issue, bool force = false)
         {
             if (_issue.Amount == null || _issue.Amount <= 0)
@@ -1955,6 +1955,12 @@ namespace CardknoxApi
 
             return new CardknoxResponse(resp);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_redeem"></param>
+        /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
+        /// <returns></returns>
         public CardknoxResponse GCRedeem(GCRedeem _redeem, bool force = false)
         {
             if (_redeem.Amount == null || _redeem.Amount <= 0)
@@ -2040,7 +2046,12 @@ namespace CardknoxApi
 
             return new CardknoxResponse(resp);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_bal"></param>
+        /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
+        /// <returns></returns>
         public CardknoxResponse GCBalance(GCBalance _bal, bool force = false)
         {
             if (_bal.Amount == null || _bal.Amount <= 0)
@@ -2134,8 +2145,8 @@ namespace CardknoxApi
         /// <para>Most fields are required. Refer to API documentation for more information.</para>
         /// <para>https://kb.cardknox.com/api/#FRAUD_Fraud_Submit</para>
         /// </summary>
-        /// <param name="_submit"></param>
-        /// <param name="force"></param>
+        /// <param name="_submit"><see cref="Operations.FraudSubmit"/> object containing information describing a transaction to be submitted for fraud verification</param>
+        /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
         /// <returns></returns>
         public CardknoxResponse FraudSubmit(FraudSubmit _submit, bool force = false)
         {

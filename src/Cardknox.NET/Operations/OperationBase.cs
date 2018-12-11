@@ -103,14 +103,27 @@ namespace CardknoxApi.Operations
         /// </summary>
         public bool CustReceipt { get; set; } = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CardknoxCustomFields CustomFields { get; set; } = new CardknoxCustomFields();
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public class CardknoxCustomFields : IEnumerable<string>
     {
         private List<string> _fields = new List<string>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Count => _fields.Count;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="val"></param>
         public void Add(string val)
         {
             if (_fields.Count >= 20)
@@ -119,6 +132,10 @@ namespace CardknoxApi.Operations
             _fields.Add(val);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<string> GetEnumerator()
         {
             return _fields.GetEnumerator();

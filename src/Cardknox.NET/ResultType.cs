@@ -45,14 +45,41 @@ namespace CardknoxApi
     /// </summary>
     public enum CardType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Unknown,
+        /// <summary>
+        /// 
+        /// </summary>
         EBT,
+        /// <summary>
+        /// 
+        /// </summary>
         GiftCard,
+        /// <summary>
+        /// 
+        /// </summary>
         Amex,
+        /// <summary>
+        /// 
+        /// </summary>
         Visa,
+        /// <summary>
+        /// 
+        /// </summary>
         MasterCard,
+        /// <summary>
+        /// 
+        /// </summary>
         Discover,
+        /// <summary>
+        /// 
+        /// </summary>
         Diners,
+        /// <summary>
+        /// 
+        /// </summary>
         JCB
     }
     /// <summary>
@@ -61,19 +88,19 @@ namespace CardknoxApi
     public enum AvsResponseType
     {
         /// <summary>
-        /// Address: Match & 5 Digit Zip: Match
+        /// Address: Match &amp; 5 Digit Zip: Match
         /// </summary>
         YYY,
         /// <summary>
-        /// Address: No Match & 5 Digit Zip: Match
+        /// Address: No Match &amp; 5 Digit Zip: Match
         /// </summary>
         NYZ,
         /// <summary>
-        /// Address: Match & 5 Digit Zip: No Match
+        /// Address: Match &amp; 5 Digit Zip: No Match
         /// </summary>
         YNA,
         /// <summary>
-        /// Address: No Match & 5 Digit Zip: No Match
+        /// Address: No Match &amp; 5 Digit Zip: No Match
         /// </summary>
         NNN,
         /// <summary>
@@ -81,11 +108,11 @@ namespace CardknoxApi
         /// </summary>
         XXU,
         /// <summary>
-        /// Address: Match & 9 Digit Zip: Match
+        /// Address: Match &amp; 9 Digit Zip: Match
         /// </summary>
         YYX,
         /// <summary>
-        /// Address: No Match & 9 Digit Zip: Match
+        /// Address: No Match &amp; 9 Digit Zip: Match
         /// </summary>
         NYW,
         /// <summary>
@@ -97,9 +124,18 @@ namespace CardknoxApi
         /// </summary>
         XXS
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public enum OrderType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Internet,
+        /// <summary>
+        /// 
+        /// </summary>
         Phone
     }
 }

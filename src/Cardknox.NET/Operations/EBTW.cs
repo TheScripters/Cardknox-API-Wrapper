@@ -43,7 +43,14 @@ namespace CardknoxApi.Operations
     {
         private List<EBTWItem> _items = new List<EBTWItem>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Count => _items.Count;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(EBTWItem item) => _items.Add(item);
 
         public IEnumerator<EBTWItem> GetEnumerator()
