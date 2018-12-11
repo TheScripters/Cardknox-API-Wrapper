@@ -1956,7 +1956,7 @@ namespace CardknoxApi
             return new CardknoxResponse(resp);
         }
         /// <summary>
-        /// 
+        /// The Redeem command is used to debit funds from a Cardknox gift card.
         /// </summary>
         /// <param name="_redeem"></param>
         /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
@@ -2047,7 +2047,7 @@ namespace CardknoxApi
             return new CardknoxResponse(resp);
         }
         /// <summary>
-        /// 
+        /// The Balance command is used to check the available balance on a Cardknox gift card.
         /// </summary>
         /// <param name="_bal"></param>
         /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>

@@ -125,16 +125,16 @@ namespace CardknoxApi
         XXS
     }
     /// <summary>
-    /// 
+    /// Specifies if the order origin is Internet OR Phone for FraudWatch verification.
     /// </summary>
     public enum OrderType
     {
         /// <summary>
-        /// 
+        /// Order originated via Internet
         /// </summary>
         Internet,
         /// <summary>
-        /// 
+        /// Order originated via Phone
         /// </summary>
         Phone
     }

@@ -8,30 +8,31 @@ using System.Web;
 namespace CardknoxApi
 {
     /// <summary>
-    /// 
+    /// Object representing response from the Cardknox API endpoint.
     /// </summary>
     public class CardknoxResponse
     {
         // xExp=1249
 
         /// <summary>
-        /// 
+        /// Single character representing status
         /// </summary>
         public ResultType Result { get; }
         /// <summary>
-        /// 
+        /// Contains error message if the transaction failed. <see cref="Status"/> will have the value of <see cref="StatusType.Error"/> and <see cref="Result"/> will be <see cref="ResultType.E"/>
         /// </summary>
         public string Error { get; }
         /// <summary>
-        /// 
+        /// Status of transction
         /// </summary>
         public StatusType Status { get; }
         /// <summary>
-        /// 
+        /// Contains error code if the transaction failed. <see cref="Status"/> will have the value of <see cref="StatusType.Error"/> and <see cref="Result"/> will be <see cref="ResultType.E"/>
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// 
+        /// <para>Cardknox transaction Reference Number</para>
+        /// <para>Note: RefNum is always returned regardless of the outcome of the transaction.</para>
         /// </summary>
         public string RefNum { get; }
         /// <summary>

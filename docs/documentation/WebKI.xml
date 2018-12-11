@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="A enumeration member" Url="html/F0295E77.htm" />
+  <HelpKINode Title="Account property" Url="html/8774878D.htm" />
+  <HelpKINode Title="Add method">
+    <HelpKINode Title="CardknoxCustomFields.Add Method " Url="html/626D2876.htm" />
+    <HelpKINode Title="EBTWItems.Add Method " Url="html/B67126F0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AllowDuplicate property" Url="html/51F6C9CA.htm" />
+  <HelpKINode Title="AllowPartialAuth property" Url="html/F823245.htm" />
+  <HelpKINode Title="Amex enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="Amount property" Url="html/FBFAADD0.htm" />
+  <HelpKINode Title="Approved enumeration member" Url="html/6DE2EA0.htm" />
+  <HelpKINode Title="AuthAmount property" Url="html/DBDAD151.htm" />
+  <HelpKINode Title="AuthCode property">
+    <HelpKINode Title="CardknoxResponse.AuthCode Property " Url="html/DC54C8DA.htm" />
+    <HelpKINode Title="CCPostAuth.AuthCode Property " Url="html/2795FF21.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AvsResponseType enumeration" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="AvsResult property" Url="html/B20391E2.htm" />
+  <HelpKINode Title="AvsResultCode property" Url="html/3D19A221.htm" />
+  <HelpKINode Title="Batch property" Url="html/64076791.htm" />
+  <HelpKINode Title="BeginRequest method" Url="html/B23DB874.htm" />
+  <HelpKINode Title="BillCity property" Url="html/42BC22D2.htm" />
+  <HelpKINode Title="BillCompany property" Url="html/812E652C.htm" />
+  <HelpKINode Title="BillCountry property" Url="html/B961507.htm" />
+  <HelpKINode Title="BillFirstName property" Url="html/FBFD9CDE.htm" />
+  <HelpKINode Title="BillLastName property" Url="html/752481FE.htm" />
+  <HelpKINode Title="BillMiddleName property" Url="html/3AEFB009.htm" />
+  <HelpKINode Title="BillMobile property" Url="html/E40425BF.htm" />
+  <HelpKINode Title="BillPhone property" Url="html/A67CC857.htm" />
+  <HelpKINode Title="BillState property" Url="html/81D79D22.htm" />
+  <HelpKINode Title="BillStreet property" Url="html/ED927EFA.htm" />
+  <HelpKINode Title="BillStreet2 property" Url="html/8D1B6E0.htm" />
+  <HelpKINode Title="BillZip property" Url="html/C1064CB8.htm" />
+  <HelpKINode Title="Cardknox class">
+    <HelpKINode Title="Cardknox Class" Url="html/896DD95E.htm" />
+    <HelpKINode Title="constructor" Url="html/ECF2AE76.htm" />
+    <HelpKINode Title="events" Url="html/C970FAF5.htm" />
+    <HelpKINode Title="methods" Url="html/D751785A.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Cardknox.Cardknox constructor" Url="html/ECF2AE76.htm" />
+  <HelpKINode Title="Cardknox.CCAdjust method" Url="html/3952570A.htm" />
+  <HelpKINode Title="Cardknox.CCAuthOnly method" Url="html/55DB39AB.htm" />
+  <HelpKINode Title="Cardknox.CCCapture method" Url="html/AA39BFEF.htm" />
+  <HelpKINode Title="Cardknox.CCCredit method" Url="html/7EDFB1B0.htm" />
+  <HelpKINode Title="Cardknox.CCPostAuth method" Url="html/B970B02F.htm" />
+  <HelpKINode Title="Cardknox.CCRefund method" Url="html/C038CF11.htm" />
+  <HelpKINode Title="Cardknox.CCSale method" Url="html/C37430BA.htm" />
+  <HelpKINode Title="Cardknox.CCSave method" Url="html/BDD8360C.htm" />
+  <HelpKINode Title="Cardknox.CCVoid method" Url="html/1ACB4F17.htm" />
+  <HelpKINode Title="Cardknox.CCVoidRefund method" Url="html/F892AC95.htm" />
+  <HelpKINode Title="Cardknox.CCVoidRelease method" Url="html/FD89B3B8.htm" />
+  <HelpKINode Title="Cardknox.CheckCredit method" Url="html/F46F3430.htm" />
+  <HelpKINode Title="Cardknox.CheckRefund method" Url="html/F1F22737.htm" />
+  <HelpKINode Title="Cardknox.CheckSale method" Url="html/FFAC85E2.htm" />
+  <HelpKINode Title="Cardknox.CheckSave method" Url="html/FFAC85C8.htm" />
+  <HelpKINode Title="Cardknox.CheckVoid method" Url="html/4760091D.htm" />
+  <HelpKINode Title="Cardknox.EBTCBBalance method" Url="html/C6806D7F.htm" />
+  <HelpKINode Title="Cardknox.EBTCBCash method" Url="html/6F75BDC6.htm" />
+  <HelpKINode Title="Cardknox.EBTCBSale method" Url="html/9CBB06BE.htm" />
+  <HelpKINode Title="Cardknox.EBTFSBalance method" Url="html/D915642F.htm" />
+  <HelpKINode Title="Cardknox.EBTFSCredit method" Url="html/B8DC9A2A.htm" />
+  <HelpKINode Title="Cardknox.EBTFSSale method" Url="html/FD713D18.htm" />
+  <HelpKINode Title="Cardknox.EBTFSVoucher method" Url="html/269AEC25.htm" />
+  <HelpKINode Title="Cardknox.EBTWBalance method" Url="html/2BA52741.htm" />
+  <HelpKINode Title="Cardknox.EBTWSale method" Url="html/DCCEA94A.htm" />
+  <HelpKINode Title="Cardknox.EBTWVoid method" Url="html/DB9A621B.htm" />
+  <HelpKINode Title="Cardknox.FraudSubmit method" Url="html/A9C06977.htm" />
+  <HelpKINode Title="Cardknox.GCBalance method" Url="html/8532FFDD.htm" />
+  <HelpKINode Title="Cardknox.GCIssue method" Url="html/EB9D9948.htm" />
+  <HelpKINode Title="Cardknox.GCRedeem method" Url="html/2F94189.htm" />
+  <HelpKINode Title="Cardknox.RequestCompleted event" Url="html/5D1D69D3.htm" />
+  <HelpKINode Title="Cardknox.RequestCompletedEventHandler delegate" Url="html/FA5A537E.htm" />
+  <HelpKINode Title="Cardknox.RequestStarted event" Url="html/9DAC67D7.htm" />
+  <HelpKINode Title="Cardknox.RequestStartedEventHandler delegate" Url="html/33AF03CA.htm" />
+  <HelpKINode Title="CardknoxApi namespace" Url="html/3924B522.htm" />
+  <HelpKINode Title="CardknoxApi.AvsResponseType enumeration" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="CardknoxApi.Cardknox class" Url="html/896DD95E.htm" />
+  <HelpKINode Title="CardknoxApi.Cardknox.RequestCompletedEventHandler delegate" Url="html/FA5A537E.htm" />
+  <HelpKINode Title="CardknoxApi.Cardknox.RequestStartedEventHandler delegate" Url="html/33AF03CA.htm" />
+  <HelpKINode Title="CardknoxApi.CardknoxRequest class" Url="html/4102F795.htm" />
+  <HelpKINode Title="CardknoxApi.CardknoxResponse class" Url="html/D6D34E7F.htm" />
+  <HelpKINode Title="CardknoxApi.CardType enumeration" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="CardknoxApi.Customer class" Url="html/DAFF26D2.htm" />
+  <HelpKINode Title="CardknoxApi.Operations namespace" Url="html/D8FDF032.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CardknoxCustomFields class" Url="html/C90DA930.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CardknoxEventArgs class" Url="html/92C0F4BB.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCAdjust class" Url="html/EE79D8F7.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCAuthOnly class" Url="html/3601AB08.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCCapture class" Url="html/C1688622.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCCredit class" Url="html/D7E6DF33.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCPostAuth class" Url="html/31DCE8CC.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCRefund class" Url="html/580E4AFE.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCSale class" Url="html/65F6A77D.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCSave class" Url="html/E0F4CFBF.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCVoid class" Url="html/672AEB9A.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCVoidRefund class" Url="html/8F1F27A8.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CCVoidRelease class" Url="html/D8CD9FEB.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CheckCredit class" Url="html/ACBC7D.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CheckRefund class" Url="html/1A4D6FA4.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CheckSale class" Url="html/ABE4554F.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CheckSave class" Url="html/ABE45535.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.CheckVoid class" Url="html/BF864210.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTCBBalance class" Url="html/844EF532.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTCBCash class" Url="html/E74942C9.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTCBSale class" Url="html/A4C858DB.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTFSBalance class" Url="html/DCC35B8C.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTFSCredit class" Url="html/36DD08BD.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTFSSale class" Url="html/695730B.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTFSVoucher class" Url="html/CFB95932.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTWBalance class" Url="html/4C5957B4.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTWItem class" Url="html/9F694A5B.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTWItems class" Url="html/DAEFE7D0.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTWSale class" Url="html/DE55478D.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.EBTWVoid class" Url="html/DF898D1E.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.FraudSubmit class" Url="html/442A7B04.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.GCBalance class" Url="html/791D0D10.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.GCIssue class" Url="html/7758226B.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.GCRedeem class" Url="html/E31C1FC.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.OperationBase class" Url="html/293B3316.htm" />
+  <HelpKINode Title="CardknoxApi.Operations.Sale class" Url="html/CF40722D.htm" />
+  <HelpKINode Title="CardknoxApi.OrderType enumeration" Url="html/7419434E.htm" />
+  <HelpKINode Title="CardknoxApi.ResultType enumeration" Url="html/F0295E77.htm" />
+  <HelpKINode Title="CardknoxApi.StatusType enumeration" Url="html/6DE2EA0.htm" />
+  <HelpKINode Title="CardknoxCustomFields class">
+    <HelpKINode Title="CardknoxCustomFields Class" Url="html/C90DA930.htm" />
+    <HelpKINode Title="constructor" Url="html/C2E6F74E.htm" />
+    <HelpKINode Title="methods" Url="html/B4D088DC.htm" />
+    <HelpKINode Title="properties" Url="html/61D55AD1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CardknoxCustomFields.Add method" Url="html/626D2876.htm" />
+  <HelpKINode Title="CardknoxCustomFields.CardknoxCustomFields constructor" Url="html/C2E6F74E.htm" />
+  <HelpKINode Title="CardknoxCustomFields.Count property" Url="html/F418A343.htm" />
+  <HelpKINode Title="CardknoxCustomFields.GetEnumerator method" Url="html/FE0B7493.htm" />
+  <HelpKINode Title="CardknoxEventArgs class">
+    <HelpKINode Title="CardknoxEventArgs Class" Url="html/92C0F4BB.htm" />
+    <HelpKINode Title="constructor" Url="html/E9489429.htm" />
+    <HelpKINode Title="methods" Url="html/B354A4C1.htm" />
+    <HelpKINode Title="properties" Url="html/6FD2270A.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CardknoxEventArgs.CardknoxEventArgs constructor" Url="html/E9489429.htm" />
+  <HelpKINode Title="CardknoxEventArgs.Results property" Url="html/1A2F836B.htm" />
+  <HelpKINode Title="CardknoxRequest class">
+    <HelpKINode Title="CardknoxRequest Class" Url="html/4102F795.htm" />
+    <HelpKINode Title="constructor" Url="html/5DDB37B7.htm" />
+    <HelpKINode Title="methods" Url="html/2F34ACE7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CardknoxRequest.BeginRequest method" Url="html/B23DB874.htm" />
+  <HelpKINode Title="CardknoxRequest.CardknoxRequest constructor" Url="html/5DDB37B7.htm" />
+  <HelpKINode Title="CardknoxResponse class">
+    <HelpKINode Title="CardknoxResponse Class" Url="html/D6D34E7F.htm" />
+    <HelpKINode Title="constructor" Url="html/7D6F58C1.htm" />
+    <HelpKINode Title="methods" Url="html/943DC0F9.htm" />
+    <HelpKINode Title="properties" Url="html/56F68940.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CardknoxResponse.AuthAmount property" Url="html/DBDAD151.htm" />
+  <HelpKINode Title="CardknoxResponse.AuthCode property" Url="html/DC54C8DA.htm" />
+  <HelpKINode Title="CardknoxResponse.AvsResult property" Url="html/B20391E2.htm" />
+  <HelpKINode Title="CardknoxResponse.AvsResultCode property" Url="html/3D19A221.htm" />
+  <HelpKINode Title="CardknoxResponse.Batch property" Url="html/64076791.htm" />
+  <HelpKINode Title="CardknoxResponse.CardknoxResponse constructor" Url="html/7D6F58C1.htm" />
+  <HelpKINode Title="CardknoxResponse.CardType property" Url="html/DF49D189.htm" />
+  <HelpKINode Title="CardknoxResponse.EntryMethod property" Url="html/5C7C09DA.htm" />
+  <HelpKINode Title="CardknoxResponse.Error property" Url="html/5212E895.htm" />
+  <HelpKINode Title="CardknoxResponse.ErrorCode property" Url="html/6D526B04.htm" />
+  <HelpKINode Title="CardknoxResponse.HasError property" Url="html/149F8B67.htm" />
+  <HelpKINode Title="CardknoxResponse.MaskedCardNumber property" Url="html/21536E7F.htm" />
+  <HelpKINode Title="CardknoxResponse.RefNum property" Url="html/4A88B65E.htm" />
+  <HelpKINode Title="CardknoxResponse.Result property" Url="html/F2D01E84.htm" />
+  <HelpKINode Title="CardknoxResponse.Status property" Url="html/D3FA4FD5.htm" />
+  <HelpKINode Title="CardknoxResponse.Token property" Url="html/E54C5CA.htm" />
+  <HelpKINode Title="CardNum property">
+    <HelpKINode Title="FraudSubmit.CardNum Property " Url="html/F1DA3204.htm" />
+    <HelpKINode Title="OperationBase.CardNum Property " Url="html/54727F06.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CardPresent property" Url="html/99A371F.htm" />
+  <HelpKINode Title="CardType enumeration" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="CardType property" Url="html/DF49D189.htm" />
+  <HelpKINode Title="CCAdjust class">
+    <HelpKINode Title="CCAdjust Class" Url="html/EE79D8F7.htm" />
+    <HelpKINode Title="constructor" Url="html/7074D499.htm" />
+    <HelpKINode Title="methods" Url="html/EEF379C1.htm" />
+    <HelpKINode Title="properties" Url="html/34976190.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCAdjust method" Url="html/3952570A.htm" />
+  <HelpKINode Title="CCAdjust.CCAdjust constructor" Url="html/7074D499.htm" />
+  <HelpKINode Title="CCAdjust.RefNum property" Url="html/65AF9E84.htm" />
+  <HelpKINode Title="CCAuthOnly class">
+    <HelpKINode Title="CCAuthOnly Class" Url="html/3601AB08.htm" />
+    <HelpKINode Title="constructor" Url="html/9B45BB06.htm" />
+    <HelpKINode Title="methods" Url="html/C3200234.htm" />
+    <HelpKINode Title="properties" Url="html/4807E9A9.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCAuthOnly method" Url="html/55DB39AB.htm" />
+  <HelpKINode Title="CCAuthOnly.CCAuthOnly constructor" Url="html/9B45BB06.htm" />
+  <HelpKINode Title="CCCapture class">
+    <HelpKINode Title="CCCapture Class" Url="html/C1688622.htm" />
+    <HelpKINode Title="constructor" Url="html/6C67BA22.htm" />
+    <HelpKINode Title="methods" Url="html/939766AA.htm" />
+    <HelpKINode Title="properties" Url="html/49A2DF1D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCCapture method" Url="html/AA39BFEF.htm" />
+  <HelpKINode Title="CCCapture.CCCapture constructor" Url="html/6C67BA22.htm" />
+  <HelpKINode Title="CCCapture.RefNum property" Url="html/8905563.htm" />
+  <HelpKINode Title="CCCredit class">
+    <HelpKINode Title="CCCredit Class" Url="html/D7E6DF33.htm" />
+    <HelpKINode Title="constructor" Url="html/80500B21.htm" />
+    <HelpKINode Title="methods" Url="html/F7B73A29.htm" />
+    <HelpKINode Title="properties" Url="html/5898FB8A.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCCredit method" Url="html/7EDFB1B0.htm" />
+  <HelpKINode Title="CCCredit.CCCredit constructor" Url="html/80500B21.htm" />
+  <HelpKINode Title="CCPostAuth class">
+    <HelpKINode Title="CCPostAuth Class" Url="html/31DCE8CC.htm" />
+    <HelpKINode Title="constructor" Url="html/16EF5882.htm" />
+    <HelpKINode Title="methods" Url="html/72F33880.htm" />
+    <HelpKINode Title="properties" Url="html/6ABDDF6D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCPostAuth method" Url="html/B970B02F.htm" />
+  <HelpKINode Title="CCPostAuth.AuthCode property" Url="html/2795FF21.htm" />
+  <HelpKINode Title="CCPostAuth.CCPostAuth constructor" Url="html/16EF5882.htm" />
+  <HelpKINode Title="CCRefund class">
+    <HelpKINode Title="CCRefund Class" Url="html/580E4AFE.htm" />
+    <HelpKINode Title="constructor" Url="html/F28560F4.htm" />
+    <HelpKINode Title="methods" Url="html/C27024DA.htm" />
+    <HelpKINode Title="properties" Url="html/73830603.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCRefund method" Url="html/C038CF11.htm" />
+  <HelpKINode Title="CCRefund.CCRefund constructor" Url="html/F28560F4.htm" />
+  <HelpKINode Title="CCRefund.RefNum property" Url="html/1A31E0A9.htm" />
+  <HelpKINode Title="CCSale class">
+    <HelpKINode Title="CCSale Class" Url="html/65F6A77D.htm" />
+    <HelpKINode Title="constructor" Url="html/884D6093.htm" />
+    <HelpKINode Title="methods" Url="html/5CA1FDFB.htm" />
+    <HelpKINode Title="properties" Url="html/84DE66B0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCSale method" Url="html/C37430BA.htm" />
+  <HelpKINode Title="CCSale.CCSale constructor" Url="html/884D6093.htm" />
+  <HelpKINode Title="CCSave class">
+    <HelpKINode Title="CCSave Class" Url="html/E0F4CFBF.htm" />
+    <HelpKINode Title="constructor" Url="html/9D7F6801.htm" />
+    <HelpKINode Title="methods" Url="html/623DF8A9.htm" />
+    <HelpKINode Title="properties" Url="html/84DE66CA.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCSave method" Url="html/BDD8360C.htm" />
+  <HelpKINode Title="CCSave.CCSave constructor" Url="html/9D7F6801.htm" />
+  <HelpKINode Title="CCVoid class">
+    <HelpKINode Title="CCVoid Class" Url="html/672AEB9A.htm" />
+    <HelpKINode Title="constructor" Url="html/39EE0518.htm" />
+    <HelpKINode Title="methods" Url="html/5B6DB852.htm" />
+    <HelpKINode Title="properties" Url="html/76D8739D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCVoid method" Url="html/1ACB4F17.htm" />
+  <HelpKINode Title="CCVoid.CCVoid constructor" Url="html/39EE0518.htm" />
+  <HelpKINode Title="CCVoid.RefNum property" Url="html/C4B51B1F.htm" />
+  <HelpKINode Title="CCVoidRefund class">
+    <HelpKINode Title="CCVoidRefund Class" Url="html/8F1F27A8.htm" />
+    <HelpKINode Title="constructor" Url="html/762A505A.htm" />
+    <HelpKINode Title="methods" Url="html/A8B36714.htm" />
+    <HelpKINode Title="properties" Url="html/DF539D53.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCVoidRefund method" Url="html/F892AC95.htm" />
+  <HelpKINode Title="CCVoidRefund.CCVoidRefund constructor" Url="html/762A505A.htm" />
+  <HelpKINode Title="CCVoidRefund.RefNum property" Url="html/BACDB0E5.htm" />
+  <HelpKINode Title="CCVoidRelease class">
+    <HelpKINode Title="CCVoidRelease Class" Url="html/D8CD9FEB.htm" />
+    <HelpKINode Title="constructor" Url="html/DE08F195.htm" />
+    <HelpKINode Title="methods" Url="html/39E4DAED.htm" />
+    <HelpKINode Title="properties" Url="html/C471AB36.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CCVoidRelease method" Url="html/FD89B3B8.htm" />
+  <HelpKINode Title="CCVoidRelease.CCVoidRelease constructor" Url="html/DE08F195.htm" />
+  <HelpKINode Title="CCVoidRelease.RefNum property" Url="html/E1AE5174.htm" />
+  <HelpKINode Title="CheckCredit class">
+    <HelpKINode Title="CheckCredit Class" Url="html/ACBC7D.htm" />
+    <HelpKINode Title="constructor" Url="html/D902E68B.htm" />
+    <HelpKINode Title="methods" Url="html/8B8ABEFF.htm" />
+    <HelpKINode Title="properties" Url="html/D51C1D72.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckCredit method" Url="html/F46F3430.htm" />
+  <HelpKINode Title="CheckCredit.CheckCredit constructor" Url="html/D902E68B.htm" />
+  <HelpKINode Title="CheckImageBack property" Url="html/FB14A9CE.htm" />
+  <HelpKINode Title="CheckImageFront property" Url="html/C3429368.htm" />
+  <HelpKINode Title="CheckNum property" Url="html/8C2D638C.htm" />
+  <HelpKINode Title="CheckRefund class">
+    <HelpKINode Title="CheckRefund Class" Url="html/1A4D6FA4.htm" />
+    <HelpKINode Title="constructor" Url="html/AB627F18.htm" />
+    <HelpKINode Title="methods" Url="html/313CA4D8.htm" />
+    <HelpKINode Title="properties" Url="html/4DB31A2D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckRefund method" Url="html/F1F22737.htm" />
+  <HelpKINode Title="CheckRefund.CheckRefund constructor" Url="html/AB627F18.htm" />
+  <HelpKINode Title="CheckRefund.RefNum property" Url="html/26B8EFB3.htm" />
+  <HelpKINode Title="CheckSale class">
+    <HelpKINode Title="CheckSale Class" Url="html/ABE4554F.htm" />
+    <HelpKINode Title="constructor" Url="html/2C40F405.htm" />
+    <HelpKINode Title="methods" Url="html/E4F8DC4D.htm" />
+    <HelpKINode Title="properties" Url="html/10E30304.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckSale method" Url="html/FFAC85E2.htm" />
+  <HelpKINode Title="CheckSale.CheckSale constructor" Url="html/2C40F405.htm" />
+  <HelpKINode Title="CheckSave class">
+    <HelpKINode Title="CheckSave Class" Url="html/ABE45535.htm" />
+    <HelpKINode Title="constructor" Url="html/2C4CD15F.htm" />
+    <HelpKINode Title="methods" Url="html/E4F8DC33.htm" />
+    <HelpKINode Title="properties" Url="html/E0CFBEA6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckSave method" Url="html/FFAC85C8.htm" />
+  <HelpKINode Title="CheckSave.CheckSave constructor" Url="html/2C4CD15F.htm" />
+  <HelpKINode Title="CheckVoid class">
+    <HelpKINode Title="CheckVoid Class" Url="html/BF864210.htm" />
+    <HelpKINode Title="constructor" Url="html/1CDC7248.htm" />
+    <HelpKINode Title="methods" Url="html/FF6B0ADC.htm" />
+    <HelpKINode Title="properties" Url="html/B98BE52B.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckVoid method" Url="html/4760091D.htm" />
+  <HelpKINode Title="CheckVoid.CheckVoid constructor" Url="html/1CDC7248.htm" />
+  <HelpKINode Title="CheckVoid.RefNum property" Url="html/FF28F9D1.htm" />
+  <HelpKINode Title="ClinicalAmount property" Url="html/CB14FC34.htm" />
+  <HelpKINode Title="CopayAmount property" Url="html/4FCD47CB.htm" />
+  <HelpKINode Title="Count property">
+    <HelpKINode Title="CardknoxCustomFields.Count Property " Url="html/F418A343.htm" />
+    <HelpKINode Title="EBTWItems.Count Property " Url="html/634D2ED.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Customer class">
+    <HelpKINode Title="Customer Class" Url="html/DAFF26D2.htm" />
+    <HelpKINode Title="constructor" Url="html/330042DA.htm" />
+    <HelpKINode Title="methods" Url="html/B7664E2A.htm" />
+    <HelpKINode Title="properties" Url="html/85D4FDB5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Customer.BillCity property" Url="html/42BC22D2.htm" />
+  <HelpKINode Title="Customer.BillCompany property" Url="html/812E652C.htm" />
+  <HelpKINode Title="Customer.BillCountry property" Url="html/B961507.htm" />
+  <HelpKINode Title="Customer.BillFirstName property" Url="html/FBFD9CDE.htm" />
+  <HelpKINode Title="Customer.BillLastName property" Url="html/752481FE.htm" />
+  <HelpKINode Title="Customer.BillMiddleName property" Url="html/3AEFB009.htm" />
+  <HelpKINode Title="Customer.BillMobile property" Url="html/E40425BF.htm" />
+  <HelpKINode Title="Customer.BillPhone property" Url="html/A67CC857.htm" />
+  <HelpKINode Title="Customer.BillState property" Url="html/81D79D22.htm" />
+  <HelpKINode Title="Customer.BillStreet property" Url="html/ED927EFA.htm" />
+  <HelpKINode Title="Customer.BillStreet2 property" Url="html/8D1B6E0.htm" />
+  <HelpKINode Title="Customer.BillZip property" Url="html/C1064CB8.htm" />
+  <HelpKINode Title="Customer.Customer constructor" Url="html/330042DA.htm" />
+  <HelpKINode Title="Customer.Email property" Url="html/2320CF8C.htm" />
+  <HelpKINode Title="Customer.Fax property" Url="html/D080D8D7.htm" />
+  <HelpKINode Title="Customer.ShipCity property" Url="html/1C0EC4F9.htm" />
+  <HelpKINode Title="Customer.ShipCompany property" Url="html/F7973DF5.htm" />
+  <HelpKINode Title="Customer.ShipCountry property" Url="html/75F9F9F8.htm" />
+  <HelpKINode Title="Customer.ShipFirstName property" Url="html/602A9AF7.htm" />
+  <HelpKINode Title="Customer.ShipLastName property" Url="html/9E16EF27.htm" />
+  <HelpKINode Title="Customer.ShipMiddleName property" Url="html/E9B21E98.htm" />
+  <HelpKINode Title="Customer.ShipMobile property" Url="html/781EA7B0.htm" />
+  <HelpKINode Title="Customer.ShipPhone property" Url="html/2D6EF8FE.htm" />
+  <HelpKINode Title="Customer.ShipState property" Url="html/E088DDA9.htm" />
+  <HelpKINode Title="Customer.ShipStreet property" Url="html/B18C2B3B.htm" />
+  <HelpKINode Title="Customer.ShipStreet2 property" Url="html/5B8DE0C1.htm" />
+  <HelpKINode Title="Customer.ShipZip property" Url="html/CE051239.htm" />
+  <HelpKINode Title="CustomFields property" Url="html/B52504BE.htm" />
+  <HelpKINode Title="CustReceipt property" Url="html/1CE937B9.htm" />
+  <HelpKINode Title="CVV property" Url="html/8D91A0D3.htm" />
+  <HelpKINode Title="D enumeration member" Url="html/F0295E77.htm" />
+  <HelpKINode Title="Declined enumeration member" Url="html/6DE2EA0.htm" />
+  <HelpKINode Title="DentalAmount property" Url="html/62BBD55D.htm" />
+  <HelpKINode Title="Diners enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="Discover enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="DUKPT property" Url="html/67FBE3C0.htm" />
+  <HelpKINode Title="E enumeration member" Url="html/F0295E77.htm" />
+  <HelpKINode Title="EBT enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="EBTCBBalance class">
+    <HelpKINode Title="EBTCBBalance Class" Url="html/844EF532.htm" />
+    <HelpKINode Title="constructor" Url="html/6F6C2E08.htm" />
+    <HelpKINode Title="methods" Url="html/FBE077DA.htm" />
+    <HelpKINode Title="properties" Url="html/C159DBCD.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTCBBalance method" Url="html/C6806D7F.htm" />
+  <HelpKINode Title="EBTCBBalance.EBTCBBalance constructor" Url="html/6F6C2E08.htm" />
+  <HelpKINode Title="EBTCBCash class">
+    <HelpKINode Title="EBTCBCash Class" Url="html/E74942C9.htm" />
+    <HelpKINode Title="constructor" Url="html/47797007.htm" />
+    <HelpKINode Title="methods" Url="html/A7FC9B33.htm" />
+    <HelpKINode Title="properties" Url="html/F128D050.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTCBCash method" Url="html/6F75BDC6.htm" />
+  <HelpKINode Title="EBTCBCash.EBTCBCash constructor" Url="html/47797007.htm" />
+  <HelpKINode Title="EBTCBSale class">
+    <HelpKINode Title="EBTCBSale Class" Url="html/A4C858DB.htm" />
+    <HelpKINode Title="constructor" Url="html/2E8D477D.htm" />
+    <HelpKINode Title="methods" Url="html/C0063F5D.htm" />
+    <HelpKINode Title="properties" Url="html/74FA534C.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTCBSale method" Url="html/9CBB06BE.htm" />
+  <HelpKINode Title="EBTCBSale.EBTCBSale constructor" Url="html/2E8D477D.htm" />
+  <HelpKINode Title="EBTFSBalance class">
+    <HelpKINode Title="EBTFSBalance Class" Url="html/DCC35B8C.htm" />
+    <HelpKINode Title="constructor" Url="html/B807F55A.htm" />
+    <HelpKINode Title="methods" Url="html/66EE0120.htm" />
+    <HelpKINode Title="properties" Url="html/DB2EAFB5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTFSBalance method" Url="html/D915642F.htm" />
+  <HelpKINode Title="EBTFSBalance.EBTFSBalance constructor" Url="html/B807F55A.htm" />
+  <HelpKINode Title="EBTFSCredit class">
+    <HelpKINode Title="EBTFSCredit Class" Url="html/36DD08BD.htm" />
+    <HelpKINode Title="constructor" Url="html/E779638F.htm" />
+    <HelpKINode Title="methods" Url="html/80B4567B.htm" />
+    <HelpKINode Title="properties" Url="html/83CCAF08.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTFSCredit method" Url="html/B8DC9A2A.htm" />
+  <HelpKINode Title="EBTFSCredit.EBTFSCredit constructor" Url="html/E779638F.htm" />
+  <HelpKINode Title="EBTFSSale class">
+    <HelpKINode Title="EBTFSSale Class" Url="html/695730B.htm" />
+    <HelpKINode Title="constructor" Url="html/4936DDF5.htm" />
+    <HelpKINode Title="methods" Url="html/6BE3BFCD.htm" />
+    <HelpKINode Title="properties" Url="html/4462496.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTFSSale method" Url="html/FD713D18.htm" />
+  <HelpKINode Title="EBTFSSale.EBTFSSale constructor" Url="html/4936DDF5.htm" />
+  <HelpKINode Title="EBTFSVoucher class">
+    <HelpKINode Title="EBTFSVoucher Class" Url="html/CFB95932.htm" />
+    <HelpKINode Title="constructor" Url="html/80400EA4.htm" />
+    <HelpKINode Title="methods" Url="html/AF81B6BA.htm" />
+    <HelpKINode Title="properties" Url="html/B7C5D913.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTFSVoucher method" Url="html/269AEC25.htm" />
+  <HelpKINode Title="EBTFSVoucher.EBTFSVoucher constructor" Url="html/80400EA4.htm" />
+  <HelpKINode Title="EBTFSVoucher.VoucherApproval property" Url="html/BB77FF6D.htm" />
+  <HelpKINode Title="EBTFSVoucher.VoucherSerial property" Url="html/B79391D2.htm" />
+  <HelpKINode Title="EBTWBalance class">
+    <HelpKINode Title="EBTWBalance Class" Url="html/4C5957B4.htm" />
+    <HelpKINode Title="constructor" Url="html/C34A5E90.htm" />
+    <HelpKINode Title="methods" Url="html/48613814.htm" />
+    <HelpKINode Title="properties" Url="html/EF6D8BC3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTWBalance method" Url="html/2BA52741.htm" />
+  <HelpKINode Title="EBTWBalance.EBTWBalance constructor" Url="html/C34A5E90.htm" />
+  <HelpKINode Title="EBTWItem class">
+    <HelpKINode Title="EBTWItem Class" Url="html/9F694A5B.htm" />
+    <HelpKINode Title="constructor" Url="html/1CB1C0E1.htm" />
+    <HelpKINode Title="methods" Url="html/E7CAFB51.htm" />
+    <HelpKINode Title="properties" Url="html/36D42688.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTWItem.EBTWItem constructor" Url="html/1CB1C0E1.htm" />
+  <HelpKINode Title="EBTWItem.Qty property" Url="html/8E8574E9.htm" />
+  <HelpKINode Title="EBTWItem.UnitPrice property" Url="html/6632A386.htm" />
+  <HelpKINode Title="EBTWItem.Upc property" Url="html/192346D7.htm" />
+  <HelpKINode Title="EBTWItems class">
+    <HelpKINode Title="EBTWItems Class" Url="html/DAEFE7D0.htm" />
+    <HelpKINode Title="constructor" Url="html/E82FDE38.htm" />
+    <HelpKINode Title="methods" Url="html/32EC781C.htm" />
+    <HelpKINode Title="properties" Url="html/C692EABB.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTWItems.Add method" Url="html/B67126F0.htm" />
+  <HelpKINode Title="EBTWItems.Count property" Url="html/634D2ED.htm" />
+  <HelpKINode Title="EBTWItems.EBTWItems constructor" Url="html/E82FDE38.htm" />
+  <HelpKINode Title="EBTWItems.GetEnumerator method" Url="html/281B94A5.htm" />
+  <HelpKINode Title="EBTWSale class">
+    <HelpKINode Title="EBTWSale Class" Url="html/DE55478D.htm" />
+    <HelpKINode Title="constructor" Url="html/F58C7287.htm" />
+    <HelpKINode Title="methods" Url="html/6734CBEF.htm" />
+    <HelpKINode Title="properties" Url="html/A435C29C.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTWSale method" Url="html/DCCEA94A.htm" />
+  <HelpKINode Title="EBTWSale.EBTWSale constructor" Url="html/F58C7287.htm" />
+  <HelpKINode Title="EBTWSale.Items property" Url="html/D313A089.htm" />
+  <HelpKINode Title="EBTWVoid class">
+    <HelpKINode Title="EBTWVoid Class" Url="html/DF898D1E.htm" />
+    <HelpKINode Title="constructor" Url="html/D2EE6310.htm" />
+    <HelpKINode Title="methods" Url="html/660084CA.htm" />
+    <HelpKINode Title="properties" Url="html/259EB875.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EBTWVoid method" Url="html/DB9A621B.htm" />
+  <HelpKINode Title="EBTWVoid.EBTWVoid constructor" Url="html/D2EE6310.htm" />
+  <HelpKINode Title="EBTWVoid.RefNum property" Url="html/F50760AB.htm" />
+  <HelpKINode Title="Email property" Url="html/2320CF8C.htm" />
+  <HelpKINode Title="EntryMethod property" Url="html/5C7C09DA.htm" />
+  <HelpKINode Title="Error enumeration member" Url="html/6DE2EA0.htm" />
+  <HelpKINode Title="Error property" Url="html/5212E895.htm" />
+  <HelpKINode Title="ErrorCode property" Url="html/6D526B04.htm" />
+  <HelpKINode Title="ExistingCustomer property" Url="html/BF9AF4BC.htm" />
+  <HelpKINode Title="Exp property" Url="html/E4E8BFCD.htm" />
+  <HelpKINode Title="Fax property" Url="html/D080D8D7.htm" />
+  <HelpKINode Title="FraudSubmit class">
+    <HelpKINode Title="FraudSubmit Class" Url="html/442A7B04.htm" />
+    <HelpKINode Title="constructor" Url="html/89E4E8E4.htm" />
+    <HelpKINode Title="methods" Url="html/5DB984.htm" />
+    <HelpKINode Title="properties" Url="html/43567259.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FraudSubmit method" Url="html/A9C06977.htm" />
+  <HelpKINode Title="FraudSubmit.CardNum property" Url="html/F1DA3204.htm" />
+  <HelpKINode Title="FraudSubmit.FraudSubmit constructor" Url="html/89E4E8E4.htm" />
+  <HelpKINode Title="FraudSubmit.GatewayAVS property" Url="html/4297C198.htm" />
+  <HelpKINode Title="FraudSubmit.GatewayCVV property" Url="html/4297C1D7.htm" />
+  <HelpKINode Title="FraudSubmit.GatewayError property" Url="html/CEDFE98E.htm" />
+  <HelpKINode Title="FraudSubmit.GatewayRefNum property" Url="html/4D491FFB.htm" />
+  <HelpKINode Title="FraudSubmit.GatewayResult property" Url="html/763287D9.htm" />
+  <HelpKINode Title="FraudSubmit.OrderType property" Url="html/C81437E2.htm" />
+  <HelpKINode Title="GatewayAVS property" Url="html/4297C198.htm" />
+  <HelpKINode Title="GatewayCVV property" Url="html/4297C1D7.htm" />
+  <HelpKINode Title="GatewayError property" Url="html/CEDFE98E.htm" />
+  <HelpKINode Title="GatewayRefNum property" Url="html/4D491FFB.htm" />
+  <HelpKINode Title="GatewayResult property" Url="html/763287D9.htm" />
+  <HelpKINode Title="GCBalance class">
+    <HelpKINode Title="GCBalance Class" Url="html/791D0D10.htm" />
+    <HelpKINode Title="constructor" Url="html/ADAEBDD0.htm" />
+    <HelpKINode Title="methods" Url="html/AFD2E5BC.htm" />
+    <HelpKINode Title="properties" Url="html/EDADC53.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GCBalance method" Url="html/8532FFDD.htm" />
+  <HelpKINode Title="GCBalance.GCBalance constructor" Url="html/ADAEBDD0.htm" />
+  <HelpKINode Title="GCIssue class">
+    <HelpKINode Title="GCIssue Class" Url="html/7758226B.htm" />
+    <HelpKINode Title="constructor" Url="html/D3F95069.htm" />
+    <HelpKINode Title="methods" Url="html/F22E8971.htm" />
+    <HelpKINode Title="properties" Url="html/F192DA8A.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GCIssue method" Url="html/EB9D9948.htm" />
+  <HelpKINode Title="GCIssue.GCIssue constructor" Url="html/D3F95069.htm" />
+  <HelpKINode Title="GCRedeem class">
+    <HelpKINode Title="GCRedeem Class" Url="html/E31C1FC.htm" />
+    <HelpKINode Title="constructor" Url="html/8BE7CE2.htm" />
+    <HelpKINode Title="methods" Url="html/3A60C4FC.htm" />
+    <HelpKINode Title="properties" Url="html/7A4D243B.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GCRedeem method" Url="html/2F94189.htm" />
+  <HelpKINode Title="GCRedeem.GCRedeem constructor" Url="html/8BE7CE2.htm" />
+  <HelpKINode Title="GetEnumerator method">
+    <HelpKINode Title="CardknoxCustomFields.GetEnumerator Method " Url="html/FE0B7493.htm" />
+    <HelpKINode Title="EBTWItems.GetEnumerator Method " Url="html/281B94A5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GiftCard enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="HasError property" Url="html/149F8B67.htm" />
+  <HelpKINode Title="Internet enumeration member" Url="html/7419434E.htm" />
+  <HelpKINode Title="Invoice property" Url="html/19DD8CBD.htm" />
+  <HelpKINode Title="IP property" Url="html/5FBE3E19.htm" />
+  <HelpKINode Title="Items property" Url="html/D313A089.htm" />
+  <HelpKINode Title="JCB enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="MagStripe property" Url="html/35AA2A46.htm" />
+  <HelpKINode Title="MaskedCardNumber property" Url="html/21536E7F.htm" />
+  <HelpKINode Title="MasterCard enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="MICR property" Url="html/2CA942CD.htm" />
+  <HelpKINode Title="Name property" Url="html/D3B86967.htm" />
+  <HelpKINode Title="NNN enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="NYW enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="NYZ enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="OperationBase class">
+    <HelpKINode Title="OperationBase Class" Url="html/293B3316.htm" />
+    <HelpKINode Title="constructor" Url="html/9E1C1A6.htm" />
+    <HelpKINode Title="methods" Url="html/7BF59956.htm" />
+    <HelpKINode Title="properties" Url="html/134976F1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OperationBase.Account property" Url="html/8774878D.htm" />
+  <HelpKINode Title="OperationBase.AllowDuplicate property" Url="html/51F6C9CA.htm" />
+  <HelpKINode Title="OperationBase.Amount property" Url="html/FBFAADD0.htm" />
+  <HelpKINode Title="OperationBase.CardNum property" Url="html/54727F06.htm" />
+  <HelpKINode Title="OperationBase.CardPresent property" Url="html/99A371F.htm" />
+  <HelpKINode Title="OperationBase.CheckImageBack property" Url="html/FB14A9CE.htm" />
+  <HelpKINode Title="OperationBase.CheckImageFront property" Url="html/C3429368.htm" />
+  <HelpKINode Title="OperationBase.CheckNum property" Url="html/8C2D638C.htm" />
+  <HelpKINode Title="OperationBase.CustomFields property" Url="html/B52504BE.htm" />
+  <HelpKINode Title="OperationBase.CustReceipt property" Url="html/1CE937B9.htm" />
+  <HelpKINode Title="OperationBase.CVV property" Url="html/8D91A0D3.htm" />
+  <HelpKINode Title="OperationBase.DUKPT property" Url="html/67FBE3C0.htm" />
+  <HelpKINode Title="OperationBase.Exp property" Url="html/E4E8BFCD.htm" />
+  <HelpKINode Title="OperationBase.Invoice property" Url="html/19DD8CBD.htm" />
+  <HelpKINode Title="OperationBase.IP property" Url="html/5FBE3E19.htm" />
+  <HelpKINode Title="OperationBase.MagStripe property" Url="html/35AA2A46.htm" />
+  <HelpKINode Title="OperationBase.MICR property" Url="html/2CA942CD.htm" />
+  <HelpKINode Title="OperationBase.Name property" Url="html/D3B86967.htm" />
+  <HelpKINode Title="OperationBase.OperationBase constructor" Url="html/9E1C1A6.htm" />
+  <HelpKINode Title="OperationBase.Routing property" Url="html/A765DCB6.htm" />
+  <HelpKINode Title="OperationBase.Street property" Url="html/7CE9DB8D.htm" />
+  <HelpKINode Title="OperationBase.Tax property" Url="html/41D7E879.htm" />
+  <HelpKINode Title="OperationBase.Tip property" Url="html/57138D49.htm" />
+  <HelpKINode Title="OperationBase.Token property" Url="html/498A518B.htm" />
+  <HelpKINode Title="OperationBase.Zip property" Url="html/DD49AAE7.htm" />
+  <HelpKINode Title="OrderID property" Url="html/3E1FC266.htm" />
+  <HelpKINode Title="OrderType enumeration" Url="html/7419434E.htm" />
+  <HelpKINode Title="OrderType property" Url="html/C81437E2.htm" />
+  <HelpKINode Title="Phone enumeration member" Url="html/7419434E.htm" />
+  <HelpKINode Title="Qty property" Url="html/8E8574E9.htm" />
+  <HelpKINode Title="RefNum property">
+    <HelpKINode Title="CardknoxResponse.RefNum Property " Url="html/4A88B65E.htm" />
+    <HelpKINode Title="CCAdjust.RefNum Property " Url="html/65AF9E84.htm" />
+    <HelpKINode Title="CCCapture.RefNum Property " Url="html/8905563.htm" />
+    <HelpKINode Title="CCRefund.RefNum Property " Url="html/1A31E0A9.htm" />
+    <HelpKINode Title="CCVoid.RefNum Property " Url="html/C4B51B1F.htm" />
+    <HelpKINode Title="CCVoidRefund.RefNum Property " Url="html/BACDB0E5.htm" />
+    <HelpKINode Title="CCVoidRelease.RefNum Property " Url="html/E1AE5174.htm" />
+    <HelpKINode Title="CheckRefund.RefNum Property " Url="html/26B8EFB3.htm" />
+    <HelpKINode Title="CheckVoid.RefNum Property " Url="html/FF28F9D1.htm" />
+    <HelpKINode Title="EBTWVoid.RefNum Property " Url="html/F50760AB.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RequestCompleted event" Url="html/5D1D69D3.htm" />
+  <HelpKINode Title="RequestStarted event" Url="html/9DAC67D7.htm" />
+  <HelpKINode Title="Result property" Url="html/F2D01E84.htm" />
+  <HelpKINode Title="Results property" Url="html/1A2F836B.htm" />
+  <HelpKINode Title="ResultType enumeration" Url="html/F0295E77.htm" />
+  <HelpKINode Title="Routing property" Url="html/A765DCB6.htm" />
+  <HelpKINode Title="RxAmount property" Url="html/499D016D.htm" />
+  <HelpKINode Title="Sale class">
+    <HelpKINode Title="Sale Class" Url="html/CF40722D.htm" />
+    <HelpKINode Title="constructor" Url="html/B4056CCF.htm" />
+    <HelpKINode Title="methods" Url="html/5596F80F.htm" />
+    <HelpKINode Title="properties" Url="html/8C8E43E2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Sale.AllowPartialAuth property" Url="html/F823245.htm" />
+  <HelpKINode Title="Sale.ClinicalAmount property" Url="html/CB14FC34.htm" />
+  <HelpKINode Title="Sale.CopayAmount property" Url="html/4FCD47CB.htm" />
+  <HelpKINode Title="Sale.DentalAmount property" Url="html/62BBD55D.htm" />
+  <HelpKINode Title="Sale.ExistingCustomer property" Url="html/BF9AF4BC.htm" />
+  <HelpKINode Title="Sale.OrderID property" Url="html/3E1FC266.htm" />
+  <HelpKINode Title="Sale.RxAmount property" Url="html/499D016D.htm" />
+  <HelpKINode Title="Sale.Sale constructor" Url="html/B4056CCF.htm" />
+  <HelpKINode Title="Sale.TransitAmount property" Url="html/A4E8FBDC.htm" />
+  <HelpKINode Title="Sale.VisionAmount property" Url="html/DEA088BB.htm" />
+  <HelpKINode Title="ShipCity property" Url="html/1C0EC4F9.htm" />
+  <HelpKINode Title="ShipCompany property" Url="html/F7973DF5.htm" />
+  <HelpKINode Title="ShipCountry property" Url="html/75F9F9F8.htm" />
+  <HelpKINode Title="ShipFirstName property" Url="html/602A9AF7.htm" />
+  <HelpKINode Title="ShipLastName property" Url="html/9E16EF27.htm" />
+  <HelpKINode Title="ShipMiddleName property" Url="html/E9B21E98.htm" />
+  <HelpKINode Title="ShipMobile property" Url="html/781EA7B0.htm" />
+  <HelpKINode Title="ShipPhone property" Url="html/2D6EF8FE.htm" />
+  <HelpKINode Title="ShipState property" Url="html/E088DDA9.htm" />
+  <HelpKINode Title="ShipStreet property" Url="html/B18C2B3B.htm" />
+  <HelpKINode Title="ShipStreet2 property" Url="html/5B8DE0C1.htm" />
+  <HelpKINode Title="ShipZip property" Url="html/CE051239.htm" />
+  <HelpKINode Title="Status property" Url="html/D3FA4FD5.htm" />
+  <HelpKINode Title="StatusType enumeration" Url="html/6DE2EA0.htm" />
+  <HelpKINode Title="Street property" Url="html/7CE9DB8D.htm" />
+  <HelpKINode Title="Tax property" Url="html/41D7E879.htm" />
+  <HelpKINode Title="Tip property" Url="html/57138D49.htm" />
+  <HelpKINode Title="Token property">
+    <HelpKINode Title="CardknoxResponse.Token Property " Url="html/E54C5CA.htm" />
+    <HelpKINode Title="OperationBase.Token Property " Url="html/498A518B.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransitAmount property" Url="html/A4E8FBDC.htm" />
+  <HelpKINode Title="UnitPrice property" Url="html/6632A386.htm" />
+  <HelpKINode Title="Unknown enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="Upc property" Url="html/192346D7.htm" />
+  <HelpKINode Title="Visa enumeration member" Url="html/7F00C9B0.htm" />
+  <HelpKINode Title="VisionAmount property" Url="html/DEA088BB.htm" />
+  <HelpKINode Title="VoucherApproval property" Url="html/BB77FF6D.htm" />
+  <HelpKINode Title="VoucherSerial property" Url="html/B79391D2.htm" />
+  <HelpKINode Title="XXR enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="XXS enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="XXU enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="YNA enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="YYX enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="YYY enumeration member" Url="html/DA6DA42D.htm" />
+  <HelpKINode Title="Zip property" Url="html/DD49AAE7.htm" />
+</HelpKI>

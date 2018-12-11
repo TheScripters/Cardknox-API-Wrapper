@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="d87499cc-0a16-487d-b54b-782357161235" Title="Cardknox" Url="html/DDA25B2.htm">
+    <HelpTOCNode Id="31da9f58-c4bc-4c3e-adb1-f77f33b96a7b" Title="CardknoxApi" Url="html/3924B522.htm">
+      <HelpTOCNode Title="AvsResponseType Enumeration" Url="html/DA6DA42D.htm" />
+      <HelpTOCNode Id="69acd912-3917-4856-a500-c046190c8dc5" Title="Cardknox Class" Url="html/896DD95E.htm">
+        <HelpTOCNode Title="Cardknox Constructor " Url="html/ECF2AE76.htm" />
+        <HelpTOCNode Id="de9aa8c7-b4ae-442f-8486-8fb99a8079bd" Title="Cardknox Methods" Url="html/D751785A.htm">
+          <HelpTOCNode Title="CCAdjust Method " Url="html/3952570A.htm" />
+          <HelpTOCNode Title="CCAuthOnly Method " Url="html/55DB39AB.htm" />
+          <HelpTOCNode Title="CCCapture Method " Url="html/AA39BFEF.htm" />
+          <HelpTOCNode Title="CCCredit Method " Url="html/7EDFB1B0.htm" />
+          <HelpTOCNode Title="CCPostAuth Method " Url="html/B970B02F.htm" />
+          <HelpTOCNode Title="CCRefund Method " Url="html/C038CF11.htm" />
+          <HelpTOCNode Title="CCSale Method " Url="html/C37430BA.htm" />
+          <HelpTOCNode Title="CCSave Method " Url="html/BDD8360C.htm" />
+          <HelpTOCNode Title="CCVoid Method " Url="html/1ACB4F17.htm" />
+          <HelpTOCNode Title="CCVoidRefund Method " Url="html/F892AC95.htm" />
+          <HelpTOCNode Title="CCVoidRelease Method " Url="html/FD89B3B8.htm" />
+          <HelpTOCNode Title="CheckCredit Method " Url="html/F46F3430.htm" />
+          <HelpTOCNode Title="CheckRefund Method " Url="html/F1F22737.htm" />
+          <HelpTOCNode Title="CheckSale Method " Url="html/FFAC85E2.htm" />
+          <HelpTOCNode Title="CheckSave Method " Url="html/FFAC85C8.htm" />
+          <HelpTOCNode Title="CheckVoid Method " Url="html/4760091D.htm" />
+          <HelpTOCNode Title="EBTCBBalance Method " Url="html/C6806D7F.htm" />
+          <HelpTOCNode Title="EBTCBCash Method " Url="html/6F75BDC6.htm" />
+          <HelpTOCNode Title="EBTCBSale Method " Url="html/9CBB06BE.htm" />
+          <HelpTOCNode Title="EBTFSBalance Method " Url="html/D915642F.htm" />
+          <HelpTOCNode Title="EBTFSCredit Method " Url="html/B8DC9A2A.htm" />
+          <HelpTOCNode Title="EBTFSSale Method " Url="html/FD713D18.htm" />
+          <HelpTOCNode Title="EBTFSVoucher Method " Url="html/269AEC25.htm" />
+          <HelpTOCNode Title="EBTWBalance Method " Url="html/2BA52741.htm" />
+          <HelpTOCNode Title="EBTWSale Method " Url="html/DCCEA94A.htm" />
+          <HelpTOCNode Title="EBTWVoid Method " Url="html/DB9A621B.htm" />
+          <HelpTOCNode Title="FraudSubmit Method " Url="html/A9C06977.htm" />
+          <HelpTOCNode Title="GCBalance Method " Url="html/8532FFDD.htm" />
+          <HelpTOCNode Title="GCIssue Method " Url="html/EB9D9948.htm" />
+          <HelpTOCNode Title="GCRedeem Method " Url="html/2F94189.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="f8051fd7-12a2-45ef-acec-8c883b004a2c" Title="Cardknox Events" Url="html/C970FAF5.htm">
+          <HelpTOCNode Title="RequestCompleted Event" Url="html/5D1D69D3.htm" />
+          <HelpTOCNode Title="RequestStarted Event" Url="html/9DAC67D7.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Title="Cardknox.RequestCompletedEventHandler Delegate" Url="html/FA5A537E.htm" />
+      <HelpTOCNode Title="Cardknox.RequestStartedEventHandler Delegate" Url="html/33AF03CA.htm" />
+      <HelpTOCNode Id="8b2c1d0c-56c0-4a6e-97c8-f0e22408d006" Title="CardknoxRequest Class" Url="html/4102F795.htm">
+        <HelpTOCNode Title="CardknoxRequest Constructor " Url="html/5DDB37B7.htm" />
+        <HelpTOCNode Id="60dd0d2a-7012-4c33-b9eb-ea5a7eed265b" Title="CardknoxRequest Methods" Url="html/2F34ACE7.htm">
+          <HelpTOCNode Title="BeginRequest Method " Url="html/B23DB874.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="673cf0b3-5bc2-40a1-8770-5c70ea57983e" Title="CardknoxResponse Class" Url="html/D6D34E7F.htm">
+        <HelpTOCNode Title="CardknoxResponse Constructor " Url="html/7D6F58C1.htm" />
+        <HelpTOCNode Id="6eb09591-6240-4c49-b5cb-2fd2585a8f14" Title="CardknoxResponse Properties" Url="html/56F68940.htm">
+          <HelpTOCNode Title="AuthAmount Property " Url="html/DBDAD151.htm" />
+          <HelpTOCNode Title="AuthCode Property " Url="html/DC54C8DA.htm" />
+          <HelpTOCNode Title="AvsResult Property " Url="html/B20391E2.htm" />
+          <HelpTOCNode Title="AvsResultCode Property " Url="html/3D19A221.htm" />
+          <HelpTOCNode Title="Batch Property " Url="html/64076791.htm" />
+          <HelpTOCNode Title="CardType Property " Url="html/DF49D189.htm" />
+          <HelpTOCNode Title="EntryMethod Property " Url="html/5C7C09DA.htm" />
+          <HelpTOCNode Title="Error Property " Url="html/5212E895.htm" />
+          <HelpTOCNode Title="ErrorCode Property " Url="html/6D526B04.htm" />
+          <HelpTOCNode Title="HasError Property " Url="html/149F8B67.htm" />
+          <HelpTOCNode Title="MaskedCardNumber Property " Url="html/21536E7F.htm" />
+          <HelpTOCNode Title="RefNum Property " Url="html/4A88B65E.htm" />
+          <HelpTOCNode Title="Result Property " Url="html/F2D01E84.htm" />
+          <HelpTOCNode Title="Status Property " Url="html/D3FA4FD5.htm" />
+          <HelpTOCNode Title="Token Property " Url="html/E54C5CA.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CardknoxResponse Methods" Url="html/943DC0F9.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="CardType Enumeration" Url="html/7F00C9B0.htm" />
+      <HelpTOCNode Id="284f8bef-fe7d-4663-8d3f-de83984af702" Title="Customer Class" Url="html/DAFF26D2.htm">
+        <HelpTOCNode Title="Customer Constructor " Url="html/330042DA.htm" />
+        <HelpTOCNode Id="19b8c7fd-24d9-422b-a0cb-4dc0215eef26" Title="Customer Properties" Url="html/85D4FDB5.htm">
+          <HelpTOCNode Title="BillCity Property " Url="html/42BC22D2.htm" />
+          <HelpTOCNode Title="BillCompany Property " Url="html/812E652C.htm" />
+          <HelpTOCNode Title="BillCountry Property " Url="html/B961507.htm" />
+          <HelpTOCNode Title="BillFirstName Property " Url="html/FBFD9CDE.htm" />
+          <HelpTOCNode Title="BillLastName Property " Url="html/752481FE.htm" />
+          <HelpTOCNode Title="BillMiddleName Property " Url="html/3AEFB009.htm" />
+          <HelpTOCNode Title="BillMobile Property " Url="html/E40425BF.htm" />
+          <HelpTOCNode Title="BillPhone Property " Url="html/A67CC857.htm" />
+          <HelpTOCNode Title="BillState Property " Url="html/81D79D22.htm" />
+          <HelpTOCNode Title="BillStreet Property " Url="html/ED927EFA.htm" />
+          <HelpTOCNode Title="BillStreet2 Property " Url="html/8D1B6E0.htm" />
+          <HelpTOCNode Title="BillZip Property " Url="html/C1064CB8.htm" />
+          <HelpTOCNode Title="Email Property " Url="html/2320CF8C.htm" />
+          <HelpTOCNode Title="Fax Property " Url="html/D080D8D7.htm" />
+          <HelpTOCNode Title="ShipCity Property " Url="html/1C0EC4F9.htm" />
+          <HelpTOCNode Title="ShipCompany Property " Url="html/F7973DF5.htm" />
+          <HelpTOCNode Title="ShipCountry Property " Url="html/75F9F9F8.htm" />
+          <HelpTOCNode Title="ShipFirstName Property " Url="html/602A9AF7.htm" />
+          <HelpTOCNode Title="ShipLastName Property " Url="html/9E16EF27.htm" />
+          <HelpTOCNode Title="ShipMiddleName Property " Url="html/E9B21E98.htm" />
+          <HelpTOCNode Title="ShipMobile Property " Url="html/781EA7B0.htm" />
+          <HelpTOCNode Title="ShipPhone Property " Url="html/2D6EF8FE.htm" />
+          <HelpTOCNode Title="ShipState Property " Url="html/E088DDA9.htm" />
+          <HelpTOCNode Title="ShipStreet Property " Url="html/B18C2B3B.htm" />
+          <HelpTOCNode Title="ShipStreet2 Property " Url="html/5B8DE0C1.htm" />
+          <HelpTOCNode Title="ShipZip Property " Url="html/CE051239.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Customer Methods" Url="html/B7664E2A.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="OrderType Enumeration" Url="html/7419434E.htm" />
+      <HelpTOCNode Title="ResultType Enumeration" Url="html/F0295E77.htm" />
+      <HelpTOCNode Title="StatusType Enumeration" Url="html/6DE2EA0.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="648fbd37-2188-456f-9a08-b36585791fe5" Title="CardknoxApi.Operations" Url="html/D8FDF032.htm">
+      <HelpTOCNode Id="09b012d1-fa68-4cf4-bd6c-04f7c5b3936a" Title="CardknoxCustomFields Class" Url="html/C90DA930.htm">
+        <HelpTOCNode Title="CardknoxCustomFields Constructor " Url="html/C2E6F74E.htm" />
+        <HelpTOCNode Id="3b7f0852-621f-4dc5-9084-733a096f093a" Title="CardknoxCustomFields Properties" Url="html/61D55AD1.htm">
+          <HelpTOCNode Title="Count Property " Url="html/F418A343.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b5c63b1f-4536-4896-b238-536563fc5f38" Title="CardknoxCustomFields Methods" Url="html/B4D088DC.htm">
+          <HelpTOCNode Title="Add Method " Url="html/626D2876.htm" />
+          <HelpTOCNode Title="GetEnumerator Method " Url="html/FE0B7493.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="e856f17f-fa4b-4623-8b35-4f8f57ba593a" Title="CardknoxEventArgs Class" Url="html/92C0F4BB.htm">
+        <HelpTOCNode Title="CardknoxEventArgs Constructor " Url="html/E9489429.htm" />
+        <HelpTOCNode Id="2d0c54a1-39a3-4d2a-96bb-baa76d38cc12" Title="CardknoxEventArgs Properties" Url="html/6FD2270A.htm">
+          <HelpTOCNode Title="Results Property " Url="html/1A2F836B.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CardknoxEventArgs Methods" Url="html/B354A4C1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6ad0cdd8-44f6-4d4e-b499-380f812ea639" Title="CCAdjust Class" Url="html/EE79D8F7.htm">
+        <HelpTOCNode Title="CCAdjust Constructor " Url="html/7074D499.htm" />
+        <HelpTOCNode Id="c3298665-1c89-43b6-9396-69167cef7952" Title="CCAdjust Properties" Url="html/34976190.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/65AF9E84.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCAdjust Methods" Url="html/EEF379C1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e7adb315-ac54-4545-a8f0-328b308c5b29" Title="CCAuthOnly Class" Url="html/3601AB08.htm">
+        <HelpTOCNode Title="CCAuthOnly Constructor " Url="html/9B45BB06.htm" />
+        <HelpTOCNode Title="CCAuthOnly Properties" Url="html/4807E9A9.htm" />
+        <HelpTOCNode Title="CCAuthOnly Methods" Url="html/C3200234.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f9893277-f36c-4e1f-a1b9-4f61a57d97fa" Title="CCCapture Class" Url="html/C1688622.htm">
+        <HelpTOCNode Title="CCCapture Constructor " Url="html/6C67BA22.htm" />
+        <HelpTOCNode Id="ae166106-b407-4c8a-af8d-794cdca7125a" Title="CCCapture Properties" Url="html/49A2DF1D.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/8905563.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCCapture Methods" Url="html/939766AA.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="03ef8258-e61f-4714-9d4d-78d70bb44add" Title="CCCredit Class" Url="html/D7E6DF33.htm">
+        <HelpTOCNode Title="CCCredit Constructor " Url="html/80500B21.htm" />
+        <HelpTOCNode Title="CCCredit Properties" Url="html/5898FB8A.htm" />
+        <HelpTOCNode Title="CCCredit Methods" Url="html/F7B73A29.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1f595106-fbce-4a86-afe2-04651bf1d775" Title="CCPostAuth Class" Url="html/31DCE8CC.htm">
+        <HelpTOCNode Title="CCPostAuth Constructor " Url="html/16EF5882.htm" />
+        <HelpTOCNode Id="c8b36905-cf87-48d0-baf1-30c67c419978" Title="CCPostAuth Properties" Url="html/6ABDDF6D.htm">
+          <HelpTOCNode Title="AuthCode Property " Url="html/2795FF21.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCPostAuth Methods" Url="html/72F33880.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="0917e156-e8ab-4a66-b320-f4f814358c6c" Title="CCRefund Class" Url="html/580E4AFE.htm">
+        <HelpTOCNode Title="CCRefund Constructor " Url="html/F28560F4.htm" />
+        <HelpTOCNode Id="0b4cbfa3-2730-447c-8904-0eb01f1edd58" Title="CCRefund Properties" Url="html/73830603.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/1A31E0A9.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCRefund Methods" Url="html/C27024DA.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="04723199-7d99-46ab-9098-286189ad1e7a" Title="CCSale Class" Url="html/65F6A77D.htm">
+        <HelpTOCNode Title="CCSale Constructor " Url="html/884D6093.htm" />
+        <HelpTOCNode Title="CCSale Properties" Url="html/84DE66B0.htm" />
+        <HelpTOCNode Title="CCSale Methods" Url="html/5CA1FDFB.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="710e074f-38fa-4a02-a9a4-2bbfa29b9baa" Title="CCSave Class" Url="html/E0F4CFBF.htm">
+        <HelpTOCNode Title="CCSave Constructor " Url="html/9D7F6801.htm" />
+        <HelpTOCNode Title="CCSave Properties" Url="html/84DE66CA.htm" />
+        <HelpTOCNode Title="CCSave Methods" Url="html/623DF8A9.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="cffd22df-d1c3-4979-98a8-c3adb819b151" Title="CCVoid Class" Url="html/672AEB9A.htm">
+        <HelpTOCNode Title="CCVoid Constructor " Url="html/39EE0518.htm" />
+        <HelpTOCNode Id="968529d4-69c1-4825-ab4d-07ae3ec13cef" Title="CCVoid Properties" Url="html/76D8739D.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/C4B51B1F.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCVoid Methods" Url="html/5B6DB852.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1101915b-db6e-4548-a3fc-d61eb9866746" Title="CCVoidRefund Class" Url="html/8F1F27A8.htm">
+        <HelpTOCNode Title="CCVoidRefund Constructor " Url="html/762A505A.htm" />
+        <HelpTOCNode Id="54cbdb63-6bec-4fb2-92d2-a4cfdcf74ad3" Title="CCVoidRefund Properties" Url="html/DF539D53.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/BACDB0E5.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCVoidRefund Methods" Url="html/A8B36714.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="14919d5e-986a-4237-8de4-8709f90f9b1f" Title="CCVoidRelease Class" Url="html/D8CD9FEB.htm">
+        <HelpTOCNode Title="CCVoidRelease Constructor " Url="html/DE08F195.htm" />
+        <HelpTOCNode Id="3d151e60-c4d7-4a8c-8c01-c4d0e1a9e75e" Title="CCVoidRelease Properties" Url="html/C471AB36.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/E1AE5174.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CCVoidRelease Methods" Url="html/39E4DAED.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="30c202cf-175e-4cfb-9b16-adfed0c02e71" Title="CheckCredit Class" Url="html/ACBC7D.htm">
+        <HelpTOCNode Title="CheckCredit Constructor " Url="html/D902E68B.htm" />
+        <HelpTOCNode Title="CheckCredit Properties" Url="html/D51C1D72.htm" />
+        <HelpTOCNode Title="CheckCredit Methods" Url="html/8B8ABEFF.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c16448a4-f08d-4e35-89fd-72c2128b5383" Title="CheckRefund Class" Url="html/1A4D6FA4.htm">
+        <HelpTOCNode Title="CheckRefund Constructor " Url="html/AB627F18.htm" />
+        <HelpTOCNode Id="f5e1c88a-a1fa-4a30-a88a-a367f85800c8" Title="CheckRefund Properties" Url="html/4DB31A2D.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/26B8EFB3.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CheckRefund Methods" Url="html/313CA4D8.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="bc47da19-02b5-4d75-88dc-1200fab455d9" Title="CheckSale Class" Url="html/ABE4554F.htm">
+        <HelpTOCNode Title="CheckSale Constructor " Url="html/2C40F405.htm" />
+        <HelpTOCNode Title="CheckSale Properties" Url="html/10E30304.htm" />
+        <HelpTOCNode Title="CheckSale Methods" Url="html/E4F8DC4D.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a1c4f778-7d56-494c-8e0c-2005e24969f0" Title="CheckSave Class" Url="html/ABE45535.htm">
+        <HelpTOCNode Title="CheckSave Constructor " Url="html/2C4CD15F.htm" />
+        <HelpTOCNode Title="CheckSave Properties" Url="html/E0CFBEA6.htm" />
+        <HelpTOCNode Title="CheckSave Methods" Url="html/E4F8DC33.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ddd362a1-8fbf-41f0-8349-e54b8e12e725" Title="CheckVoid Class" Url="html/BF864210.htm">
+        <HelpTOCNode Title="CheckVoid Constructor " Url="html/1CDC7248.htm" />
+        <HelpTOCNode Id="13eafefa-d811-49f7-802f-cb1af89d98f4" Title="CheckVoid Properties" Url="html/B98BE52B.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/FF28F9D1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CheckVoid Methods" Url="html/FF6B0ADC.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="49fe8d17-70fe-48a5-a3d0-b5af33c39bae" Title="EBTCBBalance Class" Url="html/844EF532.htm">
+        <HelpTOCNode Title="EBTCBBalance Constructor " Url="html/6F6C2E08.htm" />
+        <HelpTOCNode Title="EBTCBBalance Properties" Url="html/C159DBCD.htm" />
+        <HelpTOCNode Title="EBTCBBalance Methods" Url="html/FBE077DA.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="31efec0a-9a90-4945-a620-45c170686d1c" Title="EBTCBCash Class" Url="html/E74942C9.htm">
+        <HelpTOCNode Title="EBTCBCash Constructor " Url="html/47797007.htm" />
+        <HelpTOCNode Title="EBTCBCash Properties" Url="html/F128D050.htm" />
+        <HelpTOCNode Title="EBTCBCash Methods" Url="html/A7FC9B33.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="48058b5f-1ac9-465f-afc3-8915bff10a0d" Title="EBTCBSale Class" Url="html/A4C858DB.htm">
+        <HelpTOCNode Title="EBTCBSale Constructor " Url="html/2E8D477D.htm" />
+        <HelpTOCNode Title="EBTCBSale Properties" Url="html/74FA534C.htm" />
+        <HelpTOCNode Title="EBTCBSale Methods" Url="html/C0063F5D.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b6db82a7-6259-4937-8966-4569da62e1e5" Title="EBTFSBalance Class" Url="html/DCC35B8C.htm">
+        <HelpTOCNode Title="EBTFSBalance Constructor " Url="html/B807F55A.htm" />
+        <HelpTOCNode Title="EBTFSBalance Properties" Url="html/DB2EAFB5.htm" />
+        <HelpTOCNode Title="EBTFSBalance Methods" Url="html/66EE0120.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="088268df-8b20-4032-88af-af8bb8296eaa" Title="EBTFSCredit Class" Url="html/36DD08BD.htm">
+        <HelpTOCNode Title="EBTFSCredit Constructor " Url="html/E779638F.htm" />
+        <HelpTOCNode Title="EBTFSCredit Properties" Url="html/83CCAF08.htm" />
+        <HelpTOCNode Title="EBTFSCredit Methods" Url="html/80B4567B.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d2b520b3-52d9-4571-b1fc-ce69fb1aeac7" Title="EBTFSSale Class" Url="html/695730B.htm">
+        <HelpTOCNode Title="EBTFSSale Constructor " Url="html/4936DDF5.htm" />
+        <HelpTOCNode Title="EBTFSSale Properties" Url="html/4462496.htm" />
+        <HelpTOCNode Title="EBTFSSale Methods" Url="html/6BE3BFCD.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6bfd9242-6cea-4bb2-be63-4202382fd862" Title="EBTFSVoucher Class" Url="html/CFB95932.htm">
+        <HelpTOCNode Title="EBTFSVoucher Constructor " Url="html/80400EA4.htm" />
+        <HelpTOCNode Id="c6fff6f4-6a77-4eea-a332-ef73ec312268" Title="EBTFSVoucher Properties" Url="html/B7C5D913.htm">
+          <HelpTOCNode Title="VoucherApproval Property " Url="html/BB77FF6D.htm" />
+          <HelpTOCNode Title="VoucherSerial Property " Url="html/B79391D2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EBTFSVoucher Methods" Url="html/AF81B6BA.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9e24f5fc-bcf6-423c-ae7c-393f5c094ef8" Title="EBTWBalance Class" Url="html/4C5957B4.htm">
+        <HelpTOCNode Title="EBTWBalance Constructor " Url="html/C34A5E90.htm" />
+        <HelpTOCNode Title="EBTWBalance Properties" Url="html/EF6D8BC3.htm" />
+        <HelpTOCNode Title="EBTWBalance Methods" Url="html/48613814.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c8c31eba-0362-4553-8e9d-a41e130c405e" Title="EBTWItem Class" Url="html/9F694A5B.htm">
+        <HelpTOCNode Title="EBTWItem Constructor " Url="html/1CB1C0E1.htm" />
+        <HelpTOCNode Id="9ee32df4-d17c-4c66-bd82-ad8ad728f9d0" Title="EBTWItem Properties" Url="html/36D42688.htm">
+          <HelpTOCNode Title="Qty Property " Url="html/8E8574E9.htm" />
+          <HelpTOCNode Title="UnitPrice Property " Url="html/6632A386.htm" />
+          <HelpTOCNode Title="Upc Property " Url="html/192346D7.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EBTWItem Methods" Url="html/E7CAFB51.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="866e488c-b832-440e-8234-ace1d5c76031" Title="EBTWItems Class" Url="html/DAEFE7D0.htm">
+        <HelpTOCNode Title="EBTWItems Constructor " Url="html/E82FDE38.htm" />
+        <HelpTOCNode Id="573d54ae-312b-42fa-84e8-b2afc8c3f951" Title="EBTWItems Properties" Url="html/C692EABB.htm">
+          <HelpTOCNode Title="Count Property " Url="html/634D2ED.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="620b0c0e-c5fb-4e57-a961-0b574256747b" Title="EBTWItems Methods" Url="html/32EC781C.htm">
+          <HelpTOCNode Title="Add Method " Url="html/B67126F0.htm" />
+          <HelpTOCNode Title="GetEnumerator Method " Url="html/281B94A5.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="6003d076-b91d-416c-a0f6-1ac3109fc282" Title="EBTWSale Class" Url="html/DE55478D.htm">
+        <HelpTOCNode Title="EBTWSale Constructor " Url="html/F58C7287.htm" />
+        <HelpTOCNode Id="41042c96-d625-4252-91e4-2cf8df494be3" Title="EBTWSale Properties" Url="html/A435C29C.htm">
+          <HelpTOCNode Title="Items Property " Url="html/D313A089.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EBTWSale Methods" Url="html/6734CBEF.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="da9fe423-abfc-4c5e-b6e3-c9915442b2b4" Title="EBTWVoid Class" Url="html/DF898D1E.htm">
+        <HelpTOCNode Title="EBTWVoid Constructor " Url="html/D2EE6310.htm" />
+        <HelpTOCNode Id="2af50a72-d3e8-4625-a476-04509e8dad44" Title="EBTWVoid Properties" Url="html/259EB875.htm">
+          <HelpTOCNode Title="RefNum Property " Url="html/F50760AB.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EBTWVoid Methods" Url="html/660084CA.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="2bea3a39-73f3-43ec-a586-71aff8dd560d" Title="FraudSubmit Class" Url="html/442A7B04.htm">
+        <HelpTOCNode Title="FraudSubmit Constructor " Url="html/89E4E8E4.htm" />
+        <HelpTOCNode Id="80990e6c-8b6f-493d-926e-1eab9d2cf055" Title="FraudSubmit Properties" Url="html/43567259.htm">
+          <HelpTOCNode Title="CardNum Property " Url="html/F1DA3204.htm" />
+          <HelpTOCNode Title="GatewayAVS Property " Url="html/4297C198.htm" />
+          <HelpTOCNode Title="GatewayCVV Property " Url="html/4297C1D7.htm" />
+          <HelpTOCNode Title="GatewayError Property " Url="html/CEDFE98E.htm" />
+          <HelpTOCNode Title="GatewayRefNum Property " Url="html/4D491FFB.htm" />
+          <HelpTOCNode Title="GatewayResult Property " Url="html/763287D9.htm" />
+          <HelpTOCNode Title="OrderType Property " Url="html/C81437E2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="FraudSubmit Methods" Url="html/5DB984.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b0ce77b8-afde-4903-ba46-cbfe23568a84" Title="GCBalance Class" Url="html/791D0D10.htm">
+        <HelpTOCNode Title="GCBalance Constructor " Url="html/ADAEBDD0.htm" />
+        <HelpTOCNode Title="GCBalance Properties" Url="html/EDADC53.htm" />
+        <HelpTOCNode Title="GCBalance Methods" Url="html/AFD2E5BC.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="bf37867b-2a39-4569-95d3-baf4443ba11d" Title="GCIssue Class" Url="html/7758226B.htm">
+        <HelpTOCNode Title="GCIssue Constructor " Url="html/D3F95069.htm" />
+        <HelpTOCNode Title="GCIssue Properties" Url="html/F192DA8A.htm" />
+        <HelpTOCNode Title="GCIssue Methods" Url="html/F22E8971.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d86b97f6-2911-4d0c-be1e-58d3367f71ea" Title="GCRedeem Class" Url="html/E31C1FC.htm">
+        <HelpTOCNode Title="GCRedeem Constructor " Url="html/8BE7CE2.htm" />
+        <HelpTOCNode Title="GCRedeem Properties" Url="html/7A4D243B.htm" />
+        <HelpTOCNode Title="GCRedeem Methods" Url="html/3A60C4FC.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f3133bf1-0ef4-4379-9e42-835d47631440" Title="OperationBase Class" Url="html/293B3316.htm">
+        <HelpTOCNode Title="OperationBase Constructor " Url="html/9E1C1A6.htm" />
+        <HelpTOCNode Id="a22ccb55-9715-457a-8ac2-ff76ebbd9ef3" Title="OperationBase Properties" Url="html/134976F1.htm">
+          <HelpTOCNode Title="Account Property " Url="html/8774878D.htm" />
+          <HelpTOCNode Title="AllowDuplicate Property " Url="html/51F6C9CA.htm" />
+          <HelpTOCNode Title="Amount Property " Url="html/FBFAADD0.htm" />
+          <HelpTOCNode Title="CardNum Property " Url="html/54727F06.htm" />
+          <HelpTOCNode Title="CardPresent Property " Url="html/99A371F.htm" />
+          <HelpTOCNode Title="CheckImageBack Property " Url="html/FB14A9CE.htm" />
+          <HelpTOCNode Title="CheckImageFront Property " Url="html/C3429368.htm" />
+          <HelpTOCNode Title="CheckNum Property " Url="html/8C2D638C.htm" />
+          <HelpTOCNode Title="CustomFields Property " Url="html/B52504BE.htm" />
+          <HelpTOCNode Title="CustReceipt Property " Url="html/1CE937B9.htm" />
+          <HelpTOCNode Title="CVV Property " Url="html/8D91A0D3.htm" />
+          <HelpTOCNode Title="DUKPT Property " Url="html/67FBE3C0.htm" />
+          <HelpTOCNode Title="Exp Property " Url="html/E4E8BFCD.htm" />
+          <HelpTOCNode Title="Invoice Property " Url="html/19DD8CBD.htm" />
+          <HelpTOCNode Title="IP Property " Url="html/5FBE3E19.htm" />
+          <HelpTOCNode Title="MagStripe Property " Url="html/35AA2A46.htm" />
+          <HelpTOCNode Title="MICR Property " Url="html/2CA942CD.htm" />
+          <HelpTOCNode Title="Name Property " Url="html/D3B86967.htm" />
+          <HelpTOCNode Title="Routing Property " Url="html/A765DCB6.htm" />
+          <HelpTOCNode Title="Street Property " Url="html/7CE9DB8D.htm" />
+          <HelpTOCNode Title="Tax Property " Url="html/41D7E879.htm" />
+          <HelpTOCNode Title="Tip Property " Url="html/57138D49.htm" />
+          <HelpTOCNode Title="Token Property " Url="html/498A518B.htm" />
+          <HelpTOCNode Title="Zip Property " Url="html/DD49AAE7.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="OperationBase Methods" Url="html/7BF59956.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="98278bed-2e38-434d-94f9-320c8640693a" Title="Sale Class" Url="html/CF40722D.htm">
+        <HelpTOCNode Title="Sale Constructor " Url="html/B4056CCF.htm" />
+        <HelpTOCNode Id="f0bd684b-62cd-4f97-a010-1d6e574943d4" Title="Sale Properties" Url="html/8C8E43E2.htm">
+          <HelpTOCNode Title="AllowPartialAuth Property " Url="html/F823245.htm" />
+          <HelpTOCNode Title="ClinicalAmount Property " Url="html/CB14FC34.htm" />
+          <HelpTOCNode Title="CopayAmount Property " Url="html/4FCD47CB.htm" />
+          <HelpTOCNode Title="DentalAmount Property " Url="html/62BBD55D.htm" />
+          <HelpTOCNode Title="ExistingCustomer Property " Url="html/BF9AF4BC.htm" />
+          <HelpTOCNode Title="OrderID Property " Url="html/3E1FC266.htm" />
+          <HelpTOCNode Title="RxAmount Property " Url="html/499D016D.htm" />
+          <HelpTOCNode Title="TransitAmount Property " Url="html/A4E8FBDC.htm" />
+          <HelpTOCNode Title="VisionAmount Property " Url="html/DEA088BB.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Sale Methods" Url="html/5596F80F.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
