@@ -8,8 +8,16 @@ using System.Text;
 
 namespace CardknoxApi
 {
+    /// <summary>
+    /// <para>Static class for logging communication to a file, specified in "Cardknox.LogLocation" in AppSettings</para>
+    /// <para>Available config settings: Cardknox.Logging ("enabled" to enable logging) and Cardknox.LogLocation.</para>
+    /// <para>Refer to <see href="https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/Logging">https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/Logging</see> for setup information</para>
+    /// </summary>
     static class Log
     {
+        /// <summary>
+        /// Keys of sensitive data entries to skip logging for security reasons
+        /// </summary>
         internal readonly static string[] NoInclude = { "xCardNum", "xMagStripe", "xExp", "xCVV", "xToken", "xDUKPT", "xRouting", "xAccount", "xMICR" };
         static bool EnableLogging
         {
@@ -33,7 +41,11 @@ namespace CardknoxApi
                 catch { return ""; }
             }
         }
-        public static void LogRequest(NameValueCollection _values)
+        /// <summary>
+        /// Log request values to file specified in <c>Cardknox.LogLocation</c> if <c>Cardknox.Logging</c> is set to <c>enabled</c>
+        /// </summary>
+        /// <param name="_values"></param>
+        internal static void LogRequest(NameValueCollection _values)
         {
             if (!EnableLogging || LogLocation == "")
                 return;
@@ -56,7 +68,11 @@ namespace CardknoxApi
                 fs.Write(data, 0, data.Length);
             }
         }
-        public static void LogResponse(NameValueCollection _values)
+        /// <summary>
+        /// Log response values to file specified in <c>Cardknox.LogLocation</c> if <c>Cardknox.Logging</c> is set to <c>enabled</c>
+        /// </summary>
+        /// <param name="_values"></param>
+        internal static void LogResponse(NameValueCollection _values)
         {
             if (!EnableLogging || LogLocation == "")
                 return;

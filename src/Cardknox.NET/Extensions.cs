@@ -6,7 +6,7 @@ using System.Text;
 namespace CardknoxApi
 {
     /// <summary>
-    /// 
+    /// Class for extension methods used internally
     /// </summary>
     internal static class Extensions
     {
