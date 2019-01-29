@@ -6,11 +6,10 @@
     <Company>The Scripters</Company>
     <PackageId>Cardknox.API.Wrapper</PackageId>
     <Product>Cardknox.API.Wrapper</Product>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
     <Version>4.5.1</Version>
     <PackageProjectUrl>https://cardknox.thescripters.com/</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/TheScripters/Cardknox-API-Wrapper/master/LICENSE</PackageLicenseUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
@@ -20,7 +19,15 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
     <AssemblyVersion>4.5.1.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+  
+  <PropertyGroup>
+      <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+  </PropertyGroup>
 
+  <ItemGroup>
+      <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.xml</DocumentationFile>
   </PropertyGroup>
