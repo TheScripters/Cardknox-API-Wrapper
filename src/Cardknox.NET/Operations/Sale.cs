@@ -46,5 +46,9 @@ namespace CardknoxApi.Operations
         /// Yes/No value indicating if customer is a repeat customer.
         /// </summary>
         public bool ExistingCustomer { get; set; } = false;
+        /// <summary>
+        /// Used to specify an alternate currency. Only applicable for accounts that are using Multi-Currency Conversion (MCC). For accounts that are natively in a foreign currency, the currency does not need to be specified. (supported currencies are: USD, GBP, ILS, EUR, MXN, CAD)
+        /// </summary>
+        public CurrencyType? Currency { get; set; } = null;
     }
 }

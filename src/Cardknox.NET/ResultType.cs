@@ -138,4 +138,34 @@ namespace CardknoxApi
         /// </summary>
         Phone
     }
+    /// <summary>
+    /// Specifies the currency type for this transaction on applicable accounts
+    /// </summary>
+    public enum CurrencyType
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        USD,
+        /// <summary>
+        /// 
+        /// </summary>
+        GBP,
+        /// <summary>
+        /// 
+        /// </summary>
+        ILS,
+        /// <summary>
+        /// 
+        /// </summary>
+        EUR,
+        /// <summary>
+        /// 
+        /// </summary>
+        MXN,
+        /// <summary>
+        /// 
+        /// </summary>
+        CAD
+    }
 }
