@@ -6,20 +6,28 @@
     <Company>The Scripters</Company>
     <PackageId>Cardknox.API.Wrapper</PackageId>
     <Product>Cardknox.API.Wrapper</Product>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>4.5</Version>
-    <PackageProjectUrl>https://cardknox.adamh.us/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/TheScripters/Cardknox-API-Wrapper/blob/master/LICENSE</PackageLicenseUrl>
+    <Version>4.5.2</Version>
+    <PackageProjectUrl>https://cardknox.thescripters.com/</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes>Multi-targeted to .NET 4.5 and .NET Standard 2.0 to alleviate some issues when adding to some project types</PackageReleaseNotes>
+    <PackageReleaseNotes>Added xCurrency field</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
-    <Copyright>© 2018 The Scripters</Copyright>
-    <AssemblyVersion>4.5.0.0</AssemblyVersion>
+    <Copyright>© 2019 The Scripters</Copyright>
+    <AssemblyVersion>4.5.2.0</AssemblyVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+      <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
+  <ItemGroup>
+      <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Websites\cardknox.net\src\Cardknox.NET\Cardknox.xml</DocumentationFile>
   </PropertyGroup>

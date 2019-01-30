@@ -12,7 +12,7 @@ namespace CardknoxApi
         internal string _key { get; }
         internal string _software { get; }
         internal string _softwareVersion { get; }
-        internal string _cardknoxVersion { get; } = "4.5.5";
+        internal string _cardknoxVersion { get; } = "4.5.8";
         internal const string _url = "https://x1.cardknox.com/gateway";
 
         /// <summary>

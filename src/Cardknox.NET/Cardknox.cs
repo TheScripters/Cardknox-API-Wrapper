@@ -2361,6 +2361,9 @@ namespace CardknoxApi
 
             if (_sale.AllowDuplicate)
                 _values.Add("xAllowDuplicate", _sale.AllowDuplicate.ToString());
+
+            if (_sale.Currency != null)
+                _values.Add("xCurrency", _sale.Currency.Value.ToString());
         }
         #endregion
     }
