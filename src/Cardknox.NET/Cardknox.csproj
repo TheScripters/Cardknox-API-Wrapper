@@ -8,15 +8,15 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>4.5.1</Version>
+    <Version>4.5.2</Version>
     <PackageProjectUrl>https://cardknox.thescripters.com/</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes>Updated Cardknox API version to 4.5.8</PackageReleaseNotes>
+    <PackageReleaseNotes>Added xCurrency field</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2019 The Scripters</Copyright>
-    <AssemblyVersion>4.5.1.0</AssemblyVersion>
+    <AssemblyVersion>4.5.2.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   
