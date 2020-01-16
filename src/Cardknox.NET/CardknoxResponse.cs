@@ -83,13 +83,25 @@ namespace CardknoxApi
         public CardknoxResponse(NameValueCollection _values)
         {
             if (_values.AllKeys.Contains("xResult"))
-                Result = (ResultType)Enum.Parse(typeof(ResultType), _values["xResult"]);
+            {
+                try
+                {
+                    Result = (ResultType)Enum.Parse(typeof(ResultType), _values["xResult"]);
+                }
+                catch { }
+            }
             if (_values.AllKeys.Contains("xError"))
                 Error = _values["xError"];
             if (_values.AllKeys.Contains("xErrorCode"))
                 ErrorCode = _values["xErrorCode"];
             if (_values.AllKeys.Contains("xStatus"))
-                Status = (StatusType)Enum.Parse(typeof(StatusType), _values["xStatus"]);
+            {
+                try
+                {
+                    Status = (StatusType)Enum.Parse(typeof(StatusType), _values["xStatus"]);
+                }
+                catch { }
+            }
             if (_values.AllKeys.Contains("xRefNum"))
                 RefNum = _values["xRefNum"];
             if (_values.AllKeys.Contains("xAuthCode"))
@@ -97,16 +109,34 @@ namespace CardknoxApi
             if (_values.AllKeys.Contains("xBatch"))
                 Batch = _values["xBatch"];
             if (_values.AllKeys.Contains("xAvsResultCode"))
-                AvsResultCode = (AvsResponseType)Enum.Parse(typeof(AvsResponseType), _values["xAvsResultCode"]);
+            {
+                try
+                {
+                    AvsResultCode = (AvsResponseType)Enum.Parse(typeof(AvsResponseType), _values["xAvsResultCode"]);
+                }
+                catch { }
+            }
             if (_values.AllKeys.Contains("xAvsResult"))
                 AvsResult = HttpUtility.UrlDecode(_values["xAvsResult"]);
             if (_values.AllKeys.Contains("xAuthAmount"))
-                AuthAmount = Decimal.Parse(_values["xAuthAmount"]);
+            {
+                try
+                {
+                    AuthAmount = Decimal.Parse(_values["xAuthAmount"]);
+                }
+                catch { }
+            }
             else AuthAmount = null;
             if (_values.AllKeys.Contains("xMaskedCardNumber"))
                 MaskedCardNumber = _values["xMaskedCardNumber"];
             if (_values.AllKeys.Contains("xCardType"))
-                CardType = (CardType)Enum.Parse(typeof(CardType), _values["xCardType"]);
+            {
+                try
+                {
+                    CardType = (CardType)Enum.Parse(typeof(CardType), _values["xCardType"]);
+                }
+                catch { }
+            }
             if (_values.AllKeys.Contains("xToken"))
                 Token = _values["xToken"];
             if (_values.AllKeys.Contains("xEntryMethod"))
