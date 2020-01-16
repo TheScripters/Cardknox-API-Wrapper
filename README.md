@@ -2,10 +2,12 @@
 
 API Wrapper for Cardknox Payment Processor written in C#.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/iqpxm68trgmlburq?svg=true)](https://ci.appveyor.com/project/ahwm/cardknox-api-wrapper)
+
 Check out the latest release: [https://github.com/TheScripters/Cardknox-API-Wrapper/releases/latest](https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest)
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/TheScripters/Cardknox-API-Wrapper/blob/master/LICENSE)
-[![opened issues](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/TheScripters/Cardknox-API-Wrapper/issues)
+[![GitHub](https://img.shields.io/github/license/TheScripters/Cardknox-API-Wrapper.svg)](https://github.com/TheScripters/Cardknox-API-Wrapper/blob/master/LICENSE)
+[![opened issues](https://img.shields.io/github/issues/TheScripters/Cardknox-API-Wrapper.svg)](https://github.com/TheScripters/Cardknox-API-Wrapper/issues)
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FLVEHRFSLFYXC&source=url)
 
