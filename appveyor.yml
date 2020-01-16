@@ -1,0 +1,19 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+configuration: Release
+
+before_build:
+- cmd: nuget restore src\Cardknox.sln
+
+build:
+  verbosity: minimal
+  
+deploy:
+  provider: NuGet
+  api_key:
+    secure: bsuOjvFlRd5YC/icDolLT+5pX2ejr4OujY/brObPlc4xSsMJY9I1Gvi9QFLgzYuh
+  skip_symbols: false
+  artifact: /.*\.nupkg/
+  on:
+    branch: master
