@@ -16,7 +16,7 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
     <PackageReleaseNotes>Fixed bug in response parser</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2020 The Scripters</Copyright>
-    <AssemblyVersion>4.5.*</AssemblyVersion>
+    <AssemblyVersion>4.5.3.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   
