@@ -18,6 +18,6 @@ deploy:
   api_key:
     secure: bsuOjvFlRd5YC/icDolLT+5pX2ejr4OujY/brObPlc4xSsMJY9I1Gvi9QFLgzYuh
   skip_symbols: false
-  artifact: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.nupkg'
+  artifact: '**\*.nupkg'
   on:
     branch: master
