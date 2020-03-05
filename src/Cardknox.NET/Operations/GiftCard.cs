@@ -25,4 +25,18 @@ namespace CardknoxApi.Operations
     {
         internal string Operation => "gift:balance";
     }
+    /// <summary>
+    /// The Balance command is used to check the available balance on a Cardknox gift card.
+    /// </summary>
+    public class GCActivate : Sale
+    {
+        internal string Operation => "gift:activate";
+    }
+    /// <summary>
+    /// The Balance command is used to check the available balance on a Cardknox gift card.
+    /// </summary>
+    public class GCDeactivate : Sale
+    {
+        internal string Operation => "gift:deactivate";
+    }
 }
