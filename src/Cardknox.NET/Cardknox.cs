@@ -2137,6 +2137,159 @@ namespace CardknoxApi
 
             return new CardknoxResponse(resp);
         }
+
+        /// <summary>
+        /// The Activate command is used to activate a Cardknox gift card.
+        /// </summary>
+        /// <param name="_activate"></param>
+        /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
+        /// <returns></returns>
+        public CardknoxResponse GCActivate(GCActivate _activate, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _activate.Operation);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_activate.CardNum))
+            {
+                _values.Add("xCardNum", _activate.CardNum);
+                if (!IsNullOrWhiteSpace(_activate.CVV))
+                    _values.Add("xCVV", _activate.CVV);
+                if (!IsNullOrWhiteSpace(_activate.Exp))
+                    _values.Add("xExp", _activate.Exp);
+                requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_activate.Exp))
+                    requiredAdded = false;
+            }
+            else if (!IsNullOrWhiteSpace(_activate.Token))
+            {
+                _values.Add("xToken", _activate.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_activate.MagStripe))
+            {
+                _values.Add("xMagStripe", _activate.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_activate.Operation} operation.");
+            // END required information
+
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!IsNullOrWhiteSpace(_activate.IP))
+                _values.Add("xIP", _activate.IP);
+
+            AddCommonFields(_activate);
+
+            int i = 1;
+            foreach (string v in _activate.CustomFields)
+            {
+                _values.Add($"xCustom{i:D2}", v);
+                i++;
+            }
+
+            if (RequestStarted == null)
+                Log.LogRequest(_values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new CardknoxResponse(resp);
+        }
+        /// <summary>
+        /// The Activate command is used to activate a Cardknox gift card.
+        /// </summary>
+        /// <param name="_deactivate"></param>
+        /// <param name="force">If <see langword="true"/> allows new command to be sent by clearing previous command entries</param>
+        /// <returns></returns>
+        public CardknoxResponse GCDeactivate(GCDeactivate _deactivate, bool force = false)
+        {
+            if (_values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = _values.AllKeys;
+                foreach (var v in toRemove)
+                    _values.Remove(v);
+                _values.Add("xKey", _request._key);
+                _values.Add("xVersion", _request._cardknoxVersion);
+                _values.Add("xSoftwareName", _request._software);
+                _values.Add("xSoftwareVersion", _request._softwareVersion);
+            }
+
+            // BEGIN required information
+            _values.Add("xCommand", _deactivate.Operation);
+            bool requiredAdded = false;
+            // These groups are mutually exclusive
+            if (!IsNullOrWhiteSpace(_deactivate.CardNum))
+            {
+                _values.Add("xCardNum", _deactivate.CardNum);
+                if (!IsNullOrWhiteSpace(_deactivate.CVV))
+                    _values.Add("xCVV", _deactivate.CVV);
+                if (!IsNullOrWhiteSpace(_deactivate.Exp))
+                    _values.Add("xExp", _deactivate.Exp);
+                requiredAdded = true;
+
+                if (IsNullOrWhiteSpace(_deactivate.Exp))
+                    requiredAdded = false;
+            }
+            else if (!IsNullOrWhiteSpace(_deactivate.Token))
+            {
+                _values.Add("xToken", _deactivate.Token);
+                requiredAdded = true;
+            }
+            else if (!IsNullOrWhiteSpace(_deactivate.MagStripe))
+            {
+                _values.Add("xMagStripe", _deactivate.MagStripe);
+                requiredAdded = true;
+            }
+            if (!requiredAdded)
+                throw new Exception($"Missing required values. Please refer to the API documentation for the {_deactivate.Operation} operation.");
+            // END required information
+
+
+            // IP is optional, but is highly recommended for fraud detection
+            if (!IsNullOrWhiteSpace(_deactivate.IP))
+                _values.Add("xIP", _deactivate.IP);
+
+            AddCommonFields(_deactivate);
+
+            int i = 1;
+            foreach (string v in _deactivate.CustomFields)
+            {
+                _values.Add($"xCustom{i:D2}", v);
+                i++;
+            }
+
+            if (RequestStarted == null)
+                Log.LogRequest(_values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new CardknoxResponse(resp);
+        }
         #endregion
 
         #region fraud

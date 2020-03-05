@@ -8,15 +8,15 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>4.5.3</Version>
+    <Version>4.6</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes>Fixed bug in response parser</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated API version to 4.5.8, added Gift Card Activate/Deactivate methods</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2020 The Scripters</Copyright>
-    <AssemblyVersion>4.5.3.0</AssemblyVersion>
+    <AssemblyVersion>4.6.0.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   
