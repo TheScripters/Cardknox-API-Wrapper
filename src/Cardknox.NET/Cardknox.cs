@@ -11,7 +11,7 @@ namespace CardknoxApi
     /// <summary>
     /// Primary object class for interacting with the Cardknox API.
     /// </summary>
-    public class Cardknox
+    public class Cardknox : IDisposable
     {
         #region events
         /// <summary>
@@ -38,6 +38,7 @@ namespace CardknoxApi
 
         private CardknoxRequest _request { get; }
         private NameValueCollection _values { get; }
+        private WebClient _webClient { get; }
 
         /// <summary>
         /// Initiate new Cardknox request
@@ -53,6 +54,7 @@ namespace CardknoxApi
                 { "xSoftwareVersion", request._softwareVersion }
             };
             _request = request;
+            _webClient = new WebClient();
         }
 
         #region credit card
@@ -2392,8 +2394,7 @@ namespace CardknoxApi
         private NameValueCollection MakeRequest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            WebClient c = new WebClient();
-            string req = System.Text.Encoding.ASCII.GetString(c.UploadValues(CardknoxRequest._url, _values));
+            string req = System.Text.Encoding.ASCII.GetString(_webClient.UploadValues(CardknoxRequest._url, _values));
             NameValueCollection resp = HttpUtility.ParseQueryString(req);
 
             return resp;
@@ -2519,5 +2520,13 @@ namespace CardknoxApi
                 _values.Add("xCurrency", _sale.Currency.Value.ToString());
         }
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            _webClient.Dispose();
+        }
     }
 }
