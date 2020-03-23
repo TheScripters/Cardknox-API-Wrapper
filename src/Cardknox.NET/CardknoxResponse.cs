@@ -19,6 +19,10 @@ namespace CardknoxApi
         /// </summary>
         public ResultType Result { get; }
         /// <summary>
+        /// Raw contents of <see cref="Result"/>
+        /// </summary>
+        public string ResultString { get; }
+        /// <summary>
         /// Contains error message if the transaction failed. <see cref="Status"/> will have the value of <see cref="StatusType.Error"/> and <see cref="Result"/> will be <see cref="ResultType.E"/>
         /// </summary>
         public string Error { get; }
@@ -26,6 +30,10 @@ namespace CardknoxApi
         /// Status of transction
         /// </summary>
         public StatusType Status { get; }
+        /// <summary>
+        /// Raw contents of <see cref="Status"/>
+        /// </summary>
+        public string StatusString { get; }
         /// <summary>
         /// Contains error code if the transaction failed. <see cref="Status"/> will have the value of <see cref="StatusType.Error"/> and <see cref="Result"/> will be <see cref="ResultType.E"/>
         /// </summary>
@@ -48,6 +56,10 @@ namespace CardknoxApi
         /// </summary>
         public AvsResponseType AvsResultCode { get; }
         /// <summary>
+        /// Raw contents of <see cref="AvsResultCode"/>
+        /// </summary>
+        public string AvsResultCodeString { get; }
+        /// <summary>
         /// 
         /// </summary>
         public string AvsResult { get; }
@@ -56,6 +68,10 @@ namespace CardknoxApi
         /// </summary>
         public decimal? AuthAmount { get; }
         /// <summary>
+        /// Raw contents of <see cref="AuthAmount"/>
+        /// </summary>
+        public string AuthAmountString { get; }
+        /// <summary>
         /// 
         /// </summary>
         public string MaskedCardNumber { get; }
@@ -63,6 +79,10 @@ namespace CardknoxApi
         /// 
         /// </summary>
         public CardType CardType { get; }
+        /// <summary>
+        /// Raw contents of <see cref="CardType"/>
+        /// </summary>
+        public string CardTypeString { get; }
         /// <summary>
         /// 
         /// </summary>
@@ -84,6 +104,7 @@ namespace CardknoxApi
         {
             if (_values.AllKeys.Contains("xResult"))
             {
+                ResultString = _values["xResult"];
                 try
                 {
                     Result = (ResultType)Enum.Parse(typeof(ResultType), _values["xResult"]);
@@ -96,6 +117,7 @@ namespace CardknoxApi
                 ErrorCode = _values["xErrorCode"];
             if (_values.AllKeys.Contains("xStatus"))
             {
+                StatusString = _values["xStatus"];
                 try
                 {
                     Status = (StatusType)Enum.Parse(typeof(StatusType), _values["xStatus"]);
@@ -110,6 +132,7 @@ namespace CardknoxApi
                 Batch = _values["xBatch"];
             if (_values.AllKeys.Contains("xAvsResultCode"))
             {
+                AvsResultCodeString = _values["xAvsResultCode"];
                 try
                 {
                     AvsResultCode = (AvsResponseType)Enum.Parse(typeof(AvsResponseType), _values["xAvsResultCode"]);
@@ -120,6 +143,7 @@ namespace CardknoxApi
                 AvsResult = HttpUtility.UrlDecode(_values["xAvsResult"]);
             if (_values.AllKeys.Contains("xAuthAmount"))
             {
+                AuthAmountString = _values["xAuthAmount"];
                 try
                 {
                     AuthAmount = Decimal.Parse(_values["xAuthAmount"]);
@@ -131,6 +155,7 @@ namespace CardknoxApi
                 MaskedCardNumber = _values["xMaskedCardNumber"];
             if (_values.AllKeys.Contains("xCardType"))
             {
+                CardTypeString = _values["xCardType"];
                 try
                 {
                     CardType = (CardType)Enum.Parse(typeof(CardType), _values["xCardType"]);
