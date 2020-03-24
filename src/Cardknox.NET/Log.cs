@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CardknoxApi.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +25,7 @@ namespace CardknoxApi
             {
                 try
                 {
-                    return ConfigurationManager.AppSettings["Cardknox.Logging"] == "enabled";
+                    return CardknoxConfiguration.LoggingEnabled;
                 }
                 catch { return false; }
             }
@@ -36,7 +36,7 @@ namespace CardknoxApi
             {
                 try
                 {
-                    return ConfigurationManager.AppSettings["Cardknox.LogLocation"];
+                    return CardknoxConfiguration.LogLocation;
                 }
                 catch { return ""; }
             }

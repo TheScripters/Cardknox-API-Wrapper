@@ -53,11 +53,19 @@ namespace CardknoxApi.Operations
         /// <param name="item"></param>
         public void Add(EBTWItem item) => _items.Add(item);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<EBTWItem> GetEnumerator()
         {
             return _items.GetEnumerator();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();

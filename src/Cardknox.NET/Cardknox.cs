@@ -36,9 +36,9 @@ namespace CardknoxApi
         public event RequestCompletedEventHandler RequestCompleted;
         #endregion
 
-        private CardknoxRequest _request { get; }
-        private NameValueCollection _values { get; }
-        private WebClient _webClient { get; }
+        private CardknoxRequest Request { get; }
+        private NameValueCollection Values { get; }
+        private WebClient WebClient { get; }
 
         /// <summary>
         /// Initiate new Cardknox request
@@ -46,15 +46,15 @@ namespace CardknoxApi
         /// <param name="request">The <see cref="CardknoxRequest"/> object that is used to make the request.</param>
         public Cardknox(CardknoxRequest request)
         {
-            _values = new NameValueCollection
+            Values = new NameValueCollection
             {
                 { "xKey", request._key },
                 { "xVersion", request._cardknoxVersion },
                 { "xSoftwareName", request._software },
                 { "xSoftwareVersion", request._softwareVersion }
             };
-            _request = request;
-            _webClient = new WebClient();
+            Request = request;
+            WebClient = new WebClient();
         }
 
         #region credit card
@@ -69,31 +69,31 @@ namespace CardknoxApi
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _sale.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            Values.Add("xCommand", _sale.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
-                _values.Add("xCardNum", _sale.CardNum);
+                Values.Add("xCardNum", _sale.CardNum);
                 if (!IsNullOrWhiteSpace(_sale.CVV))
-                    _values.Add("xCVV", _sale.CVV);
+                    Values.Add("xCVV", _sale.CVV);
                 if (!IsNullOrWhiteSpace(_sale.Exp))
-                    _values.Add("xExp", _sale.Exp);
+                    Values.Add("xExp", _sale.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_sale.Exp))
@@ -101,12 +101,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
-                _values.Add("xToken", _sale.Token);
+                Values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.MagStripe))
             {
-                _values.Add("xMagStripe", _sale.MagStripe);
+                Values.Add("xMagStripe", _sale.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -116,17 +116,17 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_sale.Street))
-                _values.Add("xStreet", _sale.Street);
+                Values.Add("xStreet", _sale.Street);
 
             if (!IsNullOrWhiteSpace(_sale.Zip))
-                _values.Add("xZip", _sale.Zip);
+                Values.Add("xZip", _sale.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_sale.IP))
-                _values.Add("xIP", _sale.IP);
+                Values.Add("xIP", _sale.IP);
 
             if (_sale.CustReceipt)
-                _values.Add("xCustReceipt", _sale.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _sale.CustReceipt.ToString());
 
             AddCommonFields(_sale);
 
@@ -135,13 +135,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _sale.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -159,30 +159,30 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CCSave(CCSave _save, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _save.Operation);
+            Values.Add("xCommand", _save.Operation);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_save.CardNum))
             {
-                _values.Add("xCardNum", _save.CardNum);
+                Values.Add("xCardNum", _save.CardNum);
                 if (!IsNullOrWhiteSpace(_save.CVV))
-                    _values.Add("xCVV", _save.CVV);
+                    Values.Add("xCVV", _save.CVV);
                 if (!IsNullOrWhiteSpace(_save.Exp))
-                    _values.Add("xExp", _save.Exp);
+                    Values.Add("xExp", _save.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_save.Exp))
@@ -190,12 +190,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_save.Token))
             {
-                _values.Add("xToken", _save.Token);
+                Values.Add("xToken", _save.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_save.MagStripe))
             {
-                _values.Add("xMagStripe", _save.MagStripe);
+                Values.Add("xMagStripe", _save.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -205,28 +205,28 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_save.Name))
-                _values.Add("xName", _save.Name);
+                Values.Add("xName", _save.Name);
 
             if (!IsNullOrWhiteSpace(_save.Street))
-                _values.Add("xStreet", _save.Street);
+                Values.Add("xStreet", _save.Street);
 
             if (!IsNullOrWhiteSpace(_save.Zip))
-                _values.Add("xZip", _save.Zip);
+                Values.Add("xZip", _save.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_save.IP))
-                _values.Add("xIP", _save.IP);
+                Values.Add("xIP", _save.IP);
 
             int i = 1;
             foreach (string v in _save.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -248,39 +248,39 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_refund.Amount == null || _refund.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Must specify a positive amount to refund.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _refund.Operation);
+            Values.Add("xCommand", _refund.Operation);
 
-            _values.Add("xAmount", String.Format("{0:N2}", _refund.Amount));
-            _values.Add("xRefNum", _refund.RefNum);
+            Values.Add("xAmount", String.Format("{0:N2}", _refund.Amount));
+            Values.Add("xRefNum", _refund.RefNum);
             // END required information
 
             if (_refund.CustReceipt)
-                _values.Add("xCustReceipt", _refund.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _refund.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _refund.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -300,31 +300,31 @@ namespace CardknoxApi
         {
             if (_auth.Amount == null || _auth.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Auth Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _auth.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _auth.Amount));
+            Values.Add("xCommand", _auth.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _auth.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_auth.CardNum))
             {
-                _values.Add("xCardNum", _auth.CardNum);
+                Values.Add("xCardNum", _auth.CardNum);
                 if (!IsNullOrWhiteSpace(_auth.CVV))
-                    _values.Add("xCVV", _auth.CVV);
+                    Values.Add("xCVV", _auth.CVV);
                 if (!IsNullOrWhiteSpace(_auth.Exp))
-                    _values.Add("xExp", _auth.Exp);
+                    Values.Add("xExp", _auth.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_auth.Exp))
@@ -332,12 +332,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_auth.Token))
             {
-                _values.Add("xToken", _auth.Token);
+                Values.Add("xToken", _auth.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_auth.MagStripe))
             {
-                _values.Add("xMagStripe", _auth.MagStripe);
+                Values.Add("xMagStripe", _auth.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -347,22 +347,22 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_auth.Street))
-                _values.Add("xStreet", _auth.Street);
+                Values.Add("xStreet", _auth.Street);
 
             if (!IsNullOrWhiteSpace(_auth.Zip))
-                _values.Add("xZip", _auth.Zip);
+                Values.Add("xZip", _auth.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_auth.IP))
-                _values.Add("xIP", _auth.IP);
+                Values.Add("xIP", _auth.IP);
 
             if (_auth.CustReceipt)
-                _values.Add("xCustReceipt", _auth.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _auth.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _auth.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -371,8 +371,8 @@ namespace CardknoxApi
             AddSpecialFields(_auth);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -394,39 +394,39 @@ namespace CardknoxApi
                 throw new InvalidOperationException("The capture command must reference a previous authorization in the RefNum parameter.");
             if (_capture.Amount == null || _capture.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Capture Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _capture.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _capture.Amount));
-            _values.Add("xRefNum", _capture.RefNum);
+            Values.Add("xCommand", _capture.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _capture.Amount));
+            Values.Add("xRefNum", _capture.RefNum);
             // END required information
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_capture.Street))
-                _values.Add("xStreet", _capture.Street);
+                Values.Add("xStreet", _capture.Street);
 
             if (!IsNullOrWhiteSpace(_capture.Zip))
-                _values.Add("xZip", _capture.Zip);
+                Values.Add("xZip", _capture.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_capture.IP))
-                _values.Add("xIP", _capture.IP);
+                Values.Add("xIP", _capture.IP);
 
             if (_capture.CustReceipt)
-                _values.Add("xCustReceipt", _capture.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _capture.CustReceipt.ToString());
 
             AddCommonFields(_capture);
 
@@ -435,13 +435,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _capture.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -461,31 +461,31 @@ namespace CardknoxApi
         {
             if (_credit.Amount == null || _credit.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Credit Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _credit.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
+            Values.Add("xCommand", _credit.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_credit.CardNum))
             {
-                _values.Add("xCardNum", _credit.CardNum);
+                Values.Add("xCardNum", _credit.CardNum);
                 if (!IsNullOrWhiteSpace(_credit.CVV))
-                    _values.Add("xCVV", _credit.CVV);
+                    Values.Add("xCVV", _credit.CVV);
                 if (!IsNullOrWhiteSpace(_credit.Exp))
-                    _values.Add("xExp", _credit.Exp);
+                    Values.Add("xExp", _credit.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_credit.Exp))
@@ -493,12 +493,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_credit.Token))
             {
-                _values.Add("xToken", _credit.Token);
+                Values.Add("xToken", _credit.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.MagStripe))
             {
-                _values.Add("xMagStripe", _credit.MagStripe);
+                Values.Add("xMagStripe", _credit.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -508,22 +508,22 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_credit.Street))
-                _values.Add("xStreet", _credit.Street);
+                Values.Add("xStreet", _credit.Street);
 
             if (!IsNullOrWhiteSpace(_credit.Zip))
-                _values.Add("xZip", _credit.Zip);
+                Values.Add("xZip", _credit.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_credit.IP))
-                _values.Add("xIP", _credit.IP);
+                Values.Add("xIP", _credit.IP);
 
             if (_credit.CustReceipt)
-                _values.Add("xCustReceipt", _credit.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _credit.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _credit.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -532,8 +532,8 @@ namespace CardknoxApi
             AddSpecialFields(_credit);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -553,34 +553,34 @@ namespace CardknoxApi
         {
             if (IsNullOrWhiteSpace(_void.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _void.Operation);
-            _values.Add("xRefNum", _void.RefNum);
+            Values.Add("xCommand", _void.Operation);
+            Values.Add("xRefNum", _void.RefNum);
             // END required information
 
             int i = 1;
             foreach (string v in _void.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -602,47 +602,47 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
             if (_adjust.Amount == null || _adjust.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _adjust.Operation);
-            _values.Add("xRefNum", _adjust.RefNum);
-            _values.Add("xAmount", Format("{0:N2}", _adjust.Amount));
+            Values.Add("xCommand", _adjust.Operation);
+            Values.Add("xRefNum", _adjust.RefNum);
+            Values.Add("xAmount", Format("{0:N2}", _adjust.Amount));
             // END required information
 
             if (!IsNullOrWhiteSpace(_adjust.Street))
-                _values.Add("xStreet", _adjust.Street);
+                Values.Add("xStreet", _adjust.Street);
 
             if (!IsNullOrWhiteSpace(_adjust.Zip))
-                _values.Add("xZip", _adjust.Zip);
+                Values.Add("xZip", _adjust.Zip);
 
             if (!IsNullOrWhiteSpace(_adjust.Name))
-                _values.Add("xName", _adjust.Name);
+                Values.Add("xName", _adjust.Name);
 
             if (!IsNullOrWhiteSpace(_adjust.IP))
-                _values.Add("xIP", _adjust.IP);
+                Values.Add("xIP", _adjust.IP);
 
             int i = 1;
             foreach (string v in _adjust.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -664,40 +664,40 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Invalid AuthCode specified. AuthCode must be a verification number provided by the issuing bank.");
             if (_auth.Amount == null || _auth.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _auth.Operation);
-            _values.Add("xAuthCode", _auth.AuthCode);
+            Values.Add("xCommand", _auth.Operation);
+            Values.Add("xAuthCode", _auth.AuthCode);
             // END required information
 
             if (!IsNullOrWhiteSpace(_auth.Street))
-                _values.Add("xStreet", _auth.Street);
+                Values.Add("xStreet", _auth.Street);
 
             if (!IsNullOrWhiteSpace(_auth.Zip))
-                _values.Add("xZip", _auth.Zip);
+                Values.Add("xZip", _auth.Zip);
 
             if (!IsNullOrWhiteSpace(_auth.Name))
-                _values.Add("xName", _auth.Name);
+                Values.Add("xName", _auth.Name);
 
             if (!IsNullOrWhiteSpace(_auth.IP))
-                _values.Add("xIP", _auth.IP);
+                Values.Add("xIP", _auth.IP);
 
             int i = 1;
             foreach (string v in _auth.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -706,8 +706,8 @@ namespace CardknoxApi
             AddSpecialFields(_auth);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -727,34 +727,34 @@ namespace CardknoxApi
         {
             if (IsNullOrWhiteSpace(_refund.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _refund.Operation);
-            _values.Add("xRefNum", _refund.RefNum);
+            Values.Add("xCommand", _refund.Operation);
+            Values.Add("xRefNum", _refund.RefNum);
             // END required information
 
             int i = 1;
             foreach (string v in _refund.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -774,34 +774,34 @@ namespace CardknoxApi
         {
             if (IsNullOrWhiteSpace(_release.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _release.Operation);
-            _values.Add("xRefNum", _release.RefNum);
+            Values.Add("xCommand", _release.Operation);
+            Values.Add("xRefNum", _release.RefNum);
             // END required information
 
             int i = 1;
             foreach (string v in _release.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -823,57 +823,57 @@ namespace CardknoxApi
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _sale.Operation);
+            Values.Add("xCommand", _sale.Operation);
             if (!IsNullOrWhiteSpace(_sale.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_sale.Routing) && !IsNullOrWhiteSpace(_sale.Account))
             {
-                _values.Add("xRouting", _sale.Routing);
-                _values.Add("xAccount", _sale.Account);
+                Values.Add("xRouting", _sale.Routing);
+                Values.Add("xAccount", _sale.Account);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
-                _values.Add("xToken", _sale.Token);
+                Values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.MICR))
             {
-                _values.Add("xMICR", _sale.MICR);
+                Values.Add("xMICR", _sale.MICR);
                 requiredAdded = true;
             }
             if (!requiredAdded)
                 throw new Exception($"Missing required values. Please refer to the API documentation for the {_sale.Operation} operation.");
-            _values.Add("xAmount", Format("{0:N2}", _sale.Amount));
+            Values.Add("xAmount", Format("{0:N2}", _sale.Amount));
 
-            _values.Add("xName", _sale.Name);
+            Values.Add("xName", _sale.Name);
             // END required information
 
             if (!IsNullOrWhiteSpace(_sale.IP))
-                _values.Add("xIP", _sale.IP);
+                Values.Add("xIP", _sale.IP);
 
             if (_sale.CustReceipt)
-                _values.Add("xCustReceipt", _sale.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _sale.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _sale.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -882,8 +882,8 @@ namespace CardknoxApi
             AddSpecialFields(_sale);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -903,56 +903,56 @@ namespace CardknoxApi
         {
             if (_credit.Amount == null || _credit.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _credit.Operation);
+            Values.Add("xCommand", _credit.Operation);
             if (!IsNullOrWhiteSpace(_credit.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_credit.Routing) && !IsNullOrWhiteSpace(_credit.Account))
             {
-                _values.Add("xRouting", _credit.Routing);
-                _values.Add("xAccount", _credit.Account);
+                Values.Add("xRouting", _credit.Routing);
+                Values.Add("xAccount", _credit.Account);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.Token))
             {
-                _values.Add("xToken", _credit.Token);
+                Values.Add("xToken", _credit.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.MICR))
             {
-                _values.Add("xMICR", _credit.MICR);
+                Values.Add("xMICR", _credit.MICR);
                 requiredAdded = true;
             }
             if (!requiredAdded)
                 throw new Exception($"Missing required values. Please refer to the API documentation for the {_credit.Operation} operation.");
-            _values.Add("xAmount", Format("{0:N2}", _credit.Amount));
-            _values.Add("xName", _credit.Name);
+            Values.Add("xAmount", Format("{0:N2}", _credit.Amount));
+            Values.Add("xName", _credit.Name);
             // END required information
 
             if (!IsNullOrWhiteSpace(_credit.IP))
-                _values.Add("xIP", _credit.IP);
+                Values.Add("xIP", _credit.IP);
 
             if (_credit.CustReceipt)
-                _values.Add("xCustReceipt", _credit.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _credit.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _credit.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -961,8 +961,8 @@ namespace CardknoxApi
             AddSpecialFields(_credit);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -980,53 +980,53 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse CheckSave(CheckSave _save, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _save.Operation);
+            Values.Add("xCommand", _save.Operation);
             if (!IsNullOrWhiteSpace(_save.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_save.Routing) && !IsNullOrWhiteSpace(_save.Account))
             {
-                _values.Add("xRouting", _save.Routing);
-                _values.Add("xAccount", _save.Account);
+                Values.Add("xRouting", _save.Routing);
+                Values.Add("xAccount", _save.Account);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_save.MICR))
             {
-                _values.Add("xMICR", _save.MICR);
+                Values.Add("xMICR", _save.MICR);
                 requiredAdded = true;
             }
             if (!requiredAdded)
                 throw new Exception($"Missing required values. Please refer to the API documentation for the {_save.Operation} operation.");
-            _values.Add("xName", _save.Name);
+            Values.Add("xName", _save.Name);
             // END required information
 
             if (!IsNullOrWhiteSpace(_save.IP))
-                _values.Add("xIP", _save.IP);
+                Values.Add("xIP", _save.IP);
 
             int i = 1;
             foreach (string v in _save.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1048,35 +1048,35 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
             if (IsNullOrWhiteSpace(_void.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _void.Operation);
-            _values.Add("xAmount", Format("{0:N2}", _void.Amount));
-            _values.Add("xRefNum", _void.RefNum);
+            Values.Add("xCommand", _void.Operation);
+            Values.Add("xAmount", Format("{0:N2}", _void.Amount));
+            Values.Add("xRefNum", _void.RefNum);
             // END required information
 
             int i = 1;
             foreach (string v in _void.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1098,38 +1098,38 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
             if (IsNullOrWhiteSpace(_refund.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _refund.Operation);
-            _values.Add("xAmount", Format("{0:N2}", _refund.Amount));
-            _values.Add("xRefNum", _refund.RefNum);
+            Values.Add("xCommand", _refund.Operation);
+            Values.Add("xAmount", Format("{0:N2}", _refund.Amount));
+            Values.Add("xRefNum", _refund.RefNum);
             // END required information
 
             if (_refund.CustReceipt)
-                _values.Add("xCustReceipt", _refund.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _refund.CustReceipt.ToString());
 
             int i = 1;
             foreach (string v in _refund.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1151,38 +1151,38 @@ namespace CardknoxApi
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _sale.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
-            _values.Add("xDUKPT", _sale.DUKPT);
+            Values.Add("xCommand", _sale.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            Values.Add("xDUKPT", _sale.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
-                _values.Add("xCardNum", _sale.CardNum);
+                Values.Add("xCardNum", _sale.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
-                _values.Add("xToken", _sale.Token);
+                Values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.MagStripe))
             {
-                _values.Add("xMagStripe", _sale.MagStripe);
+                Values.Add("xMagStripe", _sale.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1191,18 +1191,18 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_sale.Street))
-                _values.Add("xStreet", _sale.Street);
+                Values.Add("xStreet", _sale.Street);
 
             if (!IsNullOrWhiteSpace(_sale.Zip))
-                _values.Add("xZip", _sale.Zip);
+                Values.Add("xZip", _sale.Zip);
 
             if (!IsNullOrWhiteSpace(_sale.IP))
-                _values.Add("xIP", _sale.IP);
+                Values.Add("xIP", _sale.IP);
 
             int i = 1;
             foreach (string v in _sale.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -1211,8 +1211,8 @@ namespace CardknoxApi
             AddSpecialFields(_sale);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1231,38 +1231,38 @@ namespace CardknoxApi
         {
             if (_credit.Amount == null || _credit.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _credit.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
-            _values.Add("xDUKPT", _credit.DUKPT);
+            Values.Add("xCommand", _credit.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _credit.Amount));
+            Values.Add("xDUKPT", _credit.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_credit.CardNum))
             {
-                _values.Add("xCardNum", _credit.CardNum);
+                Values.Add("xCardNum", _credit.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.Token))
             {
-                _values.Add("xToken", _credit.Token);
+                Values.Add("xToken", _credit.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_credit.MagStripe))
             {
-                _values.Add("xMagStripe", _credit.MagStripe);
+                Values.Add("xMagStripe", _credit.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1271,18 +1271,18 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_credit.Street))
-                _values.Add("xStreet", _credit.Street);
+                Values.Add("xStreet", _credit.Street);
 
             if (!IsNullOrWhiteSpace(_credit.Zip))
-                _values.Add("xZip", _credit.Zip);
+                Values.Add("xZip", _credit.Zip);
 
             if (!IsNullOrWhiteSpace(_credit.IP))
-                _values.Add("xIP", _credit.IP);
+                Values.Add("xIP", _credit.IP);
 
             int i = 1;
             foreach (string v in _credit.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -1291,8 +1291,8 @@ namespace CardknoxApi
             AddSpecialFields(_credit);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1309,37 +1309,37 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse EBTFSBalance(EBTFSBalance _bal, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _bal.Operation);
-            _values.Add("xDUKPT", _bal.DUKPT);
+            Values.Add("xCommand", _bal.Operation);
+            Values.Add("xDUKPT", _bal.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_bal.CardNum))
             {
-                _values.Add("xCardNum", _bal.CardNum);
+                Values.Add("xCardNum", _bal.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_bal.Token))
             {
-                _values.Add("xToken", _bal.Token);
+                Values.Add("xToken", _bal.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_bal.MagStripe))
             {
-                _values.Add("xMagStripe", _bal.MagStripe);
+                Values.Add("xMagStripe", _bal.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1348,11 +1348,11 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_bal.IP))
-                _values.Add("xIP", _bal.IP);
+                Values.Add("xIP", _bal.IP);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1371,38 +1371,38 @@ namespace CardknoxApi
         {
             if (_voucher.Amount == null || _voucher.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _voucher.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _voucher.Amount));
-            _values.Add("xDUKPT", _voucher.DUKPT);
+            Values.Add("xCommand", _voucher.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _voucher.Amount));
+            Values.Add("xDUKPT", _voucher.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_voucher.CardNum))
             {
-                _values.Add("xCardNum", _voucher.CardNum);
+                Values.Add("xCardNum", _voucher.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_voucher.Token))
             {
-                _values.Add("xToken", _voucher.Token);
+                Values.Add("xToken", _voucher.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_voucher.MagStripe))
             {
-                _values.Add("xMagStripe", _voucher.MagStripe);
+                Values.Add("xMagStripe", _voucher.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1411,18 +1411,18 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_voucher.Street))
-                _values.Add("xStreet", _voucher.Street);
+                Values.Add("xStreet", _voucher.Street);
 
             if (!IsNullOrWhiteSpace(_voucher.Zip))
-                _values.Add("xZip", _voucher.Zip);
+                Values.Add("xZip", _voucher.Zip);
 
             if (!IsNullOrWhiteSpace(_voucher.IP))
-                _values.Add("xIP", _voucher.IP);
+                Values.Add("xIP", _voucher.IP);
 
             int i = 1;
             foreach (string v in _voucher.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -1431,8 +1431,8 @@ namespace CardknoxApi
             AddSpecialFields(_voucher);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1454,38 +1454,38 @@ namespace CardknoxApi
         {
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _sale.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
-            _values.Add("xDUKPT", _sale.DUKPT);
+            Values.Add("xCommand", _sale.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            Values.Add("xDUKPT", _sale.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
-                _values.Add("xCardNum", _sale.CardNum);
+                Values.Add("xCardNum", _sale.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
-                _values.Add("xToken", _sale.Token);
+                Values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.MagStripe))
             {
-                _values.Add("xMagStripe", _sale.MagStripe);
+                Values.Add("xMagStripe", _sale.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1494,18 +1494,18 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_sale.Street))
-                _values.Add("xStreet", _sale.Street);
+                Values.Add("xStreet", _sale.Street);
 
             if (!IsNullOrWhiteSpace(_sale.Zip))
-                _values.Add("xZip", _sale.Zip);
+                Values.Add("xZip", _sale.Zip);
 
             if (!IsNullOrWhiteSpace(_sale.IP))
-                _values.Add("xIP", _sale.IP);
+                Values.Add("xIP", _sale.IP);
 
             int i = 1;
             foreach (string v in _sale.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -1514,8 +1514,8 @@ namespace CardknoxApi
             AddSpecialFields(_sale);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1534,38 +1534,38 @@ namespace CardknoxApi
         {
             if (_cash.Amount == null || _cash.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _cash.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _cash.Amount));
-            _values.Add("xDUKPT", _cash.DUKPT);
+            Values.Add("xCommand", _cash.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _cash.Amount));
+            Values.Add("xDUKPT", _cash.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_cash.CardNum))
             {
-                _values.Add("xCardNum", _cash.CardNum);
+                Values.Add("xCardNum", _cash.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_cash.Token))
             {
-                _values.Add("xToken", _cash.Token);
+                Values.Add("xToken", _cash.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_cash.MagStripe))
             {
-                _values.Add("xMagStripe", _cash.MagStripe);
+                Values.Add("xMagStripe", _cash.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1574,24 +1574,24 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_cash.IP))
-                _values.Add("xIP", _cash.IP);
+                Values.Add("xIP", _cash.IP);
 
             if (!IsNullOrWhiteSpace(_cash.Invoice))
-                _values.Add("xInvoice", _cash.Invoice);
+                Values.Add("xInvoice", _cash.Invoice);
 
             if (_cash.AllowDuplicate)
-                _values.Add("xAllowDuplicate", _cash.AllowDuplicate.ToString());
+                Values.Add("xAllowDuplicate", _cash.AllowDuplicate.ToString());
 
             int i = 1;
             foreach (string v in _cash.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1608,32 +1608,32 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse EBTCBBalance(EBTCBBalance _bal, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _bal.Operation);
-            _values.Add("xDUKPT", _bal.DUKPT);
+            Values.Add("xCommand", _bal.Operation);
+            Values.Add("xDUKPT", _bal.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_bal.CardNum))
             {
-                _values.Add("xCardNum", _bal.CardNum);
+                Values.Add("xCardNum", _bal.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_bal.MagStripe))
             {
-                _values.Add("xMagStripe", _bal.MagStripe);
+                Values.Add("xMagStripe", _bal.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1642,11 +1642,11 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_bal.IP))
-                _values.Add("xIP", _bal.IP);
+                Values.Add("xIP", _bal.IP);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1670,38 +1670,38 @@ namespace CardknoxApi
                 throw new InvalidOperationException("Must specify items included in this sale.");
             if (_sale.Amount == null || _sale.Amount <= 0)
                 throw new InvalidOperationException("Invalid Amount specified. Amount must be greater than zero.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _sale.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
-            _values.Add("xDUKPT", _sale.DUKPT);
+            Values.Add("xCommand", _sale.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _sale.Amount));
+            Values.Add("xDUKPT", _sale.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_sale.CardNum))
             {
-                _values.Add("xCardNum", _sale.CardNum);
+                Values.Add("xCardNum", _sale.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.Token))
             {
-                _values.Add("xToken", _sale.Token);
+                Values.Add("xToken", _sale.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_sale.MagStripe))
             {
-                _values.Add("xMagStripe", _sale.MagStripe);
+                Values.Add("xMagStripe", _sale.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1710,18 +1710,18 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_sale.Street))
-                _values.Add("xStreet", _sale.Street);
+                Values.Add("xStreet", _sale.Street);
 
             if (!IsNullOrWhiteSpace(_sale.Zip))
-                _values.Add("xZip", _sale.Zip);
+                Values.Add("xZip", _sale.Zip);
 
             if (!IsNullOrWhiteSpace(_sale.IP))
-                _values.Add("xIP", _sale.IP);
+                Values.Add("xIP", _sale.IP);
 
             int i = 1;
             foreach (string v in _sale.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
@@ -1730,9 +1730,9 @@ namespace CardknoxApi
                 i = 1;
                 foreach (EBTWItem item in _sale.Items)
                 {
-                    _values.Add($"x{i}UnitPrice", String.Format("{0:N2}", item.UnitPrice));
-                    _values.Add($"x{i}Qty", item.Qty.ToString());
-                    _values.Add($"x{i}Upc", item.Upc);
+                    Values.Add($"x{i}UnitPrice", String.Format("{0:N2}", item.UnitPrice));
+                    Values.Add($"x{i}Qty", item.Qty.ToString());
+                    Values.Add($"x{i}Upc", item.Upc);
                     i++;
                 }
             }
@@ -1742,8 +1742,8 @@ namespace CardknoxApi
             AddSpecialFields(_sale);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1761,32 +1761,32 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse EBTWBalance(EBTWBalance _bal, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _bal.Operation);
-            _values.Add("xDUKPT", _bal.DUKPT);
+            Values.Add("xCommand", _bal.Operation);
+            Values.Add("xDUKPT", _bal.DUKPT);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_bal.CardNum))
             {
-                _values.Add("xCardNum", _bal.CardNum);
+                Values.Add("xCardNum", _bal.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_bal.MagStripe))
             {
-                _values.Add("xMagStripe", _bal.MagStripe);
+                Values.Add("xMagStripe", _bal.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1795,11 +1795,11 @@ namespace CardknoxApi
 
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_bal.IP))
-                _values.Add("xIP", _bal.IP);
+                Values.Add("xIP", _bal.IP);
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1819,33 +1819,33 @@ namespace CardknoxApi
         {
             if (IsNullOrWhiteSpace(_void.RefNum))
                 throw new InvalidOperationException("Invalid RefNum specified. RefNum must reference a previous transaction.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _void.Operation);
-            _values.Add("xDUKPT", _void.DUKPT);
-            _values.Add("xRefNum", _void.RefNum);
+            Values.Add("xCommand", _void.Operation);
+            Values.Add("xDUKPT", _void.DUKPT);
+            Values.Add("xRefNum", _void.RefNum);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_void.CardNum))
             {
-                _values.Add("xCardNum", _void.CardNum);
+                Values.Add("xCardNum", _void.CardNum);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_void.MagStripe))
             {
-                _values.Add("xMagStripe", _void.MagStripe);
+                Values.Add("xMagStripe", _void.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1853,8 +1853,8 @@ namespace CardknoxApi
             // END required information
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1876,31 +1876,31 @@ namespace CardknoxApi
         {
             if (_issue.Amount == null || _issue.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _issue.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _issue.Amount));
+            Values.Add("xCommand", _issue.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _issue.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_issue.CardNum))
             {
-                _values.Add("xCardNum", _issue.CardNum);
+                Values.Add("xCardNum", _issue.CardNum);
                 if (!IsNullOrWhiteSpace(_issue.CVV))
-                    _values.Add("xCVV", _issue.CVV);
+                    Values.Add("xCVV", _issue.CVV);
                 if (!IsNullOrWhiteSpace(_issue.Exp))
-                    _values.Add("xExp", _issue.Exp);
+                    Values.Add("xExp", _issue.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_issue.Exp))
@@ -1908,12 +1908,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_issue.Token))
             {
-                _values.Add("xToken", _issue.Token);
+                Values.Add("xToken", _issue.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_issue.MagStripe))
             {
-                _values.Add("xMagStripe", _issue.MagStripe);
+                Values.Add("xMagStripe", _issue.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -1923,17 +1923,17 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_issue.Street))
-                _values.Add("xStreet", _issue.Street);
+                Values.Add("xStreet", _issue.Street);
 
             if (!IsNullOrWhiteSpace(_issue.Zip))
-                _values.Add("xZip", _issue.Zip);
+                Values.Add("xZip", _issue.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_issue.IP))
-                _values.Add("xIP", _issue.IP);
+                Values.Add("xIP", _issue.IP);
 
             if (_issue.CustReceipt)
-                _values.Add("xCustReceipt", _issue.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _issue.CustReceipt.ToString());
 
             AddCommonFields(_issue);
 
@@ -1942,13 +1942,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _issue.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -1967,31 +1967,31 @@ namespace CardknoxApi
         {
             if (_redeem.Amount == null || _redeem.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _redeem.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _redeem.Amount));
+            Values.Add("xCommand", _redeem.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _redeem.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_redeem.CardNum))
             {
-                _values.Add("xCardNum", _redeem.CardNum);
+                Values.Add("xCardNum", _redeem.CardNum);
                 if (!IsNullOrWhiteSpace(_redeem.CVV))
-                    _values.Add("xCVV", _redeem.CVV);
+                    Values.Add("xCVV", _redeem.CVV);
                 if (!IsNullOrWhiteSpace(_redeem.Exp))
-                    _values.Add("xExp", _redeem.Exp);
+                    Values.Add("xExp", _redeem.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_redeem.Exp))
@@ -1999,12 +1999,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_redeem.Token))
             {
-                _values.Add("xToken", _redeem.Token);
+                Values.Add("xToken", _redeem.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_redeem.MagStripe))
             {
-                _values.Add("xMagStripe", _redeem.MagStripe);
+                Values.Add("xMagStripe", _redeem.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -2014,17 +2014,17 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_redeem.Street))
-                _values.Add("xStreet", _redeem.Street);
+                Values.Add("xStreet", _redeem.Street);
 
             if (!IsNullOrWhiteSpace(_redeem.Zip))
-                _values.Add("xZip", _redeem.Zip);
+                Values.Add("xZip", _redeem.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_redeem.IP))
-                _values.Add("xIP", _redeem.IP);
+                Values.Add("xIP", _redeem.IP);
 
             if (_redeem.CustReceipt)
-                _values.Add("xCustReceipt", _redeem.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _redeem.CustReceipt.ToString());
 
             AddCommonFields(_redeem);
 
@@ -2033,13 +2033,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _redeem.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -2058,31 +2058,31 @@ namespace CardknoxApi
         {
             if (_bal.Amount == null || _bal.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _bal.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _bal.Amount));
+            Values.Add("xCommand", _bal.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _bal.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_bal.CardNum))
             {
-                _values.Add("xCardNum", _bal.CardNum);
+                Values.Add("xCardNum", _bal.CardNum);
                 if (!IsNullOrWhiteSpace(_bal.CVV))
-                    _values.Add("xCVV", _bal.CVV);
+                    Values.Add("xCVV", _bal.CVV);
                 if (!IsNullOrWhiteSpace(_bal.Exp))
-                    _values.Add("xExp", _bal.Exp);
+                    Values.Add("xExp", _bal.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_bal.Exp))
@@ -2090,12 +2090,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_bal.Token))
             {
-                _values.Add("xToken", _bal.Token);
+                Values.Add("xToken", _bal.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_bal.MagStripe))
             {
-                _values.Add("xMagStripe", _bal.MagStripe);
+                Values.Add("xMagStripe", _bal.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -2105,17 +2105,17 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_bal.Street))
-                _values.Add("xStreet", _bal.Street);
+                Values.Add("xStreet", _bal.Street);
 
             if (!IsNullOrWhiteSpace(_bal.Zip))
-                _values.Add("xZip", _bal.Zip);
+                Values.Add("xZip", _bal.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_bal.IP))
-                _values.Add("xIP", _bal.IP);
+                Values.Add("xIP", _bal.IP);
 
             if (_bal.CustReceipt)
-                _values.Add("xCustReceipt", _bal.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _bal.CustReceipt.ToString());
 
             AddCommonFields(_bal);
 
@@ -2124,13 +2124,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _bal.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -2148,30 +2148,30 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse GCActivate(GCActivate _activate, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _activate.Operation);
+            Values.Add("xCommand", _activate.Operation);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_activate.CardNum))
             {
-                _values.Add("xCardNum", _activate.CardNum);
+                Values.Add("xCardNum", _activate.CardNum);
                 if (!IsNullOrWhiteSpace(_activate.CVV))
-                    _values.Add("xCVV", _activate.CVV);
+                    Values.Add("xCVV", _activate.CVV);
                 if (!IsNullOrWhiteSpace(_activate.Exp))
-                    _values.Add("xExp", _activate.Exp);
+                    Values.Add("xExp", _activate.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_activate.Exp))
@@ -2179,12 +2179,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_activate.Token))
             {
-                _values.Add("xToken", _activate.Token);
+                Values.Add("xToken", _activate.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_activate.MagStripe))
             {
-                _values.Add("xMagStripe", _activate.MagStripe);
+                Values.Add("xMagStripe", _activate.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -2194,20 +2194,20 @@ namespace CardknoxApi
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_activate.IP))
-                _values.Add("xIP", _activate.IP);
+                Values.Add("xIP", _activate.IP);
 
             AddCommonFields(_activate);
 
             int i = 1;
             foreach (string v in _activate.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -2224,30 +2224,30 @@ namespace CardknoxApi
         /// <returns></returns>
         public CardknoxResponse GCDeactivate(GCDeactivate _deactivate, bool force = false)
         {
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _deactivate.Operation);
+            Values.Add("xCommand", _deactivate.Operation);
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_deactivate.CardNum))
             {
-                _values.Add("xCardNum", _deactivate.CardNum);
+                Values.Add("xCardNum", _deactivate.CardNum);
                 if (!IsNullOrWhiteSpace(_deactivate.CVV))
-                    _values.Add("xCVV", _deactivate.CVV);
+                    Values.Add("xCVV", _deactivate.CVV);
                 if (!IsNullOrWhiteSpace(_deactivate.Exp))
-                    _values.Add("xExp", _deactivate.Exp);
+                    Values.Add("xExp", _deactivate.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_deactivate.Exp))
@@ -2255,12 +2255,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_deactivate.Token))
             {
-                _values.Add("xToken", _deactivate.Token);
+                Values.Add("xToken", _deactivate.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_deactivate.MagStripe))
             {
-                _values.Add("xMagStripe", _deactivate.MagStripe);
+                Values.Add("xMagStripe", _deactivate.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -2270,20 +2270,20 @@ namespace CardknoxApi
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_deactivate.IP))
-                _values.Add("xIP", _deactivate.IP);
+                Values.Add("xIP", _deactivate.IP);
 
             AddCommonFields(_deactivate);
 
             int i = 1;
             foreach (string v in _deactivate.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -2307,31 +2307,31 @@ namespace CardknoxApi
         {
             if (_submit.Amount == null || _submit.Amount <= 0)
                 throw new InvalidOperationException("Invalid amount. Sale Amount must be greater than 0.");
-            if (_values.AllKeys.Length > 4 && !force)
+            if (Values.AllKeys.Length > 4 && !force)
                 throw new InvalidOperationException("A new instance of Cardknox is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = _values.AllKeys;
+                string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
-                    _values.Remove(v);
-                _values.Add("xKey", _request._key);
-                _values.Add("xVersion", _request._cardknoxVersion);
-                _values.Add("xSoftwareName", _request._software);
-                _values.Add("xSoftwareVersion", _request._softwareVersion);
+                    Values.Remove(v);
+                Values.Add("xKey", Request._key);
+                Values.Add("xVersion", Request._cardknoxVersion);
+                Values.Add("xSoftwareName", Request._software);
+                Values.Add("xSoftwareVersion", Request._softwareVersion);
             }
 
             // BEGIN required information
-            _values.Add("xCommand", _submit.Operation);
-            _values.Add("xAmount", String.Format("{0:N2}", _submit.Amount));
+            Values.Add("xCommand", _submit.Operation);
+            Values.Add("xAmount", String.Format("{0:N2}", _submit.Amount));
             bool requiredAdded = false;
             // These groups are mutually exclusive
             if (!IsNullOrWhiteSpace(_submit.CardNum))
             {
-                _values.Add("xCardNum", _submit.CardNum);
+                Values.Add("xCardNum", _submit.CardNum);
                 if (!IsNullOrWhiteSpace(_submit.CVV))
-                    _values.Add("xCVV", _submit.CVV);
+                    Values.Add("xCVV", _submit.CVV);
                 if (!IsNullOrWhiteSpace(_submit.Exp))
-                    _values.Add("xExp", _submit.Exp);
+                    Values.Add("xExp", _submit.Exp);
                 requiredAdded = true;
 
                 if (IsNullOrWhiteSpace(_submit.Exp))
@@ -2339,12 +2339,12 @@ namespace CardknoxApi
             }
             else if (!IsNullOrWhiteSpace(_submit.Token))
             {
-                _values.Add("xToken", _submit.Token);
+                Values.Add("xToken", _submit.Token);
                 requiredAdded = true;
             }
             else if (!IsNullOrWhiteSpace(_submit.MagStripe))
             {
-                _values.Add("xMagStripe", _submit.MagStripe);
+                Values.Add("xMagStripe", _submit.MagStripe);
                 requiredAdded = true;
             }
             if (!requiredAdded)
@@ -2354,17 +2354,17 @@ namespace CardknoxApi
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
             if (!IsNullOrWhiteSpace(_submit.Street))
-                _values.Add("xStreet", _submit.Street);
+                Values.Add("xStreet", _submit.Street);
 
             if (!IsNullOrWhiteSpace(_submit.Zip))
-                _values.Add("xZip", _submit.Zip);
+                Values.Add("xZip", _submit.Zip);
 
             // IP is optional, but is highly recommended for fraud detection
             if (!IsNullOrWhiteSpace(_submit.IP))
-                _values.Add("xIP", _submit.IP);
+                Values.Add("xIP", _submit.IP);
 
             if (_submit.CustReceipt)
-                _values.Add("xCustReceipt", _submit.CustReceipt.ToString());
+                Values.Add("xCustReceipt", _submit.CustReceipt.ToString());
 
             AddCommonFields(_submit);
 
@@ -2373,13 +2373,13 @@ namespace CardknoxApi
             int i = 1;
             foreach (string v in _submit.CustomFields)
             {
-                _values.Add($"xCustom{i:D2}", v);
+                Values.Add($"xCustom{i:D2}", v);
                 i++;
             }
 
             if (RequestStarted == null)
-                Log.LogRequest(_values);
-            else RequestStarted.Invoke(this, new CardknoxEventArgs(_values));
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
 
             var resp = MakeRequest();
             if (RequestCompleted == null)
@@ -2394,7 +2394,7 @@ namespace CardknoxApi
         private NameValueCollection MakeRequest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            string req = System.Text.Encoding.ASCII.GetString(_webClient.UploadValues(CardknoxRequest._url, _values));
+            string req = System.Text.Encoding.ASCII.GetString(WebClient.UploadValues(CardknoxRequest._url, Values));
             NameValueCollection resp = HttpUtility.ParseQueryString(req);
 
             return resp;
@@ -2403,121 +2403,121 @@ namespace CardknoxApi
         private void AddCommonFields(OperationBase _base)
         {
             if (!IsNullOrWhiteSpace(_base.Invoice))
-                _values.Add("xInvoice", _base.Invoice);
+                Values.Add("xInvoice", _base.Invoice);
 
             if (_base.Tip != null)
-                _values.Add("xTip", Format("{0:N2}", _base.Tip));
+                Values.Add("xTip", Format("{0:N2}", _base.Tip));
 
             if (_base.Tax != null)
-                _values.Add("xTax", Format("{0:N2}", _base.Tax));
+                Values.Add("xTax", Format("{0:N2}", _base.Tax));
 
             if (!IsNullOrWhiteSpace(_base.Email))
-                _values.Add("xEmail", _base.Email);
+                Values.Add("xEmail", _base.Email);
 
             if (!IsNullOrWhiteSpace(_base.Fax))
-                _values.Add("xFax", _base.Fax);
+                Values.Add("xFax", _base.Fax);
 
             if (!IsNullOrWhiteSpace(_base.BillFirstName))
-                _values.Add("xBillFirstName", _base.BillFirstName);
+                Values.Add("xBillFirstName", _base.BillFirstName);
 
             if (!IsNullOrWhiteSpace(_base.BillMiddleName))
-                _values.Add("xBillMiddleName", _base.BillMiddleName);
+                Values.Add("xBillMiddleName", _base.BillMiddleName);
 
             if (!IsNullOrWhiteSpace(_base.BillLastName))
-                _values.Add("xBillLastName", _base.BillLastName);
+                Values.Add("xBillLastName", _base.BillLastName);
 
             if (!IsNullOrWhiteSpace(_base.BillCompany))
-                _values.Add("xBillCompany", _base.BillCompany);
+                Values.Add("xBillCompany", _base.BillCompany);
 
             if (!IsNullOrWhiteSpace(_base.BillStreet))
-                _values.Add("xBillStreet", _base.BillStreet);
+                Values.Add("xBillStreet", _base.BillStreet);
 
             if (!IsNullOrWhiteSpace(_base.BillStreet2))
-                _values.Add("xBillStreet2", _base.BillStreet2);
+                Values.Add("xBillStreet2", _base.BillStreet2);
 
             if (!IsNullOrWhiteSpace(_base.BillCity))
-                _values.Add("xBillCity", _base.BillCity);
+                Values.Add("xBillCity", _base.BillCity);
 
             if (!IsNullOrWhiteSpace(_base.BillState))
-                _values.Add("xBillState", _base.BillState);
+                Values.Add("xBillState", _base.BillState);
 
             if (!IsNullOrWhiteSpace(_base.BillZip))
-                _values.Add("xBillZip", _base.BillZip);
+                Values.Add("xBillZip", _base.BillZip);
 
             if (!IsNullOrWhiteSpace(_base.BillCountry))
-                _values.Add("xBillCountry", _base.BillCountry);
+                Values.Add("xBillCountry", _base.BillCountry);
 
             if (!IsNullOrWhiteSpace(_base.BillPhone))
-                _values.Add("xBillPhone", _base.BillPhone);
+                Values.Add("xBillPhone", _base.BillPhone);
 
             if (!IsNullOrWhiteSpace(_base.BillMobile))
-                _values.Add("xBillMobile", _base.BillMobile);
+                Values.Add("xBillMobile", _base.BillMobile);
 
             if (!IsNullOrWhiteSpace(_base.ShipFirstName))
-                _values.Add("xShipFirstName", _base.ShipFirstName);
+                Values.Add("xShipFirstName", _base.ShipFirstName);
 
             if (!IsNullOrWhiteSpace(_base.ShipMiddleName))
-                _values.Add("xShipMiddleName", _base.ShipMiddleName);
+                Values.Add("xShipMiddleName", _base.ShipMiddleName);
 
             if (!IsNullOrWhiteSpace(_base.ShipLastName))
-                _values.Add("xShipLastName", _base.ShipLastName);
+                Values.Add("xShipLastName", _base.ShipLastName);
 
             if (!IsNullOrWhiteSpace(_base.ShipCompany))
-                _values.Add("xShipCompany", _base.ShipCompany);
+                Values.Add("xShipCompany", _base.ShipCompany);
 
             if (!IsNullOrWhiteSpace(_base.ShipStreet))
-                _values.Add("xShipStreet", _base.ShipStreet);
+                Values.Add("xShipStreet", _base.ShipStreet);
 
             if (!IsNullOrWhiteSpace(_base.ShipStreet2))
-                _values.Add("xShipStreet2", _base.ShipStreet2);
+                Values.Add("xShipStreet2", _base.ShipStreet2);
 
             if (!IsNullOrWhiteSpace(_base.ShipCity))
-                _values.Add("xShipCity", _base.ShipCity);
+                Values.Add("xShipCity", _base.ShipCity);
 
             if (!IsNullOrWhiteSpace(_base.ShipState))
-                _values.Add("xShipState", _base.ShipState);
+                Values.Add("xShipState", _base.ShipState);
 
             if (!IsNullOrWhiteSpace(_base.ShipZip))
-                _values.Add("xShipZip", _base.ShipZip);
+                Values.Add("xShipZip", _base.ShipZip);
 
             if (!IsNullOrWhiteSpace(_base.ShipCountry))
-                _values.Add("xShipCountry", _base.ShipCountry);
+                Values.Add("xShipCountry", _base.ShipCountry);
 
             if (!IsNullOrWhiteSpace(_base.ShipPhone))
-                _values.Add("xShipPhone", _base.ShipPhone);
+                Values.Add("xShipPhone", _base.ShipPhone);
 
             if (!IsNullOrWhiteSpace(_base.ShipMobile))
-                _values.Add("xShipMobile", _base.ShipMobile);
+                Values.Add("xShipMobile", _base.ShipMobile);
         }
 
         private void AddSpecialFields(Sale _sale)
         {
             if (_sale.RxAmount > 0)
-                _values.Add("xRxAmount", Format("{0:N2}", _sale.RxAmount));
+                Values.Add("xRxAmount", Format("{0:N2}", _sale.RxAmount));
 
             if (_sale.DentalAmount > 0)
-                _values.Add("xDentalAmount", Format("{0:N2}", _sale.DentalAmount));
+                Values.Add("xDentalAmount", Format("{0:N2}", _sale.DentalAmount));
 
             if (_sale.VisionAmount > 0)
-                _values.Add("xVisionAmount", Format("{0:N2}", _sale.VisionAmount));
+                Values.Add("xVisionAmount", Format("{0:N2}", _sale.VisionAmount));
 
             if (_sale.TransitAmount > 0)
-                _values.Add("xTransitAmount", Format("{0:N2}", _sale.TransitAmount));
+                Values.Add("xTransitAmount", Format("{0:N2}", _sale.TransitAmount));
 
             if (_sale.CopayAmount > 0)
-                _values.Add("xCopayAmount", Format("{0:N2}", _sale.CopayAmount));
+                Values.Add("xCopayAmount", Format("{0:N2}", _sale.CopayAmount));
 
             if (_sale.ClinicalAmount > 0)
-                _values.Add("xClinicalAmount", Format("{0:N2}", _sale.ClinicalAmount));
+                Values.Add("xClinicalAmount", Format("{0:N2}", _sale.ClinicalAmount));
 
             if (!IsNullOrWhiteSpace(_sale.OrderID))
-                _values.Add("xOrderID", _sale.OrderID);
+                Values.Add("xOrderID", _sale.OrderID);
 
             if (_sale.AllowDuplicate)
-                _values.Add("xAllowDuplicate", _sale.AllowDuplicate.ToString());
+                Values.Add("xAllowDuplicate", _sale.AllowDuplicate.ToString());
 
             if (_sale.Currency != null)
-                _values.Add("xCurrency", _sale.Currency.Value.ToString());
+                Values.Add("xCurrency", _sale.Currency.Value.ToString());
         }
         #endregion
 
@@ -2526,7 +2526,7 @@ namespace CardknoxApi
         /// </summary>
         public void Dispose()
         {
-            _webClient.Dispose();
+            WebClient.Dispose();
         }
     }
 }
