@@ -1,5 +1,6 @@
 version: 1.0.{build}
 image: Visual Studio 2019
+skip_tags: true
 
 before_build:
  - cmd: nuget restore src\Cardknox.sln
@@ -25,7 +26,6 @@ for:
    api_key:
      secure: bsuOjvFlRd5YC/icDolLT+5pX2ejr4OujY/brObPlc4xSsMJY9I1Gvi9QFLgzYuh
    skip_symbols: false
-   skip_tags: true
    artifact: /Cardknox.*\.nupkg/
    on:
      branch: master
@@ -42,7 +42,6 @@ for:
    api_key:
      secure: bsuOjvFlRd5YC/icDolLT+5pX2ejr4OujY/brObPlc4xSsMJY9I1Gvi9QFLgzYuh
    skip_symbols: false
-   skip_tags: true
    artifact: /Cardknox.*\.nupkg/
    on:
      branch: 5.0

@@ -7,13 +7,13 @@ namespace CardknoxApi
     /// <summary>
     /// 
     /// </summary>
-    public class CardknoxRequest
+    public class RecurringRequest
     {
         internal string Key { get; }
         internal string Software { get; }
         internal string SoftwareVersion { get; }
-        internal string CardknoxVersion { get; } = "4.5.8";
-        internal const string _url = "https://x1.cardknox.com/gateway";
+        internal string CardknoxVersion { get; } = "1.0.0";
+        internal const string _url = "https://api.cardknox.com/recurring";
 
         /// <summary>
         /// 
@@ -22,7 +22,7 @@ namespace CardknoxApi
         /// <param name="software">Name of your software.</param>
         /// <param name="softwareVersion">Version number of your software.</param>
         /// <param name="cardknoxVer">Gateway API Version.</param>
-        public CardknoxRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
+        public RecurringRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
         {
             Key = key;
             Software = software;
@@ -39,9 +39,9 @@ namespace CardknoxApi
         /// <param name="softwareVersion">Version number of your software.</param>
         /// <param name="cardknoxVer">Gateway API Version.</param>
         /// <returns></returns>
-        public static CardknoxRequest BeginRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
+        public static RecurringRequest BeginRequest(string key, string software, string softwareVersion, string cardknoxVer = null)
         {
-            return new CardknoxRequest(key, software, softwareVersion, cardknoxVer);
+            return new RecurringRequest(key, software, softwareVersion, cardknoxVer);
         }
     }
 }

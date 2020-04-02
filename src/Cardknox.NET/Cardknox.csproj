@@ -8,12 +8,12 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>5.0-beta.1</Version>
+    <Version>5.0-beta.2</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
-Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
+Refer to https://kb.cardknox.com for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
+    <PackageReleaseNotes>Adding initial operations for adding managing customers. Renamed the Cardknox class object to CardknoxClient</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2020 The Scripters</Copyright>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>

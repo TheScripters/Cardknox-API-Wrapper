@@ -9,9 +9,9 @@ using static System.String;
 namespace CardknoxApi
 {
     /// <summary>
-    /// Primary object class for interacting with the Cardknox API.
+    /// Primary object class for interacting with the Cardknox transaction API.
     /// </summary>
-    public class Cardknox : IDisposable
+    public class CardknoxClient : IDisposable
     {
         #region events
         /// <summary>
@@ -44,14 +44,14 @@ namespace CardknoxApi
         /// Initiate new Cardknox request
         /// </summary>
         /// <param name="request">The <see cref="CardknoxRequest"/> object that is used to make the request.</param>
-        public Cardknox(CardknoxRequest request)
+        public CardknoxClient(CardknoxRequest request)
         {
             Values = new NameValueCollection
             {
-                { "xKey", request._key },
-                { "xVersion", request._cardknoxVersion },
-                { "xSoftwareName", request._software },
-                { "xSoftwareVersion", request._softwareVersion }
+                { "xKey", request.Key },
+                { "xVersion", request.CardknoxVersion },
+                { "xSoftwareName", request.Software },
+                { "xSoftwareVersion", request.SoftwareVersion }
             };
             Request = request;
             WebClient = new WebClient();
@@ -76,10 +76,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -166,10 +166,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -255,10 +255,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -307,10 +307,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -401,10 +401,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -468,10 +468,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -560,10 +560,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -609,10 +609,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -671,10 +671,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -734,10 +734,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -781,10 +781,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -830,10 +830,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -910,10 +910,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -987,10 +987,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1055,10 +1055,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1105,10 +1105,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1158,10 +1158,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1238,10 +1238,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1316,10 +1316,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1378,10 +1378,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1461,10 +1461,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1541,10 +1541,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1615,10 +1615,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1677,10 +1677,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1768,10 +1768,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1826,10 +1826,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1883,10 +1883,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -1974,10 +1974,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -2065,10 +2065,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -2155,10 +2155,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -2231,10 +2231,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
@@ -2314,10 +2314,10 @@ namespace CardknoxApi
                 string[] toRemove = Values.AllKeys;
                 foreach (var v in toRemove)
                     Values.Remove(v);
-                Values.Add("xKey", Request._key);
-                Values.Add("xVersion", Request._cardknoxVersion);
-                Values.Add("xSoftwareName", Request._software);
-                Values.Add("xSoftwareVersion", Request._softwareVersion);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
             }
 
             // BEGIN required information
