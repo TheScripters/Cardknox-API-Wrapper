@@ -70,7 +70,6 @@ namespace CardknoxApi
         /// <summary>
         /// 
         /// </summary>
-
         public string ShipFirstName { get; set; }
         /// <summary>
         /// 

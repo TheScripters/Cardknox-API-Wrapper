@@ -168,4 +168,34 @@ namespace CardknoxApi
         /// </summary>
         CAD
     }
+
+    /// <summary>
+    /// Single character indicating status
+    /// </summary>
+    public enum RecurringStatusType
+    {
+        /// <summary>
+        /// Indicates Error
+        /// </summary>
+        E,
+        /// <summary>
+        /// Indicates Success
+        /// </summary>
+        S
+    }
+
+    /// <summary>
+    /// Indicates the status
+    /// </summary>
+    public enum RecurringResultType
+    {
+        /// <summary>
+        /// Indicates Error
+        /// </summary>
+        Error,
+        /// <summary>
+        /// Indicates Success
+        /// </summary>
+        Status
+    }
 }

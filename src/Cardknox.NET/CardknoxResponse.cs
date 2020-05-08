@@ -8,7 +8,7 @@ using System.Web;
 namespace CardknoxApi
 {
     /// <summary>
-    /// Object representing response from the Cardknox API endpoint.
+    /// Object representing response from the Cardknox Payment API endpoint.
     /// </summary>
     public class CardknoxResponse
     {
