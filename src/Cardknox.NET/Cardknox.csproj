@@ -6,6 +6,7 @@
     <Company>The Scripters</Company>
     <PackageId>Cardknox.API.Wrapper</PackageId>
     <Product>Cardknox.API.Wrapper</Product>
+    <MinClientVersion>4.3.1</MinClientVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
     <Version>5.0-beta.2</Version>
