@@ -32,7 +32,7 @@ namespace CardknoxApi
         /// <summary>
         /// Data returned in reports
         /// </summary>
-        public List<CardknoxCustomer> ReportData { get; set; } = new List<CardknoxCustomer>();
+        public List<Dictionary<string, object>> ReportData { get; set; } = new List<Dictionary<string, object>>();
         /// <summary>
         /// Amount of records retrieved when running a report
         /// </summary>
@@ -129,7 +129,9 @@ namespace CardknoxApi
             if (_values.AllKeys.Contains("xCustomerNumber"))
                 CustomerNumber = _values["xCustomerNumber"];
             if (_values.AllKeys.Contains("xReportData"))
-                ReportData = JsonConvert.DeserializeObject<List<CardknoxCustomer>>($"[{_values["xCustomerNumber"]}]");
+            {
+                ReportData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>($"[{_values["xReportData"]}]");
+            }
         }
     }
 }
