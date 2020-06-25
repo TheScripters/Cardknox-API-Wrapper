@@ -8,7 +8,7 @@ build:
   verbosity: minimal
 
 artifacts:
-  - path: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.(s)?nupkg'
+  - path: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.*nupkg'
     name: NuGet
 
 for:
