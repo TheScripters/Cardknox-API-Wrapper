@@ -8,7 +8,7 @@ build:
   verbosity: minimal
 
 artifacts:
-  - path: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.*nupkg'
+  - path: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.(s)?nupkg'
     name: NuGet
 
 for:
@@ -25,7 +25,7 @@ for:
    api_key:
      secure: bsuOjvFlRd5YC/icDolLT+5pX2ejr4OujY/brObPlc4xSsMJY9I1Gvi9QFLgzYuh
    skip_symbols: false
-   artifact: /Cardknox.*\.nupkg/
+   artifact: /Cardknox.*\.(s)?nupkg/
    on:
      APPVEYOR_REPO_TAG: true
 
