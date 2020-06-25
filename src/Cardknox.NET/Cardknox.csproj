@@ -18,7 +18,15 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
     <Copyright>© 2020 The Scripters</Copyright>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
   
   <PropertyGroup>
       <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
