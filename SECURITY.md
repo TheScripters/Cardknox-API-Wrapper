@@ -2,15 +2,13 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Version 5.0 is still beta and is therefore unsupported, though security reports are still welcome.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.0.x   | :white_check_mark: |
+| 5.0.x   | :x: |
 | 4.6.x   | :white_check_mark: |
-| 4.5.x   | :white_check_mark: |
-| < 4.5   | :x:                |
+| < 4.6   | :x:                |
 
 ## Reporting a Vulnerability
 
