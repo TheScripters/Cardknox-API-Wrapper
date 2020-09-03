@@ -8,8 +8,7 @@ Version 5.0 is still beta and is therefore unsupported, though security reports 
 | ------- | ------------------ |
 | 5.0.x   | :x: |
 | 4.6.x   | :white_check_mark: |
-| 4.5.x   | :white_check_mark: |
-| < 4.5   | :x:                |
+| < 4.6   | :x:                |
 
 ## Reporting a Vulnerability
 
