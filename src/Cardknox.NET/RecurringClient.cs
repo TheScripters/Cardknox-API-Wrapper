@@ -11,7 +11,7 @@ using static System.String;
 namespace CardknoxApi
 {
     /// <summary>
-    /// Primary object class for interacting with the Cardknox transaction API.
+    /// Primary object class for interacting with the Cardknox Recurring v1 API.
     /// </summary>
     public class RecurringClient : IDisposable
     {
@@ -266,6 +266,104 @@ namespace CardknoxApi
             Values.Add("xRemoved", _cust.Removed.ToString());
 
             AddCommonFields(_cust);
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_cust"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse CustomerTransaction(CustomerTransaction _cust, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _cust.Operation);
+
+            if (IsNullOrWhiteSpace(_cust.CustomerID) && IsNullOrWhiteSpace(_cust.PaymentMethodID))
+                throw new InvalidOperationException("xPaymentMethodID is required when xCustomerID is not specified.");
+
+            if (!IsNullOrWhiteSpace(_cust.CustomerID))
+                Values.Add("xCustomerID", _cust.PaymentMethodID);
+            if (!IsNullOrWhiteSpace(_cust.CustomerID))
+                Values.Add("xPaymentMethodID", _cust.PaymentMethodID);
+            Values.Add("xAmount", String.Format("{0:N2}", _cust.Amount));
+            Values.Add("xUseBackupPaymentMethods", _cust.UseBackupPaymentMethods.ToString());
+            if (!IsNullOrWhiteSpace(_cust.Token) && IsNullOrWhiteSpace(_cust.PaymentMethodID))
+                Values.Add("xToken", _cust.Token);
+            if (!IsNullOrWhiteSpace(_cust.TokenType))
+                Values.Add("xTokenType", _cust.TokenType);
+            if (!IsNullOrWhiteSpace(_cust.TokenType))
+                Values.Add("xTokenType", _cust.TokenType);
+            if (!IsNullOrWhiteSpace(_cust.Name))
+                Values.Add("xName", _cust.Name);
+            if (!IsNullOrWhiteSpace(_cust.Street))
+                Values.Add("xStreet", _cust.Street);
+            if (!IsNullOrWhiteSpace(_cust.Zip))
+                Values.Add("xZip", _cust.Zip);
+            if (!IsNullOrWhiteSpace(_cust.Description))
+                Values.Add("xDescription", _cust.Description);
+            if (!IsNullOrWhiteSpace(_cust.Invoice))
+                Values.Add("xInvoice", _cust.Invoice);
+            if (!IsNullOrWhiteSpace(_cust.PONum))
+                Values.Add("xPONum", _cust.PONum);
+
+            if (!IsNullOrWhiteSpace(_cust.ShipFirstName))
+                Values.Add("xShipFirstName", _cust.ShipFirstName);
+            if (!IsNullOrWhiteSpace(_cust.ShipMiddleName))
+                Values.Add("xShipMiddleName", _cust.ShipMiddleName);
+            if (!IsNullOrWhiteSpace(_cust.ShipLastName))
+                Values.Add("xShipLastName", _cust.ShipLastName);
+            if (!IsNullOrWhiteSpace(_cust.ShipCompany))
+                Values.Add("xShipCompany", _cust.ShipCompany);
+            if (!IsNullOrWhiteSpace(_cust.ShipStreet))
+                Values.Add("xShipStreet", _cust.ShipStreet);
+            if (!IsNullOrWhiteSpace(_cust.ShipStreet2))
+                Values.Add("xShipStreet2", _cust.ShipStreet2);
+            if (!IsNullOrWhiteSpace(_cust.ShipCity))
+                Values.Add("xShipCity", _cust.ShipCity);
+            if (!IsNullOrWhiteSpace(_cust.ShipState))
+                Values.Add("xShipState", _cust.ShipState);
+            if (!IsNullOrWhiteSpace(_cust.ShipZip))
+                Values.Add("xShipZip", _cust.ShipZip);
+            if (!IsNullOrWhiteSpace(_cust.ShipCountry))
+                Values.Add("xShipCountry", _cust.ShipCountry);
+            if (!IsNullOrWhiteSpace(_cust.ShipPhone))
+                Values.Add("xShipPhone", _cust.ShipPhone);
+            if (!IsNullOrWhiteSpace(_cust.ShipMobile))
+                Values.Add("xShipMobile", _cust.ShipMobile);
+            if (!IsNullOrWhiteSpace(_cust.ShipEmail))
+                Values.Add("xShipEmail", _cust.ShipEmail);
+
+            int i = 1;
+            foreach (string v in _cust.CustomFields)
+            {
+                Values.Add($"xCustom{i:D2}", v);
+                i++;
+            }
 
             if (RequestStarted == null)
                 Log.LogRequest(Values);

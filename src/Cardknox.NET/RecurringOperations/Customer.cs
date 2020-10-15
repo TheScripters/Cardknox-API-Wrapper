@@ -70,5 +70,37 @@ namespace CardknoxApi.RecurringOperations
         /// <para>Note: This is not allowed if using a new payment method that has not been saved.</para>
         /// </summary>
         public bool UseBackupPaymentMethods { get; set; }
+
+        /// <summary>
+        /// Cardknox token that references a previously used payment method to use for the charge (if not using a payment method that has been saved with the Recurring API)
+        /// </summary>
+        public new string Token { get; set; }
+
+        /// <summary>
+        /// <para>The xToken payment type (Valid values: "CC" or "Check")</para>
+        /// <para>* Required if the xToken is passed in.</para>
+        /// </summary>
+        public string TokenType { get; set; }
+
+        /// <summary>
+        /// <para>Name on the customer's account</para>
+        /// <para>* Required for ACH (check) transactions if the xToken is passed in.</para>
+        /// </summary>
+        public new string Name { get; set; }
+
+        /// <summary>
+        /// Additional data optionally passed along for reporting.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Customer's purchase order number for the transaction.
+        /// </summary>
+        public string PONum { get; set; }
+
+        /// <summary>
+        /// Customer's shipping email address for their shipping profile
+        /// </summary>
+        public string ShipEmail { get; set; }
     }
 }

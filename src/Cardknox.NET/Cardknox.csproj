@@ -9,7 +9,7 @@
     <MinClientVersion>4.3.1</MinClientVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>5.0-beta.2</Version>
+    <Version>5.0-beta.3</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C# with support for payments, recurring transactions, and reporting. Refer to https://kb.cardknox.com for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
     <PackageReleaseNotes>Adding initial operations for adding managing customers. Renamed the Cardknox class object to CardknoxClient</PackageReleaseNotes>
