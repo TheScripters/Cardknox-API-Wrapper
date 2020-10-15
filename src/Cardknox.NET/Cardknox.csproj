@@ -12,7 +12,7 @@
     <Version>5.0-beta.3</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C# with support for payments, recurring transactions, and reporting. Refer to https://kb.cardknox.com for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes>Adding initial operations for adding managing customers. Renamed the Cardknox class object to CardknoxClient</PackageReleaseNotes>
+    <PackageReleaseNotes>Customer-based operations are now completed against the Recurring v1 API</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor recurring reporting payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2020 The Scripters</Copyright>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
