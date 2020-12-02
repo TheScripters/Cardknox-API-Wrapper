@@ -2,7 +2,7 @@
 
 API Wrapper for Cardknox Payment Processor written in C#.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/iqpxm68trgmlburq?svg=true)](https://ci.appveyor.com/project/ahwm/cardknox-api-wrapper)
+[![Build status](https://ci.appveyor.com/api/projects/status/iqpxm68trgmlburq)](https://ci.appveyor.com/project/ahwm/cardknox-api-wrapper)
 
 Check out the latest release: [https://github.com/TheScripters/Cardknox-API-Wrapper/releases/latest](https://github.com/ahwm/Cardknox-API-Wrapper/releases/latest)
 
