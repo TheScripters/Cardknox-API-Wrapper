@@ -378,6 +378,245 @@ namespace CardknoxApi
         }
         #endregion
 
+        #region PaymentMethod
+
+        /// <summary>
+        /// Use this command to add a new payment method to a customer's account profile.
+        /// </summary>
+        /// <param name="_pmt"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse PaymentMethodAdd(PaymentMethodAdd _pmt, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _pmt.Operation);
+            Values.Add("xCustomerID", _pmt.CustomerID);
+            Values.Add("xToken", _pmt.Token);
+            Values.Add("xTokenType", _pmt.TokenType);
+            // END required information
+
+            if (!String.IsNullOrWhiteSpace(_pmt.TokenAlias))
+                Values.Add("xTokenAlias", _pmt.TokenAlias);
+
+            // CONDITIONALLY REQUIRED
+            if (!String.IsNullOrWhiteSpace(_pmt.Exp))
+                Values.Add("xExp", _pmt.Exp);
+            if (!String.IsNullOrWhiteSpace(_pmt.Routing))
+                Values.Add("xRouting", _pmt.Routing);
+            if (!String.IsNullOrWhiteSpace(_pmt.Name))
+                Values.Add("xName", _pmt.Name);
+
+            if (!String.IsNullOrWhiteSpace(_pmt.Street))
+                Values.Add("xStreet", _pmt.Street);
+            if (!String.IsNullOrWhiteSpace(_pmt.Zip))
+                Values.Add("xZip", _pmt.Zip);
+            if (_pmt.SetToDefault)
+                Values.Add("xSetToDefault", _pmt.SetToDefault.ToString());
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        /// <summary>
+        /// <para>Use this command to update an existing payment method.</para>
+        /// <para>Note: All fields with values must be passed in (even the fields that are not being updated). Any fields not passed in are treated as being set to blank.</para>
+        /// </summary>
+        /// <param name="_pmt"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse PaymentMethodUpdate(PaymentMethodUpdate _pmt, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _pmt.Operation);
+            Values.Add("xCustomerID", _pmt.CustomerID);
+            Values.Add("xToken", _pmt.Token);
+            Values.Add("xTokenType", _pmt.TokenType);
+            // END required information
+
+            if (!String.IsNullOrWhiteSpace(_pmt.TokenAlias))
+                Values.Add("xTokenAlias", _pmt.TokenAlias);
+
+            // CONDITIONALLY REQUIRED
+            if (!String.IsNullOrWhiteSpace(_pmt.Exp))
+                Values.Add("xExp", _pmt.Exp);
+            if (!String.IsNullOrWhiteSpace(_pmt.Routing))
+                Values.Add("xRouting", _pmt.Routing);
+            if (!String.IsNullOrWhiteSpace(_pmt.Name))
+                Values.Add("xName", _pmt.Name);
+
+            if (!String.IsNullOrWhiteSpace(_pmt.Street))
+                Values.Add("xStreet", _pmt.Street);
+            if (!String.IsNullOrWhiteSpace(_pmt.Zip))
+                Values.Add("xZip", _pmt.Zip);
+            if (_pmt.SetToDefault)
+                Values.Add("xSetToDefault", _pmt.SetToDefault.ToString());
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        /// <summary>
+        /// <para>Use this command to remove a payment method.</para>
+        /// <para>Note: The payment method is not completely deleted from the database; instead, the removed property is set to true. Customers with active schedules cannot be removed.</para>
+        /// </summary>
+        /// <param name="_pmt"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse PaymentMethodRemove(PaymentMethodRemove _pmt, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _pmt.Operation);
+            Values.Add("xPaymentMethodID", _pmt.PaymentMethodID);
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        /// <summary>
+        /// Use this command to retrieve details of a payment method.
+        /// </summary>
+        /// <param name="_pmt"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse PaymentMethodGet(PaymentMethodGet _pmt, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _pmt.Operation);
+            Values.Add("xPaymentMethodID", _pmt.PaymentMethodID);
+            Values.Add("xRemoved", _pmt.Removed.ToString());
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        /// <summary>
+        /// Use this command to find payment methods using specific search parameters.
+        /// </summary>
+        /// <param name="_pmt"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        public RecurringResponse PaymentMethodFind(PaymentMethodFind _pmt, bool force = false)
+        {
+            if (Values.AllKeys.Length > 4 && !force)
+                throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
+            else if (force)
+            {
+                string[] toRemove = Values.AllKeys;
+                foreach (var v in toRemove)
+                    Values.Remove(v);
+                Values.Add("xKey", Request.Key);
+                Values.Add("xVersion", Request.CardknoxVersion);
+                Values.Add("xSoftwareName", Request.Software);
+                Values.Add("xSoftwareVersion", Request.SoftwareVersion);
+            }
+
+            // BEGIN required information
+            Values.Add("xCommand", _pmt.Operation);
+
+            if (!String.IsNullOrWhiteSpace(_pmt.CustomerID))
+                Values.Add("xCustomerID", _pmt.CustomerID);
+            if (!String.IsNullOrWhiteSpace(_pmt.Name))
+                Values.Add("xName", _pmt.Name);
+            Values.Add("xRemoved", _pmt.Removed.ToString());
+
+            if (RequestStarted == null)
+                Log.LogRequest(Values);
+            else RequestStarted.Invoke(this, new CardknoxEventArgs(Values));
+
+            var resp = MakeRequest();
+            if (RequestCompleted == null)
+                Log.LogResponse(resp);
+            else RequestCompleted.Invoke(this, new CardknoxEventArgs(resp));
+
+            return new RecurringResponse(resp);
+        }
+
+        #endregion
+
         #region private methods
         private NameValueCollection MakeRequest()
         {
