@@ -15,6 +15,36 @@ namespace CardknoxApi
         // xExp=1249
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string DuplicateAuthCode { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DuplicateRefNum { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CVVResult { get; set; }
+
+        /// <summary>
+        /// Card Code Verification (CCV) response code
+        /// </summary>
+        public CvvResponseType CVVResultCode { get; set; }
+
+        /// <summary>
+        /// Raw contents of <see cref="CVVResultCode"/>
+        /// </summary>
+        public string CVVResultCodeString { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
         /// Single character representing status
         /// </summary>
         public ResultType Result { get; }
@@ -111,6 +141,21 @@ namespace CardknoxApi
                 }
                 catch { }
             }
+            if (_values.AllKeys.Contains("xCvvResultCode"))
+            {
+                CVVResultCodeString = _values["xCvvResultCode"];
+                try
+                {
+                    CVVResultCode = (CvvResponseType)Enum.Parse(typeof(CvvResponseType), _values["xCvvResultCode"]);
+                }
+                catch { }
+            }
+            if (_values.AllKeys.Contains("xCvvResult"))
+                CVVResult = _values["xCvvResult"];
+            if (_values.AllKeys.Contains("xDuplicateAuthCode"))
+                DuplicateAuthCode = _values["xDuplicateAuthCode"];
+            if (_values.AllKeys.Contains("xDuplicateRefnum"))
+                DuplicateRefNum = _values["xDuplicateRefnum"];
             if (_values.AllKeys.Contains("xError"))
                 Error = _values["xError"];
             if (_values.AllKeys.Contains("xErrorCode"))
