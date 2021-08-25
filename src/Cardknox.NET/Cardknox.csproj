@@ -19,7 +19,6 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
