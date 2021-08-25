@@ -23,9 +23,17 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
   </ItemGroup>
-
+  
+  <PropertyGroup>
+	  <AllowedOutputExtensionsInPackageBuildOutputFolder>
+	    $(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb
+	  </AllowedOutputExtensionsInPackageBuildOutputFolder>
+	</PropertyGroup>
   
   <PropertyGroup>
       <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
