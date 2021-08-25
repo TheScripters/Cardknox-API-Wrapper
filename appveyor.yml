@@ -7,9 +7,9 @@ before_build:
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{version}-beta'
+  version: '{version}-ci'
   version_prefix: '{version}'
-  package_version: '{version}-beta'
+  package_version: '{version}-ci'
   assembly_version: '{version}'
   file_version: '{version}'
   informational_version: '{version}'
