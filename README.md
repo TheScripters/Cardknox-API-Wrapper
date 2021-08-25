@@ -23,6 +23,9 @@ Install from Package Manager Console
 PM> Install-Package Cardknox.API.Wrapper
 ```
 
+## CI Builds
+Source: https://nuget.pkg.github.com/TheScripters/index.json
+
 ---
 
 API Documentation: [https://kb.cardknox.com/api](https://kb.cardknox.com/api)
