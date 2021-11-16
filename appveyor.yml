@@ -1,33 +1,38 @@
-version: 1.0.{build}
+version: 5.0.0.{build}
 image: Visual Studio 2019
 
 before_build:
  - cmd: nuget restore src\Cardknox.sln
  
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}-ci'
+  version_prefix: '{version}'
+  package_version: '{version}-ci'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+  
 build:
   verbosity: minimal
 
 artifacts:
-  - path: '\src\Cardknox.NET\bin\Release\Cardknox.API.Wrapper*.*nupkg'
+  - path: '**\*.nupkg'
     name: NuGet
 
 for:
 
--
- branches:
-   only:
-     - master
-     
- configuration: Release
+-     
+ configuration: Debug
 
  deploy:
    provider: NuGet
+   server: https://nuget.pkg.github.com/ahwm/index.json
+   artifact: /.nupkg/
+   username: ahwm
    api_key:
-     secure: W4MtI5Ecxi0JGJ6LyP0dAkcW5DNdThYSFZhPC6FSc2CRSUoWjzUSe+SdAe1Cd9BC
-   skip_symbols: false
-   artifact: /Cardknox.*\.*nupkg/
-   on:
-     APPVEYOR_REPO_TAG: true
+     secure: MErt1yyJNwqUUvMN8A1Um+YGisjzNLB6F2ATZ8mmnX41DqIMn9E0TnY/tDbSoBkM
 
 -
  branches:
