@@ -45,7 +45,7 @@ namespace CardknoxApi
         /// Log request values to file specified in <c>Cardknox.LogLocation</c> if <c>Cardknox.Logging</c> is set to <c>enabled</c>
         /// </summary>
         /// <param name="_values"></param>
-        internal static void LogRequest(NameValueCollection _values)
+        internal static void LogRequest(Dictionary<string, string> _values)
         {
             if (!EnableLogging || LogLocation == "")
                 return;
@@ -56,7 +56,7 @@ namespace CardknoxApi
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Request" + Environment.NewLine;
             body += "---------------------------" + Environment.NewLine;
-            foreach (var k in _values.AllKeys)
+            foreach (var k in _values.Keys)
             {
                 if (!NoInclude.Contains(k))
                     body += k + " = " + _values[k] + Environment.NewLine;
@@ -72,7 +72,7 @@ namespace CardknoxApi
         /// Log response values to file specified in <c>Cardknox.LogLocation</c> if <c>Cardknox.Logging</c> is set to <c>enabled</c>
         /// </summary>
         /// <param name="_values"></param>
-        internal static void LogResponse(NameValueCollection _values)
+        internal static void LogResponse(Dictionary<string, string> _values)
         {
             if (!EnableLogging || LogLocation == "")
                 return;
@@ -83,7 +83,7 @@ namespace CardknoxApi
             string body = "----" + DateTime.UtcNow.ToString("s") + "----" + Environment.NewLine;
             body += "Cardknox Response" + Environment.NewLine;
             body += "---------------------------" + Environment.NewLine;
-            foreach (var k in _values.AllKeys)
+            foreach (var k in _values.Keys)
             {
                 body += k + " = " + _values[k] + Environment.NewLine;
             }

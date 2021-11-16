@@ -128,9 +128,9 @@ namespace CardknoxApi
         /// 
         /// </summary>
         /// <param name="_values"></param>
-        public CardknoxResponse(NameValueCollection _values)
+        public CardknoxResponse(Dictionary<string, string> _values)
         {
-            if (_values.AllKeys.Contains("xResult"))
+            if (_values.Keys.Contains("xResult"))
             {
                 ResultString = _values["xResult"];
                 try
@@ -139,7 +139,7 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xCvvResultCode"))
+            if (_values.Keys.Contains("xCvvResultCode"))
             {
                 CVVResultCodeString = _values["xCvvResultCode"];
                 try
@@ -148,21 +148,21 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xCvvResult"))
+            if (_values.Keys.Contains("xCvvResult"))
                 CVVResult = _values["xCvvResult"];
-            if (_values.AllKeys.Contains("xDuplicateAuthCode"))
+            if (_values.Keys.Contains("xDuplicateAuthCode"))
                 DuplicateAuthCode = _values["xDuplicateAuthCode"];
-            if (_values.AllKeys.Contains("xDuplicateRefnum"))
+            if (_values.Keys.Contains("xDuplicateRefnum"))
                 DuplicateRefNum = _values["xDuplicateRefnum"];
-            if (_values.AllKeys.Contains("xError"))
+            if (_values.Keys.Contains("xError"))
                 Error = _values["xError"];
-            if (_values.AllKeys.Contains("xErrorCode"))
+            if (_values.Keys.Contains("xErrorCode"))
                 ErrorCode = _values["xErrorCode"];
-            if (_values.AllKeys.Contains("xCurrency"))
+            if (_values.Keys.Contains("xCurrency"))
                 Currency = _values["xCurrency"];
-            if (_values.AllKeys.Contains("xDate"))
+            if (_values.Keys.Contains("xDate"))
                 Date = DateTime.Parse(_values["xDate"]);
-            if (_values.AllKeys.Contains("xStatus"))
+            if (_values.Keys.Contains("xStatus"))
             {
                 StatusString = _values["xStatus"];
                 try
@@ -171,13 +171,13 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xRefNum"))
+            if (_values.Keys.Contains("xRefNum"))
                 RefNum = _values["xRefNum"];
-            if (_values.AllKeys.Contains("xAuthCode"))
+            if (_values.Keys.Contains("xAuthCode"))
                 AuthCode = _values["xAuthCode"];
-            if (_values.AllKeys.Contains("xBatch"))
+            if (_values.Keys.Contains("xBatch"))
                 Batch = _values["xBatch"];
-            if (_values.AllKeys.Contains("xAvsResultCode"))
+            if (_values.Keys.Contains("xAvsResultCode"))
             {
                 AvsResultCodeString = _values["xAvsResultCode"];
                 try
@@ -186,9 +186,9 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xAvsResult"))
+            if (_values.Keys.Contains("xAvsResult"))
                 AvsResult = HttpUtility.UrlDecode(_values["xAvsResult"]);
-            if (_values.AllKeys.Contains("xAuthAmount"))
+            if (_values.Keys.Contains("xAuthAmount"))
             {
                 AuthAmountString = _values["xAuthAmount"];
                 try
@@ -198,9 +198,9 @@ namespace CardknoxApi
                 catch { }
             }
             else AuthAmount = null;
-            if (_values.AllKeys.Contains("xMaskedCardNumber"))
+            if (_values.Keys.Contains("xMaskedCardNumber"))
                 MaskedCardNumber = _values["xMaskedCardNumber"];
-            if (_values.AllKeys.Contains("xCardType"))
+            if (_values.Keys.Contains("xCardType"))
             {
                 CardTypeString = _values["xCardType"];
                 try
@@ -209,9 +209,9 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xToken"))
+            if (_values.Keys.Contains("xToken"))
                 Token = _values["xToken"];
-            if (_values.AllKeys.Contains("xEntryMethod"))
+            if (_values.Keys.Contains("xEntryMethod"))
                 EntryMethod = _values["xEntryMethod"];
         }
     }

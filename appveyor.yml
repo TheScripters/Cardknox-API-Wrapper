@@ -23,7 +23,11 @@ artifacts:
 
 for:
 
--     
+-
+ branches:
+   only:
+     - 5.0
+ 
  configuration: Debug
 
  deploy:
@@ -35,10 +39,6 @@ for:
      secure: MErt1yyJNwqUUvMN8A1Um+YGisjzNLB6F2ATZ8mmnX41DqIMn9E0TnY/tDbSoBkM
 
 -
- branches:
-   only:
-     - 5.0
-     
  configuration: Release
 
  deploy:

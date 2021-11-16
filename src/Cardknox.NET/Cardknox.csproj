@@ -9,7 +9,7 @@
     <MinClientVersion>4.3.1</MinClientVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>5.0-beta.4</Version>
+    <Version>5.0-beta.5</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C# with support for payments, recurring transactions, and reporting. Refer to https://kb.cardknox.com for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
     <PackageReleaseNotes>Customer-based operations are now completed against the Recurring v1 API</PackageReleaseNotes>
@@ -18,6 +18,8 @@
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,11 +40,6 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   
-  <PropertyGroup>
-      <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-      <RepositoryUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</RepositoryUrl>
-  </PropertyGroup>
-
   <ItemGroup>
       <None Include="LICENSE.txt" Pack="true" PackagePath="" />
   </ItemGroup>
@@ -62,11 +59,16 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
   </ItemGroup>
 
-  <!-- .NET Core 2.2 references, compilation flags and build options -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
-    <DefineConstants>NETCORE2_1;</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net5.0'">
+    <DefineConstants>NET5;</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0'">
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
+    <DefineConstants>NET6;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0'">
   </ItemGroup>
 
   <!-- .NET Core 3.1 references, compilation flags and build options -->
@@ -77,9 +79,10 @@
   </ItemGroup>
 
   <!-- .NET 4.5+ references, compilation flags and build options -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="mscorlib" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
