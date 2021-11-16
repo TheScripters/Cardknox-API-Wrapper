@@ -70,9 +70,9 @@ namespace CardknoxApi
         /// 
         /// </summary>
         /// <param name="_values"></param>
-        public RecurringResponse(NameValueCollection _values)
+        public RecurringResponse(Dictionary<string, string> _values)
         {
-            if (_values.AllKeys.Contains("xResult"))
+            if (_values.Keys.Contains("xResult"))
             {
                 ResultString = _values["xResult"];
                 try
@@ -81,11 +81,11 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xError"))
+            if (_values.Keys.Contains("xError"))
                 Error = _values["xError"];
-            if (_values.AllKeys.Contains("xErrorCode"))
+            if (_values.Keys.Contains("xErrorCode"))
                 ErrorCode = _values["xErrorCode"];
-            if (_values.AllKeys.Contains("xStatus"))
+            if (_values.Keys.Contains("xStatus"))
             {
                 StatusString = _values["xStatus"];
                 try
@@ -94,41 +94,41 @@ namespace CardknoxApi
                 }
                 catch { }
             }
-            if (_values.AllKeys.Contains("xRecurringRefNum"))
+            if (_values.Keys.Contains("xRecurringRefNum"))
                 RecurringRefNum = _values["xRecurringRefNum"];
-            if (_values.AllKeys.Contains("xEnteredDate"))
+            if (_values.Keys.Contains("xEnteredDate"))
                 EnteredDate = DateTime.Parse(_values["xEnteredDate"]);
-            if (_values.AllKeys.Contains("xBillFirstName"))
+            if (_values.Keys.Contains("xBillFirstName"))
                 BillFirstName = _values["xBillFirstName"];
-            if (_values.AllKeys.Contains("xBillMiddleName"))
+            if (_values.Keys.Contains("xBillMiddleName"))
                 BillMiddleName = _values["xBillMiddleName"];
-            if (_values.AllKeys.Contains("xBillLastName"))
+            if (_values.Keys.Contains("xBillLastName"))
                 BillLastName = _values["xBillLastName"];
-            if (_values.AllKeys.Contains("xBillName"))
+            if (_values.Keys.Contains("xBillName"))
                 BillName = _values["xBillName"];
-            if (_values.AllKeys.Contains("xBillStreet"))
+            if (_values.Keys.Contains("xBillStreet"))
                 BillStreet = _values["xBillStreet"];
-            if (_values.AllKeys.Contains("xBillStreet2"))
+            if (_values.Keys.Contains("xBillStreet2"))
                 BillStreet2 = _values["xBillStreet2"];
-            if (_values.AllKeys.Contains("xBillCity"))
+            if (_values.Keys.Contains("xBillCity"))
                 BillCity = _values["xBillCity"];
-            if (_values.AllKeys.Contains("xBillState"))
+            if (_values.Keys.Contains("xBillState"))
                 BillState = _values["xBillState"];
-            if (_values.AllKeys.Contains("xBillZip"))
+            if (_values.Keys.Contains("xBillZip"))
                 BillZip = _values["xBillZip"];
-            if (_values.AllKeys.Contains("xBillCountry"))
+            if (_values.Keys.Contains("xBillCountry"))
                 BillCountry = _values["xBillCountry"];
-            if (_values.AllKeys.Contains("xBillCompany"))
+            if (_values.Keys.Contains("xBillCompany"))
                 BillCompany = _values["xBillCompany"];
-            if (_values.AllKeys.Contains("xBillPhone"))
+            if (_values.Keys.Contains("xBillPhone"))
                 BillPhone = _values["xBillPhone"];
-            if (_values.AllKeys.Contains("xBillMobile"))
+            if (_values.Keys.Contains("xBillMobile"))
                 BillMobile = _values["xBillMobile"];
-            if (_values.AllKeys.Contains("xCustomerID"))
+            if (_values.Keys.Contains("xCustomerID"))
                 CustomerID = _values["xCustomerID"];
-            if (_values.AllKeys.Contains("xCustomerNumber"))
+            if (_values.Keys.Contains("xCustomerNumber"))
                 CustomerNumber = _values["xCustomerNumber"];
-            if (_values.AllKeys.Contains("xReportData"))
+            if (_values.Keys.Contains("xReportData"))
             {
                 ReportData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>($"[{_values["xReportData"]}]");
             }

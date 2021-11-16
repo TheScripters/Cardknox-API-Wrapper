@@ -3,7 +3,9 @@ using CardknoxApi.RecurringOperations;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web;
 using static System.String;
@@ -39,8 +41,8 @@ namespace CardknoxApi
         #endregion
 
         private RecurringRequest Request { get; }
-        private NameValueCollection Values { get; }
-        private WebClient WebClient { get; }
+        private Dictionary<string, string> Values { get; }
+        //private WebClient WebClient { get; }
 
         /// <summary>
         /// 
@@ -48,7 +50,7 @@ namespace CardknoxApi
         /// <param name="request"></param>
         public RecurringClient(RecurringRequest request)
         {
-            Values = new NameValueCollection
+            Values = new Dictionary<string, string>
             {
                 { "xKey", request.Key },
                 { "xVersion", request.CardknoxVersion },
@@ -56,7 +58,7 @@ namespace CardknoxApi
                 { "xSoftwareVersion", request.SoftwareVersion }
             };
             Request = request;
-            WebClient = new WebClient();
+            //WebClient = new WebClient();
         }
 
         #region Customer
@@ -68,11 +70,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerAdd(CustomerAdd _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -118,11 +120,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerUpdate(CustomerUpdate _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -170,11 +172,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerRemove(CustomerRemove _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -207,11 +209,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerGet(CustomerGet _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -245,11 +247,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerFind(CustomerFind _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -287,11 +289,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse CustomerTransaction(CustomerTransaction _cust, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -388,11 +390,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse PaymentMethodAdd(PaymentMethodAdd _pmt, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -447,11 +449,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse PaymentMethodUpdate(PaymentMethodUpdate _pmt, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -506,11 +508,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse PaymentMethodRemove(PaymentMethodRemove _pmt, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -543,11 +545,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse PaymentMethodGet(PaymentMethodGet _pmt, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -581,11 +583,11 @@ namespace CardknoxApi
         /// <returns></returns>
         public RecurringResponse PaymentMethodFind(PaymentMethodFind _pmt, bool force = false)
         {
-            if (Values.AllKeys.Length > 4 && !force)
+            if (Values.Keys.Count > 4 && !force)
                 throw new InvalidOperationException("A new instance of Recurring is required to perform this operation unless 'force' is set to 'true'.");
             else if (force)
             {
-                string[] toRemove = Values.AllKeys;
+                string[] toRemove = Values.Keys.ToArray();
                 foreach (var v in toRemove)
                     Values.Remove(v);
                 Values.Add("xKey", Request.Key);
@@ -618,11 +620,27 @@ namespace CardknoxApi
         #endregion
 
         #region private methods
-        private NameValueCollection MakeRequest()
+        private Dictionary<string, string> MakeRequest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            string req = System.Text.Encoding.ASCII.GetString(WebClient.UploadValues(RecurringRequest._url, Values));
-            NameValueCollection resp = HttpUtility.ParseQueryString(req);
+            //string req = System.Text.Encoding.ASCII.GetString(WebClient.UploadValues(RecurringRequest._url, Values));
+            //NameValueCollection resp = HttpUtility.ParseQueryString(req);
+            Dictionary<string, string> resp = new Dictionary<string, string>();
+            using (HttpClient client = new HttpClient())
+            {
+                using (var postContent = new FormUrlEncodedContent(Values))
+                using (HttpResponseMessage response = client.PostAsync(CardknoxRequest._url, postContent).Result)
+                {
+                    response.EnsureSuccessStatusCode();
+                    using (HttpContent content = response.Content)
+                    {
+                        string result = content.ReadAsStringAsync().Result;
+                        var values = HttpUtility.ParseQueryString(result);
+                        foreach (var key in values.AllKeys)
+                            resp.Add(key, values[key]);
+                    }
+                }
+            }
 
             return resp;
         }
@@ -679,7 +697,7 @@ namespace CardknoxApi
         /// </summary>
         public void Dispose()
         {
-            WebClient.Dispose();
+            //WebClient.Dispose();
         }
     }
 }

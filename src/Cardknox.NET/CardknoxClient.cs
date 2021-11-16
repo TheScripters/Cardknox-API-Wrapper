@@ -40,7 +40,7 @@ namespace CardknoxApi
 
         private CardknoxRequest Request { get; }
         private Dictionary<string, string> Values { get; }
-        private WebClient WebClient { get; }
+        //private WebClient WebClient { get; }
 
         /// <summary>
         /// Initiate new Cardknox request
@@ -56,7 +56,7 @@ namespace CardknoxApi
                 { "xSoftwareVersion", request.SoftwareVersion }
             };
             Request = request;
-            WebClient = new WebClient();
+            //WebClient = new WebClient();
         }
 
         #region credit card
@@ -2544,7 +2544,7 @@ namespace CardknoxApi
         /// </summary>
         public void Dispose()
         {
-            WebClient.Dispose();
+            //WebClient.Dispose();
         }
     }
 }
