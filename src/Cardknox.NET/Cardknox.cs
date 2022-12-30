@@ -838,7 +838,7 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _sale.Operation);
-            if (!IsNullOrWhiteSpace(_sale.Name))
+            if (IsNullOrWhiteSpace(_sale.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_sale.Routing) && !IsNullOrWhiteSpace(_sale.Account))
@@ -918,7 +918,7 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _credit.Operation);
-            if (!IsNullOrWhiteSpace(_credit.Name))
+            if (IsNullOrWhiteSpace(_credit.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_credit.Routing) && !IsNullOrWhiteSpace(_credit.Account))
@@ -995,7 +995,7 @@ namespace CardknoxApi
 
             // BEGIN required information
             _values.Add("xCommand", _save.Operation);
-            if (!IsNullOrWhiteSpace(_save.Name))
+            if (IsNullOrWhiteSpace(_save.Name))
                 throw new InvalidOperationException("Name is required.");
             bool requiredAdded = false;
             if (!IsNullOrWhiteSpace(_save.Routing) && !IsNullOrWhiteSpace(_save.Account))
