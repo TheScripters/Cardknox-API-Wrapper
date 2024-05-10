@@ -250,6 +250,8 @@ namespace CardknoxApi
                 }
                 catch { }
             }
+            if (_values.AllKeys.Contains("xRefnumCurrent"))
+                RefnumCurrent = _values["xRefnumCurrent"];
         }
     }
 }
