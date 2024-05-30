@@ -115,6 +115,9 @@ namespace CardknoxApi
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_sale.Name))
+                _values.Add("xName", _sale.Name);
+
             if (!IsNullOrWhiteSpace(_sale.Street))
                 _values.Add("xStreet", _sale.Street);
 
@@ -346,6 +349,9 @@ namespace CardknoxApi
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_auth.Name))
+                _values.Add("xName", _auth.Name);
+
             if (!IsNullOrWhiteSpace(_auth.Street))
                 _values.Add("xStreet", _auth.Street);
 
@@ -415,6 +421,9 @@ namespace CardknoxApi
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_capture.Name))
+                _values.Add("xName", _capture.Name);
+
             if (!IsNullOrWhiteSpace(_capture.Street))
                 _values.Add("xStreet", _capture.Street);
 
@@ -507,6 +516,9 @@ namespace CardknoxApi
 
             // The next many fields are optional and so there will be a lot of if statements here
             // Optional, but recommended
+            if (!IsNullOrWhiteSpace(_credit.Name))
+                _values.Add("xName", _credit.Name);
+
             if (!IsNullOrWhiteSpace(_credit.Street))
                 _values.Add("xStreet", _credit.Street);
 
