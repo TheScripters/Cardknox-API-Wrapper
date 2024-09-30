@@ -13,7 +13,7 @@ Check out the latest release: [https://github.com/TheScripters/Cardknox-API-Wrap
 
 ## Nuget Package
 
-[![NuGet Status]https://img.shields.io/nuget/vpre/Cardknox.API.Wrapper)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
+[![NuGet Status](https://img.shields.io/nuget/vpre/Cardknox.API.Wrapper)](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
 Available here: [https://www.nuget.org/packages/Cardknox.API.Wrapper/](https://www.nuget.org/packages/Cardknox.API.Wrapper/)
 
