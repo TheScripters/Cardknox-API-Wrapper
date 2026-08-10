@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
@@ -8,12 +8,12 @@
     <Product>Cardknox.API.Wrapper</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>CardknoxApi</RootNamespace>
-    <Version>4.6.3</Version>
+    <Version>4.6.5</Version>
     <PackageProjectUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</PackageProjectUrl>
     <Description>API Wrapper for Cardknox Payment Processor written in C#
 
 Refer to https://kb.cardknox.com/api for full API reference or https://github.com/TheScripters/Cardknox-API-Wrapper/wiki/ for library reference</Description>
-    <PackageReleaseNotes>Bugfix on check operations</PackageReleaseNotes>
+    <PackageReleaseNotes>Added xName (thanks to mfried40)</PackageReleaseNotes>
     <PackageTags>cardknox gateway processor payment api ebt mastercard payments american express amex jcb diners club giftcard gift card discover</PackageTags>
     <Copyright>© 2020 The Scripters</Copyright>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
@@ -25,7 +25,7 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.301" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>

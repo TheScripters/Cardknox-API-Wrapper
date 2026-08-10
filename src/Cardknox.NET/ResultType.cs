@@ -125,6 +125,36 @@ namespace CardknoxApi
         XXS
     }
     /// <summary>
+    /// Card code verification (CCV) response code
+    /// </summary>
+    public enum CvvResultCodeType
+    {
+        /// <summary>
+        /// Match
+        /// </summary>
+        M,
+        /// <summary>
+        /// No Match
+        /// </summary>
+        N,
+        /// <summary>
+        /// Not Processed
+        /// </summary>
+        P,
+        /// <summary>
+        /// Should be on card, but not so indicated
+        /// </summary>
+        S,
+        /// <summary>
+        /// Issuer Not Certified
+        /// </summary>
+        U,
+        /// <summary>
+        /// No Response from Association
+        /// </summary>
+        X
+    }
+    /// <summary>
     /// Specifies if the order origin is Internet OR Phone for FraudWatch verification.
     /// </summary>
     public enum OrderType
