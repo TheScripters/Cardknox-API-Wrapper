@@ -21,13 +21,13 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
-  
   <PropertyGroup>
       <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
       <RepositoryUrl>https://github.com/TheScripters/Cardknox-API-Wrapper</RepositoryUrl>
@@ -35,6 +35,7 @@ Refer to https://kb.cardknox.com/api for full API reference or https://github.co
 
   <ItemGroup>
       <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+      <None Include="../../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
